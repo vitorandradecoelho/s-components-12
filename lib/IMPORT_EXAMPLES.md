@@ -1,11 +1,11 @@
-# Exemplos de Importação - @formify/essentials v0.1
+# Exemplos de Importação - sd_components v0.1
 
-Este documento contém exemplos práticos de como importar e usar os componentes da biblioteca @formify/essentials na versão 0.1.
+Este documento contém exemplos práticos de como importar e usar os componentes da biblioteca sd_components na versão 0.1.
 
 ## 📦 Instalação
 
 ```bash
-npm install @formify/essentials@0.1.0
+npm install sd_components@0.1.0
 ```
 
 ## 🎯 Importações Básicas
@@ -14,12 +14,12 @@ npm install @formify/essentials@0.1.0
 
 ```tsx
 // Importar componentes específicos
-import { Input } from '@formify/essentials';
-import { Select, type SelectOption } from '@formify/essentials';
-import { DataTable, type TableColumn } from '@formify/essentials';
-import { ComboBox, type ComboOption } from '@formify/essentials';
-import { Toast, useToastHelper } from '@formify/essentials';
-import { SweetAlert, useSweetAlert } from '@formify/essentials';
+import { Input } from 'sd_components';
+import { Select, type SelectOption } from 'sd_components';
+import { DataTable, type TableColumn } from 'sd_components';
+import { ComboBox, type ComboOption } from 'sd_components';
+import { Toast, useToastHelper } from 'sd_components';
+import { SweetAlert, useSweetAlert } from 'sd_components';
 ```
 
 ### Importação múltipla
@@ -35,7 +35,7 @@ import {
   Alert,
   type SelectOption,
   type TableColumn
-} from '@formify/essentials';
+} from 'sd_components';
 ```
 
 ### Importação com alias
@@ -46,7 +46,7 @@ import {
   Input as FormifyInput,
   Select as FormifySelect,
   Alert as FormifyAlert
-} from '@formify/essentials';
+} from 'sd_components';
 ```
 
 ## 🧩 Exemplos por Componente
@@ -55,7 +55,7 @@ import {
 
 ```tsx
 import React, { useState } from 'react';
-import { Input } from '@formify/essentials';
+import { Input } from 'sd_components';
 import { User, Mail, Lock } from 'lucide-react';
 
 function LoginForm() {
@@ -92,7 +92,7 @@ function LoginForm() {
 
 ```tsx
 import React, { useState } from 'react';
-import { Select, type SelectOption } from '@formify/essentials';
+import { Select, type SelectOption } from 'sd_components';
 
 function PreferenciasForm() {
   const [categoria, setCategoria] = useState('');
@@ -121,7 +121,7 @@ function PreferenciasForm() {
 
 ```tsx
 import React, { useState } from 'react';
-import { ComboBox, type ComboOption } from '@formify/essentials';
+import { ComboBox, type ComboOption } from 'sd_components';
 
 function CidadesSelector() {
   const [cidades, setCidades] = useState<string[]>([]);
@@ -153,7 +153,7 @@ function CidadesSelector() {
 
 ```tsx
 import React from 'react';
-import { DataTable, type TableColumn } from '@formify/essentials';
+import { DataTable, type TableColumn } from 'sd_components';
 
 interface Produto {
   id: number;
@@ -242,7 +242,7 @@ function ProdutosTable() {
 
 ```tsx
 import React from 'react';
-import { Toast, useToastHelper } from '@formify/essentials';
+import { Toast, useToastHelper } from 'sd_components';
 
 function NotificacoesExample() {
   const { success, error, warning, info } = useToastHelper();
@@ -285,7 +285,7 @@ function NotificacoesExample() {
 
 ```tsx
 import React from 'react';
-import { useSweetAlert } from '@formify/essentials';
+import { useSweetAlert } from 'sd_components';
 
 function ConfirmacaoExample() {
   const { fire, SweetAlert } = useSweetAlert();
@@ -343,7 +343,7 @@ function ConfirmacaoExample() {
 
 ```tsx
 import React, { useState } from 'react';
-import { LinhaTrajetoSelector, type Linha, type Trajeto } from '@formify/essentials';
+import { LinhaTrajetoSelector, type Linha, type Trajeto } from 'sd_components';
 
 function RouteSelector() {
   const [selectedLinha, setSelectedLinha] = useState<string>('');
@@ -446,7 +446,7 @@ function RouteSelector() {
 ### Função cn (className merge)
 
 ```tsx
-import { cn } from '@formify/essentials';
+import { cn } from 'sd_components';
 
 // Combinar classes condicionalmente
 const buttonClasses = cn(
@@ -470,7 +470,7 @@ import {
   type SelectOption,
   type ComboOption,
   type TableColumn 
-} from '@formify/essentials';
+} from 'sd_components';
 
 interface Usuario {
   id: number;
@@ -534,7 +534,7 @@ function AppCompleto() {
   return (
     <div className="p-6 space-y-6">
       <Alert variant="info">
-        Exemplo completo da biblioteca @formify/essentials v0.1
+        Exemplo completo da biblioteca sd_components v0.1
       </Alert>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

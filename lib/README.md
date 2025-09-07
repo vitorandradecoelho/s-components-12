@@ -1,15 +1,15 @@
-# @formify/essentials
+# sd_components
 
 Uma biblioteca moderna de componentes React com design system integrado, baseada em Tailwind CSS e Radix UI.
 
 ## 🚀 Instalação
 
 ```bash
-npm install @formify/essentials
+npm install sd_components
 # ou
-yarn add @formify/essentials
+yarn add sd_components
 # ou
-pnpm add @formify/essentials
+pnpm add sd_components
 ```
 
 ## 📋 Pré-requisitos
@@ -30,7 +30,7 @@ Adicione o seguinte ao seu `tailwind.config.js`:
 module.exports = {
   content: [
     // ... seus caminhos existentes
-    "./node_modules/@formify/essentials/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/sd_components/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -81,7 +81,7 @@ module.exports = {
 No seu arquivo CSS principal (ex: `index.css`):
 
 ```css
-@import '@formify/essentials/dist/styles.css';
+@import 'sd_components/dist/styles.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -139,7 +139,7 @@ No seu arquivo CSS principal (ex: `index.css`):
 
 ```tsx
 import React from 'react';
-import { Input, Select, Alert, Toast } from '@formify/essentials';
+import { Input, Select, Alert, Toast } from 'sd_components';
 
 function App() {
   const [nome, setNome] = useState('');
@@ -188,7 +188,7 @@ function App() {
 
 ```tsx
 import React from 'react';
-import { DataTable, type TableColumn } from '@formify/essentials';
+import { DataTable, type TableColumn } from 'sd_components';
 
 interface Usuario {
   id: number;
@@ -252,7 +252,7 @@ function UsuariosPage() {
 
 ```tsx
 import React, { useState } from 'react';
-import { ComboBox, LinhaTrajetoSelector, type Linha, type Trajeto } from '@formify/essentials';
+import { ComboBox, LinhaTrajetoSelector, type Linha, type Trajeto } from 'sd_components';
 
 function TransporteForm() {
   const [linhas] = useState<Linha[]>([

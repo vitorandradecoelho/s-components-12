@@ -1,6 +1,6 @@
-# Configuração do BitBucket para @formify/essentials
+# Configuração do BitBucket para sd_components
 
-Este guia explica como configurar e publicar a biblioteca @formify/essentials no BitBucket.
+Este guia explica como configurar e publicar a biblioteca sd_components no BitBucket.
 
 ## 📋 Pré-requisitos
 
@@ -35,7 +35,7 @@ Atualize o `lib/package.json` com as informações corretas:
 
 ```json
 {
-  "name": "@formify/essentials",
+  "name": "sd_components",
   "version": "0.1.0",
   "repository": {
     "type": "git",
@@ -229,7 +229,7 @@ npm whoami
 npm login
 
 # Verificar se o nome do pacote está disponível
-npm search @formify/essentials
+npm search sd_components
 ```
 
 ### Problema: Build falha

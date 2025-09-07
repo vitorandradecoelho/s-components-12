@@ -19,7 +19,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [0.1.0] - 2025-01-15
 
 ### Adicionado  
-- ✨ Versão inicial da biblioteca @formify/essentials
+- ✨ Versão inicial da biblioteca sd_components
 - 🎯 14 componentes fundamentais:
   - Input - Campo de entrada com validação
   - Select - Seletor dropdown

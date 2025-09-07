@@ -34,7 +34,7 @@ projeto/
 
 ```json
 {
-  "name": "@formify/essentials",
+  "name": "sd_components",
   "version": "1.0.0",
   "description": "Biblioteca de componentes React reutilizáveis",
   "main": "dist/index.js",
@@ -153,9 +153,9 @@ npm run release:major   # Para breaking changes
 ### 1. Instalação
 
 ```bash
-npm install @formify/essentials
+npm install sd_components
 # ou
-yarn add @formify/essentials
+yarn add sd_components
 ```
 
 ### 2. Configuração do Tailwind CSS
@@ -165,7 +165,7 @@ yarn add @formify/essentials
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@formify/essentials/dist/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/sd_components/dist/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {
@@ -187,7 +187,7 @@ module.exports = {
 
 ```css
 /* index.css */
-@import '@formify/essentials/dist/styles.css';
+@import 'sd_components/dist/styles.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -206,7 +206,7 @@ module.exports = {
 
 ```tsx
 import React from 'react';
-import { Input, Button, Alert } from '@formify/essentials';
+import { Input, Button, Alert } from 'sd_components';
 
 function App() {
   return (
@@ -261,7 +261,7 @@ function App() {
 
 ### Pós-Publicação
 
-- [ ] ✅ Verificar instalação: `npm install @formify/essentials`
+- [ ] ✅ Verificar instalação: `npm install sd_components`
 - [ ] ✅ Testar importação dos componentes
 - [ ] ✅ Verificar se estilos estão aplicados
 - [ ] ✅ Confirmar compatibilidade com diferentes projetos

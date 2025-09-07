@@ -54,13 +54,13 @@ npm run watch
 Após publicação, instale em outros projetos:
 
 ```bash
-npm install @formify/essentials
+npm install sd_components
 ```
 
 Importe os componentes:
 
 ```typescript
-import { Input, Select, Button, Toast } from '@formify/essentials';
+import { Input, Select, Button, Toast } from 'sd_components';
 
 // Uso básico
 <Input label="Nome" placeholder="Digite seu nome" />
