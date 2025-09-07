@@ -1,5 +1,5 @@
 {
-  "name": "@formify/essentials",
+  "name": "formify-essentials-components",
   "version": "0.1.0",
   "description": "Uma biblioteca de componentes React reutilizáveis com design system integrado",
   "main": "dist/index.js",
