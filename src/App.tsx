@@ -25,6 +25,7 @@ import TestePage from "./pages/TestePage";
 import BitBucketDocs from "./pages/BitBucketDocs";
 import BitBucketTestPage from "./pages/BitBucketTestPage";
 import ProjectArchitectureDocs from "./pages/ProjectArchitectureDocs";
+import ComponentCreationGuide from "./pages/ComponentCreationGuide";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -58,6 +59,7 @@ const App = () => (
         <Route path="/bitbucket-docs" element={<BitBucketDocs />} />
         <Route path="/bitbucket-test" element={<BitBucketTestPage />} />
         <Route path="/architecture-docs" element={<ProjectArchitectureDocs />} />
+        <Route path="/component-guide" element={<ComponentCreationGuide />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
