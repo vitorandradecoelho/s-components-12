@@ -26,7 +26,7 @@ import {
   type TableColumn
 } from "@/components/library";
 import { LinhaTrajetoSelector, type Linha, type Trajeto } from "@/components/library/LinhaTrajetoSelector";
-import { Search, Code, Palette, Zap, Plus, RotateCcw, Search as SearchIcon, BookOpen, GitBranch } from "lucide-react";
+import { Search, Code, Palette, Zap, Plus, RotateCcw, Search as SearchIcon, BookOpen, GitBranch, Package } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Sample data for demonstrations
@@ -289,6 +289,12 @@ const Index = () => {
               <Link to="/bitbucket-docs">
                 <GitBranch className="h-4 w-4" />
                 BitBucket Docs
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="gap-2">
+              <Link to="/bitbucket-test">
+                <Package className="h-4 w-4" />
+                Teste v0.0.2
               </Link>
             </Button>
           </div>

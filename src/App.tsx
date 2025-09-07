@@ -23,6 +23,7 @@ import SweetAlertDocs from "./pages/SweetAlertDocs";
 import LinhaTrajetoDocs from "./pages/LinhaTrajetoDocs";
 import TestePage from "./pages/TestePage";
 import BitBucketDocs from "./pages/BitBucketDocs";
+import BitBucketTestPage from "./pages/BitBucketTestPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -54,6 +55,7 @@ const App = () => (
             <Route path="/docs/linhatrajeto" element={<LinhaTrajetoDocs />} />
         <Route path="/teste" element={<TestePage />} />
         <Route path="/bitbucket-docs" element={<BitBucketDocs />} />
+        <Route path="/bitbucket-test" element={<BitBucketTestPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
