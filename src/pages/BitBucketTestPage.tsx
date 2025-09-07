@@ -10,7 +10,7 @@ import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
 
 // Import the component from BitBucket version 0.0.2
-import { LinhaTrajetoSelector, type Linha, type Trajeto } from '@vitorandradecoelho/sd-components';
+import { LinhaTrajetoSelector, type Linha, type Trajeto } from '@/components/library/LinhaTrajetoSelector';
 
 // Sample data for LinhaTrajetoSelector - Version 0.0.2 compatible
 const sampleLinhas: Linha[] = [
