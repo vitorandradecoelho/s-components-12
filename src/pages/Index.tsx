@@ -26,7 +26,7 @@ import {
   type TableColumn
 } from "@/components/library";
 import { LinhaTrajetoSelector, type Linha, type Trajeto } from "@/components/library/LinhaTrajetoSelector";
-import { Search, Code, Palette, Zap, Plus, RotateCcw, Search as SearchIcon, BookOpen } from "lucide-react";
+import { Search, Code, Palette, Zap, Plus, RotateCcw, Search as SearchIcon, BookOpen, GitBranch } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Sample data for demonstrations
@@ -283,6 +283,12 @@ const Index = () => {
               <Link to="/teste">
                 <Zap className="h-4 w-4" />
                 Teste NPM
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="gap-2">
+              <Link to="/bitbucket-docs">
+                <GitBranch className="h-4 w-4" />
+                BitBucket Docs
               </Link>
             </Button>
           </div>
