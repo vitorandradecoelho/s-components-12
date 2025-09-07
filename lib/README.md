@@ -5,11 +5,22 @@ Uma biblioteca moderna de componentes React com design system integrado, baseada
 ## 🚀 Instalação
 
 ```bash
-npm install sd_components
-# ou
-yarn add sd_components
-# ou
-pnpm add sd_components
+npm install @vitorandradecoelho/sd-components
+```
+
+## 🎨 Importação dos Estilos
+
+**IMPORTANTE**: Os estilos CSS são incluídos automaticamente quando você importa os componentes. Não é necessário importar o CSS separadamente na maioria dos casos.
+
+```javascript
+// Os estilos são importados automaticamente
+import { Input, Alert, DataTable } from '@vitorandradecoelho/sd-components';
+```
+
+### Importação manual (se necessário)
+```javascript
+// Apenas se você precisar importar o CSS separadamente
+import '@vitorandradecoelho/sd-components/dist/styles.css';
 ```
 
 ## 📋 Pré-requisitos

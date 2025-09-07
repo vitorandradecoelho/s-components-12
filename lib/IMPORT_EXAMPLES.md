@@ -5,7 +5,24 @@ Este documento contém exemplos práticos de como importar e usar os componentes
 ## 📦 Instalação
 
 ```bash
-npm install @yourusername/sd-components@0.1.0
+npm install @vitorandradecoelho/sd-components
+```
+
+## 🎨 Importação dos Estilos
+
+**IMPORTANTE**: Para que os componentes funcionem corretamente, você deve importar os estilos CSS da biblioteca:
+
+### Opção 1: Importação automática (recomendado)
+```javascript
+// Os estilos são importados automaticamente com os componentes
+import { Input, Button, Alert } from '@vitorandradecoelho/sd-components';
+```
+
+### Opção 2: Importação manual do CSS
+```javascript
+// Importe o CSS separadamente se necessário
+import '@vitorandradecoelho/sd-components/dist/styles.css';
+import { Input, Button, Alert } from '@vitorandradecoelho/sd-components';
 ```
 
 ## 🎯 Importações Básicas
