@@ -1,5 +1,5 @@
 {
-  "name": "@vitorsd/sd-components",
+  "name": "@vitorandradecoelho/sd-components",
   "version": "0.1.0",
   "description": "Uma biblioteca de componentes React reutilizáveis com design system integrado",
   "main": "dist/index.js",
@@ -64,6 +64,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/seu-usuario/sd_components"
+    "url": "https://github.com/vitorandradecoelho/sd-components"
   }
 }
