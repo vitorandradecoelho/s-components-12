@@ -21,9 +21,19 @@ cd lib
 npm run export
 ```
 - Faz build automatizado
-- Pergunta se deseja publicar no NPM
+- **NOVA**: Escolha entre NPM ou BitBucket
 - Permite escolher tipo de versão (patch/minor/major)
-- Publica automaticamente
+- Publica automaticamente conforme escolha
+
+### ⚙️ Configuração BitBucket
+```bash
+cd lib
+node scripts/setup-bitbucket.js
+```
+- Configura repositório BitBucket
+- Adiciona remote origin
+- Faz commit inicial se necessário
+- Atualiza package.json com info do repo
 
 ### 👀 Modo Watch (Desenvolvimento)
 ```bash
@@ -41,13 +51,21 @@ npm run watch
 2. Edite os componentes normalmente
 3. A biblioteca é recompilada a cada mudança
 
-### Para Publicação:
+### Para Publicação NPM:
 1. `npm run export` - Script interativo completo
-2. Escolha o tipo de versão apropriado:
+2. **Escolha opção 1**: NPM Registry (público)
+3. Escolha o tipo de versão apropriado:
    - **patch** (0.1.0 → 0.1.1): Correções de bugs
    - **minor** (0.1.0 → 0.2.0): Novas funcionalidades
    - **major** (0.1.0 → 1.0.0): Mudanças incompatíveis
-3. Confirme a publicação no NPM
+4. Confirme a publicação no NPM
+
+### Para Versionamento BitBucket:
+1. **Primeira vez**: `node scripts/setup-bitbucket.js`
+2. `npm run export` - Script interativo completo
+3. **Escolha opção 2**: BitBucket Repository (versionamento)
+4. Escolha o tipo de versão
+5. Mudanças são commitadas, taggeadas e enviadas automaticamente
 
 ## 📖 Uso da Biblioteca Exportada
 
