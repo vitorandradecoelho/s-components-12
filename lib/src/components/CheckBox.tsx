@@ -89,7 +89,9 @@ const CheckBox = React.forwardRef<HTMLInputElement, CheckBoxProps>(
                 } else if (ref) {
                   ref.current = node;
                 }
-                checkboxRef.current = node;
+                if (checkboxRef.current !== node) {
+                  (checkboxRef as React.MutableRefObject<HTMLInputElement | null>).current = node;
+                }
               }}
               checked={checked}
               disabled={disabled}
