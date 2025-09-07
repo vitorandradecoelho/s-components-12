@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/index.css';
 
 export interface StyleProviderProps {
   children: React.ReactNode;

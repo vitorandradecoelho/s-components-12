@@ -23,7 +23,9 @@
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "src/global.d.ts",
+    "src/styles.d.ts"
   ],
   "exclude": [
     "node_modules",
