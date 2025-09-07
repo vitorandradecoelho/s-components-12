@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LinhaTrajetoSelector, type Linha, type Trajeto } from '@vitorandradecoelho/sd-components';
+import { LinhaTrajetoSelector, type Linha, type Trajeto } from '@/components/library/LinhaTrajetoSelector';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
