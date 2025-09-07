@@ -19,3 +19,4 @@ export { Alert, type AlertProps } from './components/Alert';
 export { Toast, useToastHelper, type ToastOptions } from './components/Toast';
 export { SweetAlert, useSweetAlert, type SweetAlertOptions, type SweetAlertType } from './components/SweetAlert';
 export { LinhaTrajetoSelector, type Linha, type Trajeto, type LinhaTrajetoSelectorProps } from './components/LinhaTrajetoSelector';
+export { StyleProvider, useStyles } from './components/StyleProvider';

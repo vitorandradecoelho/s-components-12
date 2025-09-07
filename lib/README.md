@@ -144,7 +144,11 @@ No seu arquivo CSS principal (ex: `index.css`):
 }
 ```
 
-## 📖 Uso
+### 📚 **Documentação Completa**
+
+- [📖 Guia de Importação dos Estilos](./STYLES_USAGE.md)
+- [🚀 Exemplos de Uso](./IMPORT_EXAMPLES.md)
+- [📦 Guia de Deploy](./EXPORT_GUIDE.md)
 
 ### Exemplo básico (versão 0.1)
 

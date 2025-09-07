@@ -11,4 +11,4 @@ export { FormModal } from './FormModal';
 export { Alert, type AlertProps } from './Alert';
 export { Toast, useToastHelper, type ToastOptions } from './Toast';
 export { SweetAlert, useSweetAlert, type SweetAlertOptions, type SweetAlertType } from './SweetAlert';
-export { LinhaTrajetoSelector, type Linha, type Trajeto, type LinhaTrajetoSelectorProps } from './LinhaTrajetoSelector';
+export { StyleProvider, useStyles } from './StyleProvider';
