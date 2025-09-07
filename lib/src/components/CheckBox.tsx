@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils";
 import { Check, Minus, AlertCircle } from "lucide-react";
 
 interface CheckBoxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {

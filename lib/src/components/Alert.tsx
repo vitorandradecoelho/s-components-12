@@ -1,7 +1,6 @@
 import React from 'react';
-import { Alert as AlertUI, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { AlertTriangle, Info, CheckCircle, XCircle } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn } from '../lib/utils';
 
 export interface AlertProps {
   /** Alert variant */
@@ -24,10 +23,10 @@ const variantIcons = {
 };
 
 const variantStyles = {
-  default: "",
-  destructive: "",
-  success: "border-green-500/50 text-green-700 dark:text-green-400 [&>svg]:text-green-600",
-  warning: "border-yellow-500/50 text-yellow-700 dark:text-yellow-400 [&>svg]:text-yellow-600",
+  default: "border-border bg-background text-foreground",
+  destructive: "border-red-500/50 bg-red-50 text-red-700 dark:bg-red-950/20 dark:text-red-400 [&>svg]:text-red-600",
+  success: "border-green-500/50 bg-green-50 text-green-700 dark:bg-green-950/20 dark:text-green-400 [&>svg]:text-green-600",
+  warning: "border-yellow-500/50 bg-yellow-50 text-yellow-700 dark:bg-yellow-950/20 dark:text-yellow-400 [&>svg]:text-yellow-600",
 };
 
 export const Alert: React.FC<AlertProps> = ({
@@ -40,15 +39,22 @@ export const Alert: React.FC<AlertProps> = ({
   const IconComponent = variantIcons[variant];
 
   return (
-    <AlertUI 
-      variant={variant === 'success' || variant === 'warning' ? 'default' : variant}
-      className={cn(variantStyles[variant], className)}
-    >
-      {showIcon && <IconComponent className="h-4 w-4" />}
-      {title && <AlertTitle>{title}</AlertTitle>}
-      <AlertDescription>
-        {children}
-      </AlertDescription>
-    </AlertUI>
+    <div className={cn(
+      "relative w-full rounded-lg border px-4 py-3 text-sm flex gap-3",
+      variantStyles[variant],
+      className
+    )}>
+      {showIcon && <IconComponent className="h-4 w-4 mt-0.5 flex-shrink-0" />}
+      <div className="flex-1">
+        {title && (
+          <h5 className="mb-1 font-medium leading-none tracking-tight">
+            {title}
+          </h5>
+        )}
+        <div className="text-sm [&_p]:leading-relaxed">
+          {children}
+        </div>
+      </div>
+    </div>
   );
 };
