@@ -1,6 +1,3 @@
-// Estilos
-import './styles/index.css';
-
 // Utilitários
 export { cn } from './lib/utils';
 
