@@ -21,6 +21,7 @@ import AlertDocs from "./pages/AlertDocs";
 import ToastDocs from "./pages/ToastDocs";
 import SweetAlertDocs from "./pages/SweetAlertDocs";
 import LinhaTrajetoDocs from "./pages/LinhaTrajetoDocs";
+import TestePage from "./pages/TestePage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +51,7 @@ const App = () => (
             <Route path="/docs/toast" element={<ToastDocs />} />
             <Route path="/docs/sweetalert" element={<SweetAlertDocs />} />
             <Route path="/docs/linhatrajeto" element={<LinhaTrajetoDocs />} />
+            <Route path="/teste" element={<TestePage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

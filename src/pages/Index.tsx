@@ -279,6 +279,12 @@ const Index = () => {
                 {t('home.viewDocs')}
               </Link>
             </Button>
+            <Button asChild variant="default" size="lg" className="gap-2">
+              <Link to="/teste">
+                <Zap className="h-4 w-4" />
+                Teste NPM
+              </Link>
+            </Button>
           </div>
         </div>
 
