@@ -153,7 +153,7 @@ npm run release:major   # Para breaking changes
 ### 1. Instalação
 
 ```bash
-npm install sd_components
+npm install @yourusername/sd-components
 # ou
 yarn add sd_components
 ```

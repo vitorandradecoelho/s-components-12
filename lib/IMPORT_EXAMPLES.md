@@ -5,7 +5,7 @@ Este documento contém exemplos práticos de como importar e usar os componentes
 ## 📦 Instalação
 
 ```bash
-npm install sd_components@0.1.0
+npm install @yourusername/sd-components@0.1.0
 ```
 
 ## 🎯 Importações Básicas

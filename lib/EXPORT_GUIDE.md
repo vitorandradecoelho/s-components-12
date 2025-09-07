@@ -54,13 +54,13 @@ npm run watch
 Após publicação, instale em outros projetos:
 
 ```bash
-npm install sd_components
+npm install @yourusername/sd-components
 ```
 
 Importe os componentes:
 
 ```typescript
-import { Input, Select, Button, Toast } from 'sd_components';
+import { Input, Select, Button, Toast } from '@yourusername/sd-components';
 
 // Uso básico
 <Input label="Nome" placeholder="Digite seu nome" />
