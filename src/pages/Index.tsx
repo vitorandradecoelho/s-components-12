@@ -28,7 +28,7 @@ import {
   type TableColumn
 } from "@/components/library";
 import { LinhaTrajetoSelector, type Linha, type Trajeto } from "@/components/library/LinhaTrajetoSelector";
-import { Map } from "@/components/library/Map";
+// import { Map } from "@/components/library/Map"; // Temporarily commented out for debugging
 import { Search, Code, Palette, Zap, Plus, RotateCcw, Search as SearchIcon, BookOpen, GitBranch, Package, Settings, Users, Navigation } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -1164,28 +1164,34 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Map
-                provider="openstreet"
-                center={[-14.235, -51.9253]}
-                zoom={4}
-                height="300px"
-                markers={[
-                  {
-                    id: '1',
-                    lat: -23.5505,
-                    lng: -46.6333,
-                    title: 'São Paulo',
-                    description: 'Maior cidade do Brasil'
-                  },
-                  {
-                    id: '2',
-                    lat: -22.9068,
-                    lng: -43.1729,
-                    title: 'Rio de Janeiro',
-                    description: 'Cidade Maravilhosa'
-                  }
-                ]}
-              />
+            {/* Temporarily commented out for debugging */}
+            {/*
+            <Map
+              provider="openstreet"
+              center={[-14.235, -51.9253]}
+              zoom={4}
+              height="300px"
+              markers={[
+                {
+                  id: '1',
+                  lat: -23.5505,
+                  lng: -46.6333,
+                  title: 'São Paulo',
+                  description: 'Maior cidade do Brasil'
+                },
+                {
+                  id: '2',
+                  lat: -22.9068,
+                  lng: -43.1729,
+                  title: 'Rio de Janeiro',
+                  description: 'Cidade Maravilhosa'
+                }
+              ]}
+            />
+            */}
+            <div className="flex items-center justify-center h-64 bg-muted rounded-lg">
+              <p className="text-muted-foreground">Componente de mapa temporariamente desabilitado para debug</p>
+            </div>
             </CardContent>
           </Card>
         </div>
