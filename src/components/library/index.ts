@@ -12,4 +12,5 @@ export { Alert, type AlertProps } from './Alert';
 export { Toast, useToastHelper, type ToastOptions } from './Toast';
 export { SweetAlert, useSweetAlert, type SweetAlertOptions, type SweetAlertType } from './SweetAlert';
 export { DatePicker, type DatePickerProps } from './DatePicker';
+export { TimePicker, type TimePickerProps } from './TimePicker';
 export { StyleProvider, useStyles } from './StyleProvider';

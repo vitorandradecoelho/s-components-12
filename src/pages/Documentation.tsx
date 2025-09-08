@@ -21,6 +21,7 @@ import {
   Bell,
   Sparkles,
   Calendar,
+  Clock,
   Cloud,
   Shield
 } from 'lucide-react';
@@ -109,6 +110,12 @@ const components = [
     icon: Calendar,
     category: 'input',
     complexity: 'intermediate'
+  },
+  {
+    name: 'timepicker',
+    icon: Clock,
+    category: 'input',
+    complexity: 'basic'
   },
   {
     name: 'linhatrajeto',

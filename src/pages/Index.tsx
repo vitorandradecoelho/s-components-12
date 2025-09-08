@@ -21,6 +21,7 @@ import {
   SweetAlert,
   useSweetAlert,
   DatePicker,
+  TimePicker,
   type SelectOption,
   type RadioOption,
   type ComboOption,
@@ -221,6 +222,12 @@ const Index = () => {
   const [dateRange, setDateRange] = React.useState<{ from?: Date; to?: Date } | null>(null);
   const [startDateTime, setStartDateTime] = React.useState<Date | null>(null);
   const [endDateTime, setEndDateTime] = React.useState<Date | null>(null);
+  const [separateDate, setSeparateDate] = React.useState<Date | null>(null);
+  const [separateTime, setSeparateTime] = React.useState<string | null>(null);
+  const [startDate, setStartDate] = React.useState<Date | null>(null);
+  const [startTime, setStartTime] = React.useState<string | null>(null);
+  const [endDate, setEndDate] = React.useState<Date | null>(null);
+  const [endTime, setEndTime] = React.useState<string | null>(null);
 
   const handleFileChange = (files: File[]) => {
     console.log("Arquivos selecionados:", files);
@@ -892,6 +899,8 @@ const Index = () => {
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
+                  <h4 className="font-medium text-base">Campos Combinados (DateTime)</h4>
+                  
                   <DatePicker
                     label="Data de nascimento"
                     value={selectedDate}
@@ -921,41 +930,73 @@ const Index = () => {
                 </div>
                 
                 <div className="space-y-4">
-                  <DatePicker
-                    label="Evento com horário (24h)"
-                    mode="datetime"
-                    timeFormat="24"
-                    placeholder="Data e horário..."
-                    helper="Formato 24 horas"
-                  />
+                  <h4 className="font-medium text-base">Campos Separados (Date + Time)</h4>
                   
-                  <DatePicker
-                    label="Evento com horário (12h)"
-                    mode="datetime"
-                    timeFormat="12"
-                    placeholder="Data e horário AM/PM..."
-                    helper="Formato 12 horas com AM/PM"
-                  />
+                  <div className="grid grid-cols-2 gap-2">
+                    <DatePicker
+                      label="Data do evento"
+                      value={separateDate}
+                      onChange={(date) => setSeparateDate(date as Date | null)}
+                      placeholder="Selecionar data..."
+                    />
+                    <TimePicker
+                      label="Horário"
+                      value={separateTime}
+                      onChange={setSeparateTime}
+                      placeholder="Selecionar horário..."
+                      timeFormat="24"
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-2">
+                    <DatePicker
+                      label="Data início"
+                      value={startDate}
+                      onChange={(date) => setStartDate(date as Date | null)}
+                      placeholder="Data início..."
+                    />
+                    <TimePicker
+                      label="Hora início"
+                      value={startTime}
+                      onChange={setStartTime}
+                      placeholder="Hora início..."
+                      timeFormat="12"
+                    />
+                  </div>
 
-                  <DatePicker
-                    label="Data fim + Horário"
-                    mode="datetime"
-                    value={endDateTime}
-                    onChange={(date) => setEndDateTime(date as Date | null)}
-                    placeholder="Data e horário de fim..."
-                    helper="Selecione data e hora de fim"
-                    timeFormat="24"
-                  />
+                  <div className="grid grid-cols-2 gap-2">
+                    <DatePicker
+                      label="Data fim"
+                      value={endDate}
+                      onChange={(date) => setEndDate(date as Date | null)}
+                      placeholder="Data fim..."
+                    />
+                    <TimePicker
+                      label="Hora fim"
+                      value={endTime}
+                      onChange={setEndTime}
+                      placeholder="Hora fim..."
+                      timeFormat="12"
+                    />
+                  </div>
                 </div>
               </div>
               
               <div className="bg-muted/30 p-4 rounded-lg">
-                <h4 className="font-medium mb-2">Valores Selecionados:</h4>
-                <div className="space-y-1 text-sm">
-                  <div><strong>Data única:</strong> {selectedDate ? selectedDate.toLocaleString('pt-BR') : 'null'}</div>
-                  <div><strong>Período:</strong> {dateRange && dateRange.from ? `${dateRange.from.toLocaleDateString('pt-BR')} - ${dateRange.to?.toLocaleDateString('pt-BR') || '...'}` : 'null'}</div>
-                  <div><strong>Data início + hora:</strong> {startDateTime ? startDateTime.toLocaleString('pt-BR') : 'null'}</div>
-                  <div><strong>Data fim + hora:</strong> {endDateTime ? endDateTime.toLocaleString('pt-BR') : 'null'}</div>
+                <h4 className="font-medium mb-3">Valores Selecionados:</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2 text-sm">
+                    <h5 className="font-medium">Campos Combinados:</h5>
+                    <div><strong>Data única:</strong> {selectedDate ? selectedDate.toLocaleDateString('pt-BR') : 'null'}</div>
+                    <div><strong>Período:</strong> {dateRange && dateRange.from ? `${dateRange.from.toLocaleDateString('pt-BR')} - ${dateRange.to?.toLocaleDateString('pt-BR') || '...'}` : 'null'}</div>
+                    <div><strong>Data início + hora:</strong> {startDateTime ? startDateTime.toLocaleString('pt-BR') : 'null'}</div>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <h5 className="font-medium">Campos Separados:</h5>
+                    <div><strong>Data evento:</strong> {separateDate ? separateDate.toLocaleDateString('pt-BR') : 'null'} | <strong>Horário:</strong> {separateTime || 'null'}</div>
+                    <div><strong>Início:</strong> {startDate ? startDate.toLocaleDateString('pt-BR') : 'null'} {startTime || ''}</div>
+                    <div><strong>Fim:</strong> {endDate ? endDate.toLocaleDateString('pt-BR') : 'null'} {endTime || ''}</div>
+                  </div>
                 </div>
               </div>
             </CardContent>

@@ -17,4 +17,5 @@ export { Toast, useToastHelper, type ToastOptions } from './components/Toast';
 export { SweetAlert, useSweetAlert, type SweetAlertOptions, type SweetAlertType, type SweetAlertProps } from './components/SweetAlert';
 export { LinhaTrajetoSelector, type Linha, type Trajeto, type LinhaTrajetoSelectorProps } from './components/LinhaTrajetoSelector';
 export { DatePicker, type DatePickerProps } from './components/DatePicker';
+export { TimePicker, type TimePickerProps } from './components/TimePicker';
 export { StyleProvider, useStyles, type StyleProviderProps } from './components/StyleProvider';
