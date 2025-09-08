@@ -258,23 +258,34 @@ export const Map: React.FC<MapProps> = ({
   googleMapsApiKey,
   ...props
 }) => {
-  if (provider === 'google') {
-    if (!googleMapsApiKey) {
+  console.log('Map component rendering with provider:', provider);
+  
+  try {
+    if (provider === 'google') {
+      if (!googleMapsApiKey) {
+        return (
+          <div className="flex items-center justify-center h-64 bg-muted rounded-lg">
+            <p className="text-muted-foreground">Google Maps API Key é necessária</p>
+          </div>
+        );
+      }
+
       return (
-        <div className="flex items-center justify-center h-64 bg-muted rounded-lg">
-          <p className="text-muted-foreground">Google Maps API Key é necessária</p>
-        </div>
+        <Wrapper apiKey={googleMapsApiKey}>
+          <GoogleMapComponent {...props} />
+        </Wrapper>
       );
     }
 
+    return <OpenStreetMapComponent {...props} />;
+  } catch (error) {
+    console.error('Error in Map component:', error);
     return (
-      <Wrapper apiKey={googleMapsApiKey}>
-        <GoogleMapComponent {...props} />
-      </Wrapper>
+      <div className="flex items-center justify-center h-64 bg-muted rounded-lg">
+        <p className="text-muted-foreground">Erro ao carregar mapa: {error instanceof Error ? error.message : 'Erro desconhecido'}</p>
+      </div>
     );
   }
-
-  return <OpenStreetMapComponent {...props} />;
 };
 
 export default Map;

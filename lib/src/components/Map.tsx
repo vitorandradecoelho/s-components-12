@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline, Polygon, Circle } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polyline, Polygon, Circle, useMap } from 'react-leaflet';
 import { Wrapper } from '@googlemaps/react-wrapper';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -164,7 +164,7 @@ const OpenStreetMapComponent: React.FC<MapProps> = ({
   };
 
   const MapEvents = () => {
-    const map = L.useMap();
+    const map = useMap();
     
     useEffect(() => {
       if (onMapClick) {
@@ -258,23 +258,34 @@ export const Map: React.FC<MapProps> = ({
   googleMapsApiKey,
   ...props
 }) => {
-  if (provider === 'google') {
-    if (!googleMapsApiKey) {
+  console.log('Map component rendering with provider:', provider);
+  
+  try {
+    if (provider === 'google') {
+      if (!googleMapsApiKey) {
+        return (
+          <div className="flex items-center justify-center h-64 bg-muted rounded-lg">
+            <p className="text-muted-foreground">Google Maps API Key é necessária</p>
+          </div>
+        );
+      }
+
       return (
-        <div className="flex items-center justify-center h-64 bg-muted rounded-lg">
-          <p className="text-muted-foreground">Google Maps API Key é necessária</p>
-        </div>
+        <Wrapper apiKey={googleMapsApiKey}>
+          <GoogleMapComponent {...props} />
+        </Wrapper>
       );
     }
 
+    return <OpenStreetMapComponent {...props} />;
+  } catch (error) {
+    console.error('Error in Map component:', error);
     return (
-      <Wrapper apiKey={googleMapsApiKey}>
-        <GoogleMapComponent {...props} />
-      </Wrapper>
+      <div className="flex items-center justify-center h-64 bg-muted rounded-lg">
+        <p className="text-muted-foreground">Erro ao carregar mapa: {error instanceof Error ? error.message : 'Erro desconhecido'}</p>
+      </div>
     );
   }
-
-  return <OpenStreetMapComponent {...props} />;
 };
 
 export default Map;
