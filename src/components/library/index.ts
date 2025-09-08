@@ -13,4 +13,5 @@ export { Toast, useToastHelper, type ToastOptions } from './Toast';
 export { SweetAlert, useSweetAlert, type SweetAlertOptions, type SweetAlertType } from './SweetAlert';
 export { DatePicker, type DatePickerProps } from './DatePicker';
 export { TimePicker, type TimePickerProps } from './TimePicker';
+export { Map, type MapProps, type MapMarker, type MapPolyline, type MapPolygon, type MapCircle } from './Map';
 export { StyleProvider, useStyles } from './StyleProvider';

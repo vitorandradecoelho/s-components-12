@@ -22,6 +22,8 @@ import {
   Sparkles,
   Calendar,
   Clock,
+  MapPin,
+  Navigation,
   Cloud,
   Shield
 } from 'lucide-react';
@@ -122,6 +124,12 @@ const components = [
     icon: ChevronDown,
     category: 'selection',
     complexity: 'advanced'
+  },
+  {
+    name: 'map',
+    icon: MapPin,
+    category: 'media',
+    complexity: 'intermediate'
   }
 ];
 
@@ -212,6 +220,12 @@ const Documentation = () => {
               </div>
             </CardContent>
           </Card>
+          <DocumentationCard
+            title="Map"
+            description="Componente de mapa com OpenStreetMap e Google Maps"
+            href="/docs/map"
+            icon={<MapPin className="h-6 w-6" />}
+          />
         </div>
 
         {/* Components Grid */}

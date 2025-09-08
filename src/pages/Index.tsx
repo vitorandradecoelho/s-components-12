@@ -28,7 +28,8 @@ import {
   type TableColumn
 } from "@/components/library";
 import { LinhaTrajetoSelector, type Linha, type Trajeto } from "@/components/library/LinhaTrajetoSelector";
-import { Search, Code, Palette, Zap, Plus, RotateCcw, Search as SearchIcon, BookOpen, GitBranch, Package, Settings, Users } from "lucide-react";
+import { Map } from "@/components/library/Map";
+import { Search, Code, Palette, Zap, Plus, RotateCcw, Search as SearchIcon, BookOpen, GitBranch, Package, Settings, Users, Navigation } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Sample data for demonstrations
@@ -1148,6 +1149,43 @@ const Index = () => {
                   Linha e {selectedTrajetoIds.length} trajeto(s) selecionados com sucesso!
                 </Alert>
               )}
+            </CardContent>
+          </Card>
+
+          {/* Map */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Navigation className="h-5 w-5" />
+                Map
+              </CardTitle>
+              <CardDescription>
+                {useLanguage().language === 'pt' ? 'Componente de mapa flexível com suporte a OpenStreetMap e Google Maps.' : 'Flexible map component with OpenStreetMap and Google Maps support.'}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <Map
+                provider="openstreet"
+                center={[-14.235, -51.9253]}
+                zoom={4}
+                height="300px"
+                markers={[
+                  {
+                    id: '1',
+                    lat: -23.5505,
+                    lng: -46.6333,
+                    title: 'São Paulo',
+                    description: 'Maior cidade do Brasil'
+                  },
+                  {
+                    id: '2',
+                    lat: -22.9068,
+                    lng: -43.1729,
+                    title: 'Rio de Janeiro',
+                    description: 'Cidade Maravilhosa'
+                  }
+                ]}
+              />
             </CardContent>
           </Card>
         </div>

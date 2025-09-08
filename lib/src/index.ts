@@ -18,4 +18,5 @@ export { SweetAlert, useSweetAlert, type SweetAlertOptions, type SweetAlertType,
 export { LinhaTrajetoSelector, type Linha, type Trajeto, type LinhaTrajetoSelectorProps } from './components/LinhaTrajetoSelector';
 export { DatePicker, type DatePickerProps } from './components/DatePicker';
 export { TimePicker, type TimePickerProps } from './components/TimePicker';
+export { Map, type MapProps, type MapMarker, type MapPolyline, type MapPolygon, type MapCircle } from './components/Map';
 export { StyleProvider, useStyles, type StyleProviderProps } from './components/StyleProvider';

@@ -367,6 +367,8 @@ const translations = {
     'component.datepicker.description': 'Date and time selection with range support',
     'component.timepicker.title': 'TimePicker',
     'component.timepicker.description': 'Independent time selection with 12h and 24h formats',
+    'component.map.title': 'Map',
+    'component.map.description': 'Flexible map component with OpenStreetMap and Google Maps',
     'component.linhatrajeto.title': 'LinhaTrajetoSelector',
     'component.linhatrajeto.description': 'Dual selector for line and route with dependency cascade',
     
