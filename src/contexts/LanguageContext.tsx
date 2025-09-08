@@ -145,6 +145,8 @@ const translations = {
     'component.toast.description': 'Notificações temporárias com diferentes tipos e estilos',
     'component.sweetalert.title': 'SweetAlert',
     'component.sweetalert.description': 'Alertas modais elegantes e interativos com suporte a async',
+    'component.datepicker.title': 'DatePicker',
+    'component.datepicker.description': 'Seleção de datas e horários com suporte a intervalos',
     'component.linhatrajeto.title': 'LinhaTrajetoSelector',
     'component.linhatrajeto.description': 'Seletor duplo para linha e trajeto com cascata de dependência',
     
@@ -359,6 +361,8 @@ const translations = {
     'component.toast.description': 'Temporary notifications with different types and styles',
     'component.sweetalert.title': 'SweetAlert',
     'component.sweetalert.description': 'Elegant and interactive modal alerts with async support',
+    'component.datepicker.title': 'DatePicker',
+    'component.datepicker.description': 'Date and time selection with range support',
     'component.linhatrajeto.title': 'LinhaTrajetoSelector',
     'component.linhatrajeto.description': 'Dual selector for line and route with dependency cascade',
     

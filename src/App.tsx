@@ -20,6 +20,7 @@ import FormModalDocs from "./pages/FormModalDocs";
 import AlertDocs from "./pages/AlertDocs";
 import ToastDocs from "./pages/ToastDocs";
 import SweetAlertDocs from "./pages/SweetAlertDocs";
+import DatePickerDocs from "./pages/DatePickerDocs";
 import LinhaTrajetoDocs from "./pages/LinhaTrajetoDocs";
 import TestePage from "./pages/TestePage";
 import BitBucketDocs from "./pages/BitBucketDocs";
@@ -54,6 +55,7 @@ const App = () => (
             <Route path="/docs/alert" element={<AlertDocs />} />
             <Route path="/docs/toast" element={<ToastDocs />} />
             <Route path="/docs/sweetalert" element={<SweetAlertDocs />} />
+            <Route path="/docs/datepicker" element={<DatePickerDocs />} />
             <Route path="/docs/linhatrajeto" element={<LinhaTrajetoDocs />} />
         <Route path="/teste" element={<TestePage />} />
         <Route path="/bitbucket-docs" element={<BitBucketDocs />} />

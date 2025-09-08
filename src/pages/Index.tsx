@@ -20,6 +20,7 @@ import {
   useToastHelper,
   SweetAlert,
   useSweetAlert,
+  DatePicker,
   type SelectOption,
   type RadioOption,
   type ComboOption,
@@ -216,6 +217,8 @@ const Index = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [selectedLinhaId, setSelectedLinhaId] = React.useState<string>("");
   const [selectedTrajetoIds, setSelectedTrajetoIds] = React.useState<string[]>([]);
+  const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
+  const [dateRange, setDateRange] = React.useState<{ from?: Date; to?: Date } | null>(null);
 
   const handleFileChange = (files: File[]) => {
     console.log("Arquivos selecionados:", files);
@@ -868,6 +871,66 @@ const Index = () => {
                     onFilesChange={handleFileChange}
                     helper="Apenas documentos PDF e Word"
                   />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* DatePicker Component */}
+          <Card className="gradient-card border-card-border shadow-medium">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                DatePicker
+                <Badge>Datas</Badge>
+              </CardTitle>
+              <CardDescription>
+                Seleção de datas com suporte a intervalos e horários
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <DatePicker
+                    label="Data de nascimento"
+                    value={selectedDate}
+                    onChange={(date) => setSelectedDate(date as Date | null)}
+                    placeholder="Selecione uma data..."
+                    helper="Formato: dd/mm/aaaa"
+                  />
+                  
+                  <DatePicker
+                    label="Período de férias"
+                    mode="range"
+                    value={dateRange}
+                    onChange={(date) => setDateRange(date as { from?: Date; to?: Date } | null)}
+                    placeholder="Selecione o período..."
+                    helper="Data de início e fim"
+                  />
+                </div>
+                
+                <div className="space-y-4">
+                  <DatePicker
+                    label="Evento com horário"
+                    mode="datetime"
+                    showTime={true}
+                    timeFormat="24"
+                    placeholder="Data e horário..."
+                    helper="Inclui seleção de horário"
+                  />
+                  
+                  <DatePicker
+                    label="Campo desabilitado"
+                    disabled
+                    placeholder="Campo desabilitado"
+                  />
+                </div>
+              </div>
+              
+              <div className="bg-muted/30 p-4 rounded-lg">
+                <h4 className="font-medium mb-2">Valores Selecionados:</h4>
+                <div className="space-y-1 text-sm">
+                  <div><strong>Data única:</strong> {selectedDate ? selectedDate.toLocaleDateString('pt-BR') : 'null'}</div>
+                  <div><strong>Período:</strong> {dateRange && dateRange.from ? `${dateRange.from.toLocaleDateString('pt-BR')} - ${dateRange.to?.toLocaleDateString('pt-BR') || '...'}` : 'null'}</div>
                 </div>
               </div>
             </CardContent>

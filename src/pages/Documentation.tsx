@@ -20,6 +20,7 @@ import {
   AlertTriangle,
   Bell,
   Sparkles,
+  Calendar,
   Cloud,
   Shield
 } from 'lucide-react';
@@ -102,6 +103,12 @@ const components = [
     icon: Sparkles,
     category: 'feedback',
     complexity: 'advanced'
+  },
+  {
+    name: 'datepicker',
+    icon: Calendar,
+    category: 'input',
+    complexity: 'intermediate'
   },
   {
     name: 'linhatrajeto',
