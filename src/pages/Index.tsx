@@ -889,17 +889,56 @@ const Index = () => {
           <Card className="gradient-card border-card-border shadow-medium">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                DatePicker
-                <Badge>Datas</Badge>
+                DatePicker & TimePicker
+                <Badge>Nova Funcionalidade</Badge>
               </CardTitle>
               <CardDescription>
-                Seleção de datas com suporte a intervalos e horários
+                Input direto disponível para ambos os componentes
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <h4 className="font-medium text-base">Campos Combinados (DateTime)</h4>
+                  <h4 className="font-medium text-base">DatePicker</h4>
+                  
+                  <DatePicker
+                    label="Data tradicional"
+                    value={selectedDate}
+                    onChange={(date) => setSelectedDate(date as Date | null)}
+                    placeholder="Selecione uma data..."
+                  />
+                  
+                  <DatePicker
+                    label="Com input direto"
+                    allowDirectInput={true}
+                    placeholder="Digite dd/mm/aaaa"
+                  />
+                </div>
+                
+                <div className="space-y-4">
+                  <h4 className="font-medium text-base">TimePicker</h4>
+                  
+                  <TimePicker
+                    label="Hora tradicional"
+                    timeFormat="24"
+                    placeholder="Selecione horário..."
+                  />
+
+                  <TimePicker
+                    label="Com input direto"
+                    allowDirectInput={true}
+                    placeholder="Digite HH:mm"
+                    timeFormat="24"
+                  />
+                </div>
+              </div>
+              
+              <div className="bg-muted/30 p-4 rounded-lg">
+                <h5 className="font-medium text-sm mb-2">💡 Nova Funcionalidade: allowDirectInput</h5>
+                <p className="text-xs">Permite digitação direta além do picker tradicional</p>
+              </div>
+            </CardContent>
+          </Card>
                   
                   <DatePicker
                     label="Data de nascimento"
@@ -910,12 +949,10 @@ const Index = () => {
                   />
                   
                   <DatePicker
-                    label="Período de férias"
-                    mode="range"
-                    value={dateRange}
-                    onChange={(date) => setDateRange(date as { from?: Date; to?: Date } | null)}
-                    placeholder="Selecione o período..."
-                    helper="Data de início e fim"
+                    label="Data com input direto"
+                    allowDirectInput={true}
+                    placeholder="Digite: dd/mm/aaaa ou clique no ícone"
+                    helper="Digite diretamente ou use o picker"
                   />
 
                   <DatePicker
@@ -938,6 +975,7 @@ const Index = () => {
                       value={separateDate}
                       onChange={(date) => setSeparateDate(date as Date | null)}
                       placeholder="Selecionar data..."
+                      allowDirectInput={true}
                     />
                     <TimePicker
                       label="Horário"
@@ -945,6 +983,7 @@ const Index = () => {
                       onChange={setSeparateTime}
                       placeholder="Selecionar horário..."
                       timeFormat="24"
+                      allowDirectInput={true}
                     />
                   </div>
                   
@@ -956,11 +995,12 @@ const Index = () => {
                       placeholder="Data início..."
                     />
                     <TimePicker
-                      label="Hora início"
+                      label="Hora início (input direto)"
                       value={startTime}
                       onChange={setStartTime}
-                      placeholder="Hora início..."
+                      placeholder="Digite HH:mm AM/PM..."
                       timeFormat="12"
+                      allowDirectInput={true}
                     />
                   </div>
 
@@ -972,13 +1012,22 @@ const Index = () => {
                       placeholder="Data fim..."
                     />
                     <TimePicker
-                      label="Hora fim"
+                      label="Hora fim (só picker)"
                       value={endTime}
                       onChange={setEndTime}
                       placeholder="Hora fim..."
                       timeFormat="12"
+                      allowDirectInput={false}
                     />
-                  </div>
+                <div className="mt-4 p-3 bg-primary/5 rounded border">
+                  <h5 className="font-medium text-sm mb-2">💡 Nova Funcionalidade: Input Direto</h5>
+                  <ul className="text-xs space-y-1">
+                    <li>• <strong>DatePicker:</strong> Digite data como "25/12/2024" ou "25/12/2024 14:30"</li>
+                    <li>• <strong>TimePicker:</strong> Digite hora como "14:30" ou "02:30 PM"</li>
+                    <li>• <strong>Parâmetro:</strong> <code>allowDirectInput={`{true}`}</code> para ativar</li>
+                    <li>• <strong>Híbrido:</strong> Use tanto digitação quanto picker no mesmo campo</li>
+                  </ul>
+                </div>
                 </div>
               </div>
               

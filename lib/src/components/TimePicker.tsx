@@ -14,6 +14,7 @@ interface TimePickerProps {
   required?: boolean;
   className?: string;
   timeFormat?: "12" | "24";
+  allowDirectInput?: boolean; // New: Allow typing directly in the field
   id?: string;
 }
 
@@ -30,6 +31,7 @@ const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
     required = false,
     className,
     timeFormat = "24",
+    allowDirectInput = false,
     id,
     ...props
   }, ref) => {
@@ -114,6 +116,24 @@ const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       setIsOpen(false);
     };
 
+    const handleDirectInput = (inputValue: string) => {
+      // Validate time format
+      const timeRegex = timeFormat === "24" 
+        ? /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$/
+        : /^(0?[1-9]|1[0-2]):([0-5][0-9])\s*(AM|PM)$/i;
+      
+      if (timeRegex.test(inputValue)) {
+        onChange?.(inputValue);
+      } else if (inputValue === "") {
+        onChange?.(null);
+      }
+    };
+
+    const getDisplayValue = () => {
+      if (!value) return "";
+      return value;
+    };
+
     const getStatusColor = () => {
       if (error) return "border-destructive focus-within:border-destructive focus-within:ring-destructive/20";
       if (success) return "border-success focus-within:border-success focus-within:ring-success/20";
@@ -136,34 +156,82 @@ const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
         )}
         
         <div className="relative" ref={ref}>
-          <button
-            id={inputId}
-            type="button"
-            onClick={() => !disabled && setIsOpen(true)}
-            disabled={disabled}
-            className={cn(
-              "flex h-11 w-full items-center justify-between rounded-lg border bg-background px-4 py-2 text-sm transition-all duration-200 focus:outline-none focus:ring-2",
-              getStatusColor(),
-              disabled && "cursor-not-allowed opacity-50",
-              !formatTimeValue() && "text-muted-foreground",
-              className
-            )}
-            {...props}
-          >
-            <div className="flex items-center gap-2">
+          {allowDirectInput ? (
+            <input
+              id={inputId}
+              type="text"
+              value={getDisplayValue()}
+              onChange={(e) => handleDirectInput(e.target.value)}
+              disabled={disabled}
+              placeholder={placeholder}
+              className={cn(
+                "flex h-11 w-full items-center rounded-lg border bg-background px-4 py-2 text-sm transition-all duration-200 focus:outline-none focus:ring-2 pl-10",
+                getStatusColor(),
+                disabled && "cursor-not-allowed opacity-50",
+                className
+              )}
+              {...props}
+            />
+          ) : (
+            <button
+              id={inputId}
+              type="button"
+              onClick={() => !disabled && setIsOpen(true)}
+              disabled={disabled}
+              className={cn(
+                "flex h-11 w-full items-center justify-between rounded-lg border bg-background px-4 py-2 text-sm transition-all duration-200 focus:outline-none focus:ring-2",
+                getStatusColor(),
+                disabled && "cursor-not-allowed opacity-50",
+                !getDisplayValue() && "text-muted-foreground",
+                className
+              )}
+              {...props}
+            >
+              <div className="flex items-center gap-2">
+                <Clock className="h-4 w-4 text-muted-foreground" />
+                <span>{getDisplayValue() || placeholder}</span>
+              </div>
+              {getDisplayValue() && !disabled && (
+                <X
+                  className="h-4 w-4 text-muted-foreground hover:text-foreground"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleClear();
+                  }}
+                />
+              )}
+            </button>
+          )}
+
+          {/* Clock icon for input mode */}
+          {allowDirectInput && (
+            <div className="absolute left-3 top-1/2 -translate-y-1/2">
               <Clock className="h-4 w-4 text-muted-foreground" />
-              <span>{formatTimeValue() || placeholder}</span>
             </div>
-            {formatTimeValue() && !disabled && (
-              <X
-                className="h-4 w-4 text-muted-foreground hover:text-foreground"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleClear();
-                }}
-              />
-            )}
-          </button>
+          )}
+
+          {/* Clear button for input mode */}
+          {allowDirectInput && getDisplayValue() && !disabled && (
+            <button
+              type="button"
+              onClick={handleClear}
+              className="absolute right-3 top-1/2 -translate-y-1/2"
+            >
+              <X className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+            </button>
+          )}
+
+          {/* Picker button for input mode */}
+          {allowDirectInput && (
+            <button
+              type="button"
+              onClick={() => !disabled && setIsOpen(true)}
+              disabled={disabled}
+              className="absolute right-8 top-1/2 -translate-y-1/2 p-1 hover:bg-muted rounded"
+            >
+              <Clock className="h-3 w-3 text-muted-foreground" />
+            </button>
+          )}
 
           {/* Time Picker Popover */}
           {isOpen && (

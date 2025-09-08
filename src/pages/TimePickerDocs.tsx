@@ -28,6 +28,25 @@ function MyForm() {
       onChange={setTime}
       placeholder="Selecione um horário..."
       timeFormat="24"
+      allowDirectInput={false} // Apenas picker
+    />
+  );
+}`;
+
+  const directInputExample = `import { TimePicker } from '@/components/library/TimePicker';
+
+function QuickTimeForm() {
+  const [time, setTime] = useState<string | null>(null);
+  
+  return (
+    <TimePicker
+      label="Horário (digitação rápida)"
+      value={time}
+      onChange={setTime}
+      placeholder="Digite HH:mm ou use o picker..."
+      timeFormat="24"
+      allowDirectInput={true} // Permite digitação + picker
+      helper="Digite: 14:30 ou clique no ícone do relógio"
     />
   );
 }`;
@@ -104,6 +123,7 @@ function EventForm() {
     { prop: 'helper', type: 'string', default: '-', description: 'Texto de ajuda' },
     { prop: 'required', type: 'boolean', default: 'false', description: 'Campo obrigatório' },
     { prop: 'timeFormat', type: '"12" | "24"', default: '"24"', description: 'Formato do horário' },
+    { prop: 'allowDirectInput', type: 'boolean', default: 'false', description: 'Permite digitação direta no campo' },
     { prop: 'className', type: 'string', default: '-', description: 'Classes CSS adicionais' }
   ];
 
@@ -132,6 +152,7 @@ function EventForm() {
             <CardTitle>Componente de Seleção de Horário</CardTitle>
             <CardDescription className="text-base">
               Componente independente para seleção de horários com suporte aos formatos 12h (AM/PM) e 24h. 
+              <strong>Nova funcionalidade:</strong> permite digitação direta no campo além do picker tradicional.
               Ideal para uso separado do DatePicker quando você precisa de campos distintos para data e hora.
             </CardDescription>
           </CardHeader>
@@ -159,19 +180,31 @@ function EventForm() {
                     <div className="space-y-4">
                       <h3 className="font-semibold">TimePicker Básico</h3>
                       <TimePicker
-                        label="Horário de início"
+                        label="Horário de início (picker)"
                         value={time24}
                         onChange={setTime24}
                         placeholder="Selecione um horário..."
-                        helper="Formato 24 horas"
+                        helper="Formato 24 horas - apenas picker"
                         timeFormat="24"
+                        allowDirectInput={false}
                       />
+                      
+                      <TimePicker
+                        label="Horário com input direto"
+                        placeholder="Digite HH:mm ou use picker..."
+                        helper="Digite diretamente ou clique no ícone"
+                        timeFormat="24"
+                        allowDirectInput={true}
+                      />
+                      
                       <TimePicker
                         label="Com erro"
                         error="Horário é obrigatório"
                         placeholder="Campo obrigatório"
                         timeFormat="24"
+                        allowDirectInput={true}
                       />
+                      
                       <TimePicker
                         label="Campo desabilitado"
                         disabled
@@ -184,6 +217,14 @@ function EventForm() {
                       <pre className="text-sm">
                         {time24 || 'null'}
                       </pre>
+                      <div className="mt-4 p-3 bg-primary/5 rounded border">
+                        <h5 className="font-medium text-sm mb-2">💡 Input Direto</h5>
+                        <ul className="text-xs space-y-1">
+                          <li>• <code>allowDirectInput={`{true}`}</code> para ativar</li>
+                          <li>• Digite: "14:30" (24h) ou "02:30 PM" (12h)</li>
+                          <li>• Híbrido: digitação + picker no mesmo campo</li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </TabsContent>
@@ -193,26 +234,29 @@ function EventForm() {
                     <div className="space-y-4">
                       <h3 className="font-semibold">Diferentes Formatos</h3>
                       <TimePicker
-                        label="Formato 24h"
+                        label="Formato 24h (só picker)"
                         value={time24}
                         onChange={setTime24}
                         placeholder="HH:mm (24h)"
                         helper="Formato militar (00:00 - 23:59)"
                         timeFormat="24"
+                        allowDirectInput={false}
                       />
                       <TimePicker
-                        label="Formato 12h"
+                        label="Formato 12h (input direto)"
                         value={time12}
                         onChange={setTime12}
-                        placeholder="HH:mm AM/PM"
-                        helper="Formato com AM/PM (12:00 AM - 11:59 PM)"
+                        placeholder="Digite HH:mm AM/PM"
+                        helper="Digite diretamente: Ex: 02:30 PM"
                         timeFormat="12"
+                        allowDirectInput={true}
                       />
                       <TimePicker
-                        label="Com sucesso"
+                        label="Híbrido (input + picker)"
                         success="Horário válido selecionado"
-                        placeholder="Horário confirmado"
+                        placeholder="Digite ou use picker"
                         timeFormat="12"
+                        allowDirectInput={true}
                       />
                     </div>
                     <div className="bg-muted/30 p-4 rounded-lg">
@@ -220,6 +264,15 @@ function EventForm() {
                       <div className="space-y-2 text-sm">
                         <div><strong>24h:</strong> {time24 || 'null'}</div>
                         <div><strong>12h:</strong> {time12 || 'null'}</div>
+                      </div>
+                      
+                      <div className="mt-4 p-3 bg-accent/5 rounded border">
+                        <h5 className="font-medium text-sm mb-2">🎯 Casos de Uso</h5>
+                        <ul className="text-xs space-y-1">
+                          <li><strong>Só picker:</strong> UX mais controlado</li>
+                          <li><strong>Input direto:</strong> Digitação rápida</li>
+                          <li><strong>Híbrido:</strong> Máxima flexibilidade</li>
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -278,6 +331,7 @@ function EventForm() {
               <Tabs defaultValue="basic" className="w-full">
                 <TabsList>
                   <TabsTrigger value="basic">Básico</TabsTrigger>
+                  <TabsTrigger value="direct">Input Direto</TabsTrigger>
                   <TabsTrigger value="formats">Formatos</TabsTrigger>
                   <TabsTrigger value="combined">Combinado</TabsTrigger>
                 </TabsList>
@@ -287,6 +341,15 @@ function EventForm() {
                     <h4 className="font-medium">TimePicker Básico</h4>
                     <pre className="bg-muted p-4 rounded-lg text-sm overflow-x-auto">
                       <code>{basicExample}</code>
+                    </pre>
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="direct">
+                  <div className="space-y-4">
+                    <h4 className="font-medium">Input Direto</h4>
+                    <pre className="bg-muted p-4 rounded-lg text-sm overflow-x-auto">
+                      <code>{directInputExample}</code>
                     </pre>
                   </div>
                 </TabsContent>
@@ -358,6 +421,18 @@ function EventForm() {
                 </AlertDescription>
               </Alert>
               
+              <Alert>
+                <AlertDescription>
+                  <strong>Input Direto:</strong> Com <code>allowDirectInput={`{true}`}</code>, o usuário pode digitar diretamente no campo ou usar o picker.
+                </AlertDescription>
+              </Alert>
+              
+              <Alert>
+                <AlertDescription>
+                  <strong>Validação Automática:</strong> A digitação direta é validada automaticamente contra o formato esperado.
+                </AlertDescription>
+              </Alert>
+
               <Alert>
                 <AlertDescription>
                   <strong>Uso Independente:</strong> Use quando precisar de controle separado sobre data e hora, diferente do DatePicker com modo datetime.

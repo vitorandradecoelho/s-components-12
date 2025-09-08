@@ -78,6 +78,7 @@ function EventForm() {
     { prop: 'required', type: 'boolean', default: 'false', description: 'Campo obrigatório' },
     { prop: 'timeFormat', type: '"12" | "24"', default: '"24"', description: 'Formato do horário' },
     { prop: 'showTime', type: 'boolean', default: 'false', description: 'Exibir seleção de horário' },
+    { prop: 'allowDirectInput', type: 'boolean', default: 'false', description: 'Permite digitação direta no campo' },
     { prop: 'minDate', type: 'Date', default: '-', description: 'Data mínima permitida' },
     { prop: 'maxDate', type: 'Date', default: '-', description: 'Data máxima permitida' },
     { prop: 'locale', type: 'Locale', default: 'ptBR', description: 'Localização do calendário' }
@@ -108,7 +109,9 @@ function EventForm() {
             <CardTitle>Componente de Seleção de Data</CardTitle>
             <CardDescription className="text-base">
               Componente flexível para seleção de datas com suporte a data única, intervalo de datas, 
-              data com horário e intervalos com horário. Totalmente parametrizável e acessível.
+              data com horário e intervalos com horário. 
+              <strong>Nova funcionalidade:</strong> permite digitação direta além do picker tradicional.
+              Totalmente parametrizável e acessível.
             </CardDescription>
           </CardHeader>
         </Card>
@@ -124,8 +127,9 @@ function EventForm() {
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="single" className="w-full">
-                <TabsList className="grid w-full grid-cols-4">
+                <TabsList className="grid w-full grid-cols-5">
                   <TabsTrigger value="single">Data Única</TabsTrigger>
+                  <TabsTrigger value="direct">Input Direto</TabsTrigger>
                   <TabsTrigger value="range">Intervalo</TabsTrigger>
                   <TabsTrigger value="datetime">Data/Hora</TabsTrigger>
                   <TabsTrigger value="datetime-range">Intervalo com Hora</TabsTrigger>
@@ -158,6 +162,52 @@ function EventForm() {
                       <pre className="text-sm">
                         {singleDate ? singleDate.toLocaleString('pt-BR') : 'null'}
                       </pre>
+                    </div>
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="direct" className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      <h3 className="font-semibold">Input Direto</h3>
+                      <DatePicker
+                        label="Data com input direto"
+                        allowDirectInput={true}
+                        placeholder="Digite dd/mm/aaaa ou clique no ícone"
+                        helper="Digite: 25/12/2024"
+                      />
+                      <DatePicker
+                        label="Data e hora com input"
+                        mode="datetime"
+                        allowDirectInput={true}
+                        placeholder="Digite dd/mm/aaaa hh:mm"
+                        helper="Digite: 25/12/2024 14:30"
+                        timeFormat="24"
+                      />
+                      <DatePicker
+                        label="Híbrido (input + picker)"
+                        allowDirectInput={true}
+                        success="Digite ou use o picker"
+                        placeholder="Máxima flexibilidade"
+                      />
+                    </div>
+                    <div className="bg-muted/30 p-4 rounded-lg">
+                      <h4 className="font-medium mb-2">Como Usar:</h4>
+                      <div className="space-y-2 text-sm">
+                        <div><strong>Só data:</strong> 25/12/2024</div>
+                        <div><strong>Data + hora:</strong> 25/12/2024 14:30</div>
+                        <div><strong>Com AM/PM:</strong> 25/12/2024 02:30 PM</div>
+                      </div>
+                      
+                      <div className="mt-4 p-3 bg-accent/5 rounded border">
+                        <h5 className="font-medium text-sm mb-2">🎯 Vantagens</h5>
+                        <ul className="text-xs space-y-1">
+                          <li>✓ Digitação rápida para usuários experientes</li>
+                          <li>✓ Picker visual para usuários casuais</li>
+                          <li>✓ Validação automática da entrada</li>
+                          <li>✓ Suporte a múltiplos formatos</li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </TabsContent>

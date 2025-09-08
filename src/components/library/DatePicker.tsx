@@ -18,6 +18,7 @@ interface DatePickerProps {
   className?: string;
   timeFormat?: "12" | "24";
   showTime?: boolean;
+  allowDirectInput?: boolean; // New: Allow typing directly in the field
   minDate?: Date;
   maxDate?: Date;
   locale?: any;
@@ -39,6 +40,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
     className,
     timeFormat = "24",
     showTime = false,
+    allowDirectInput = false,
     minDate,
     maxDate,
     locale = ptBR,
@@ -102,6 +104,48 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
     const handleClear = () => {
       onChange?.(null);
       setTempDate(null);
+    };
+
+    const handleDirectInput = (inputValue: string) => {
+      if (inputValue === "") {
+        onChange?.(null);
+        return;
+      }
+
+      // Parse different date formats
+      const dateRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(\d{1,2}):(\d{2})(?:\s*(AM|PM))?)?$/i;
+      const match = inputValue.match(dateRegex);
+      
+      if (match) {
+        const day = parseInt(match[1]);
+        const month = parseInt(match[2]) - 1; // Month is 0-indexed
+        const year = parseInt(match[3]);
+        let hours = 0;
+        let minutes = 0;
+
+        if (match[4] && match[5]) { // Time included
+          hours = parseInt(match[4]);
+          minutes = parseInt(match[5]);
+          
+          if (match[6]) { // AM/PM format
+            if (match[6].toUpperCase() === "PM" && hours !== 12) {
+              hours += 12;
+            } else if (match[6].toUpperCase() === "AM" && hours === 12) {
+              hours = 0;
+            }
+          }
+        }
+
+        const parsedDate = new Date(year, month, day, hours, minutes);
+        
+        // Validate the parsed date
+        if (!isNaN(parsedDate.getTime()) && 
+            parsedDate.getDate() === day && 
+            parsedDate.getMonth() === month && 
+            parsedDate.getFullYear() === year) {
+          onChange?.(parsedDate);
+        }
+      }
     };
 
     const handleDateSelect = (selectedDate: Date | { from?: Date; to?: Date } | undefined) => {
@@ -185,37 +229,88 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
         )}
         
         <div className="relative" ref={ref}>
-          <button
-            id={inputId}
-            type="button"
-            onClick={() => !disabled && setIsOpen(true)}
-            disabled={disabled}
-            className={cn(
-              "flex h-11 w-full items-center justify-between rounded-lg border bg-background px-4 py-2 text-sm transition-all duration-200 focus:outline-none focus:ring-2",
-              getStatusColor(),
-              disabled && "cursor-not-allowed opacity-50",
-              !getDisplayValue() && "text-muted-foreground",
-              className
-            )}
-            {...props}
-          >
-            <div className="flex items-center gap-2">
+          {allowDirectInput ? (
+            <input
+              id={inputId}
+              type="text"
+              value={getDisplayValue()}
+              onChange={(e) => handleDirectInput(e.target.value)}
+              disabled={disabled}
+              placeholder={placeholder}
+              className={cn(
+                "flex h-11 w-full items-center rounded-lg border bg-background px-4 py-2 text-sm transition-all duration-200 focus:outline-none focus:ring-2 pl-10",
+                getStatusColor(),
+                disabled && "cursor-not-allowed opacity-50",
+                className
+              )}
+              {...props}
+            />
+          ) : (
+            <button
+              id={inputId}
+              type="button"
+              onClick={() => !disabled && setIsOpen(true)}
+              disabled={disabled}
+              className={cn(
+                "flex h-11 w-full items-center justify-between rounded-lg border bg-background px-4 py-2 text-sm transition-all duration-200 focus:outline-none focus:ring-2",
+                getStatusColor(),
+                disabled && "cursor-not-allowed opacity-50",
+                !getDisplayValue() && "text-muted-foreground",
+                className
+              )}
+              {...props}
+            >
+              <div className="flex items-center gap-2">
+                <CalendarIcon className="h-4 w-4 text-muted-foreground" />
+                <span>{getDisplayValue() || placeholder}</span>
+                {shouldShowTime && (
+                  <Clock className="h-3 w-3 text-muted-foreground" />
+                )}
+              </div>
+              {getDisplayValue() && !disabled && (
+                <X
+                  className="h-4 w-4 text-muted-foreground hover:text-foreground"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleClear();
+                  }}
+                />
+              )}
+            </button>
+          )}
+
+          {/* Calendar icon for input mode */}
+          {allowDirectInput && (
+            <div className="absolute left-3 top-1/2 -translate-y-1/2">
               <CalendarIcon className="h-4 w-4 text-muted-foreground" />
-              <span>{getDisplayValue() || placeholder}</span>
               {shouldShowTime && (
-                <Clock className="h-3 w-3 text-muted-foreground" />
+                <Clock className="h-3 w-3 text-muted-foreground ml-1" />
               )}
             </div>
-            {getDisplayValue() && !disabled && (
-              <X
-                className="h-4 w-4 text-muted-foreground hover:text-foreground"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleClear();
-                }}
-              />
-            )}
-          </button>
+          )}
+
+          {/* Clear button for input mode */}
+          {allowDirectInput && getDisplayValue() && !disabled && (
+            <button
+              type="button"
+              onClick={handleClear}
+              className="absolute right-3 top-1/2 -translate-y-1/2"
+            >
+              <X className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+            </button>
+          )}
+
+          {/* Picker button for input mode */}
+          {allowDirectInput && (
+            <button
+              type="button"
+              onClick={() => !disabled && setIsOpen(true)}
+              disabled={disabled}
+              className="absolute right-8 top-1/2 -translate-y-1/2 p-1 hover:bg-muted rounded"
+            >
+              <CalendarIcon className="h-3 w-3 text-muted-foreground" />
+            </button>
+          )}
 
           {/* Calendar Popover - Simplified for this example */}
           {isOpen && (
