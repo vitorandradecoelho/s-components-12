@@ -219,6 +219,8 @@ const Index = () => {
   const [selectedTrajetoIds, setSelectedTrajetoIds] = React.useState<string[]>([]);
   const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
   const [dateRange, setDateRange] = React.useState<{ from?: Date; to?: Date } | null>(null);
+  const [startDateTime, setStartDateTime] = React.useState<Date | null>(null);
+  const [endDateTime, setEndDateTime] = React.useState<Date | null>(null);
 
   const handleFileChange = (files: File[]) => {
     console.log("Arquivos selecionados:", files);
@@ -906,22 +908,43 @@ const Index = () => {
                     placeholder="Selecione o período..."
                     helper="Data de início e fim"
                   />
+
+                  <DatePicker
+                    label="Data início + Horário"
+                    mode="datetime"
+                    value={startDateTime}
+                    onChange={(date) => setStartDateTime(date as Date | null)}
+                    placeholder="Data e horário de início..."
+                    helper="Selecione data e hora de início"
+                    timeFormat="24"
+                  />
                 </div>
                 
                 <div className="space-y-4">
                   <DatePicker
-                    label="Evento com horário"
+                    label="Evento com horário (24h)"
                     mode="datetime"
-                    showTime={true}
                     timeFormat="24"
                     placeholder="Data e horário..."
-                    helper="Inclui seleção de horário"
+                    helper="Formato 24 horas"
                   />
                   
                   <DatePicker
-                    label="Campo desabilitado"
-                    disabled
-                    placeholder="Campo desabilitado"
+                    label="Evento com horário (12h)"
+                    mode="datetime"
+                    timeFormat="12"
+                    placeholder="Data e horário AM/PM..."
+                    helper="Formato 12 horas com AM/PM"
+                  />
+
+                  <DatePicker
+                    label="Data fim + Horário"
+                    mode="datetime"
+                    value={endDateTime}
+                    onChange={(date) => setEndDateTime(date as Date | null)}
+                    placeholder="Data e horário de fim..."
+                    helper="Selecione data e hora de fim"
+                    timeFormat="24"
                   />
                 </div>
               </div>
@@ -929,8 +952,10 @@ const Index = () => {
               <div className="bg-muted/30 p-4 rounded-lg">
                 <h4 className="font-medium mb-2">Valores Selecionados:</h4>
                 <div className="space-y-1 text-sm">
-                  <div><strong>Data única:</strong> {selectedDate ? selectedDate.toLocaleDateString('pt-BR') : 'null'}</div>
+                  <div><strong>Data única:</strong> {selectedDate ? selectedDate.toLocaleString('pt-BR') : 'null'}</div>
                   <div><strong>Período:</strong> {dateRange && dateRange.from ? `${dateRange.from.toLocaleDateString('pt-BR')} - ${dateRange.to?.toLocaleDateString('pt-BR') || '...'}` : 'null'}</div>
+                  <div><strong>Data início + hora:</strong> {startDateTime ? startDateTime.toLocaleString('pt-BR') : 'null'}</div>
+                  <div><strong>Data fim + hora:</strong> {endDateTime ? endDateTime.toLocaleString('pt-BR') : 'null'}</div>
                 </div>
               </div>
             </CardContent>
