@@ -937,15 +937,26 @@ const Index = () => {
                 <h5 className="font-medium text-sm mb-2">💡 Nova Funcionalidade: allowDirectInput</h5>
                 <p className="text-xs">Permite digitação direta além do picker tradicional</p>
               </div>
-            </CardContent>
-          </Card>
-                  
+
+              <div className="space-y-4">
+                <h4 className="font-medium text-base">Exemplos Avançados</h4>
+                
+                <div className="space-y-4">
                   <DatePicker
                     label="Data de nascimento"
                     value={selectedDate}
                     onChange={(date) => setSelectedDate(date as Date | null)}
                     placeholder="Selecione uma data..."
                     helper="Formato: dd/mm/aaaa"
+                  />
+
+                  <DatePicker
+                    label="Período (range)"
+                    mode="range"
+                    value={dateRange}
+                    onChange={(range) => setDateRange(range as { from: Date; to?: Date } | null)}
+                    placeholder="Selecione período..."
+                    helper="Selecione data inicial e final"
                   />
                   
                   <DatePicker
@@ -1019,15 +1030,17 @@ const Index = () => {
                       timeFormat="12"
                       allowDirectInput={false}
                     />
-                <div className="mt-4 p-3 bg-primary/5 rounded border">
-                  <h5 className="font-medium text-sm mb-2">💡 Nova Funcionalidade: Input Direto</h5>
-                  <ul className="text-xs space-y-1">
-                    <li>• <strong>DatePicker:</strong> Digite data como "25/12/2024" ou "25/12/2024 14:30"</li>
-                    <li>• <strong>TimePicker:</strong> Digite hora como "14:30" ou "02:30 PM"</li>
-                    <li>• <strong>Parâmetro:</strong> <code>allowDirectInput={`{true}`}</code> para ativar</li>
-                    <li>• <strong>Híbrido:</strong> Use tanto digitação quanto picker no mesmo campo</li>
-                  </ul>
-                </div>
+                  </div>
+                  
+                  <div className="mt-4 p-3 bg-primary/5 rounded border">
+                    <h5 className="font-medium text-sm mb-2">💡 Nova Funcionalidade: Input Direto</h5>
+                    <ul className="text-xs space-y-1">
+                      <li>• <strong>DatePicker:</strong> Digite data como "25/12/2024" ou "25/12/2024 14:30"</li>
+                      <li>• <strong>TimePicker:</strong> Digite hora como "14:30" ou "02:30 PM"</li>
+                      <li>• <strong>Parâmetro:</strong> <code>allowDirectInput={`{true}`}</code> para ativar</li>
+                      <li>• <strong>Híbrido:</strong> Use tanto digitação quanto picker no mesmo campo</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
               
@@ -1096,6 +1109,47 @@ const Index = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* LinhaTrajetoSelector Component */}
+          <Card className="gradient-card border-card-border shadow-medium lg:col-span-2">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                {t('component.linhatrajeto.title')}
+                <Badge>{t('common.advanced')}</Badge>
+              </CardTitle>
+              <CardDescription>
+                {t('component.linhatrajeto.description')}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <LinhaTrajetoSelector
+                linhas={sampleLinhas}
+                selectedLinhaId={selectedLinhaId}
+                selectedTrajetoIds={selectedTrajetoIds}
+                onLinhaChange={(linha) => {
+                  setSelectedLinhaId(linha?._id || '');
+                  success(`Linha selecionada: ${linha?.descr || 'Nenhuma'}`);
+                }}
+                onTrajetoChange={(trajetos) => {
+                  setSelectedTrajetoIds(trajetos.map(t => t._id));
+                  success(`${trajetos.length} trajeto(s) selecionado(s)`);
+                }}
+                linhaPlaceholder="Selecione uma linha de ônibus..."
+                trajetoPlaceholder="Selecione trajetos..."
+                linhaLabel="Linha de Ônibus"
+                trajetoLabel="Trajetos"
+                size="md"
+                className="space-y-4"
+                multiSelectTrajeto={true}
+              />
+              
+              {selectedLinhaId && selectedTrajetoIds.length > 0 && (
+                <Alert variant="success" title="Seleção Completa">
+                  Linha e {selectedTrajetoIds.length} trajeto(s) selecionados com sucesso!
+                </Alert>
+              )}
+            </CardContent>
+          </Card>
         </div>
 
         {/* Footer */}
@@ -1111,47 +1165,6 @@ const Index = () => {
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
       />
-
-      {/* LinhaTrajetoSelector Component */}
-      <Card className="gradient-card border-card-border shadow-medium lg:col-span-2">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            {t('component.linhatrajeto.title')}
-            <Badge>{t('common.advanced')}</Badge>
-          </CardTitle>
-          <CardDescription>
-            {t('component.linhatrajeto.description')}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <LinhaTrajetoSelector
-            linhas={sampleLinhas}
-            selectedLinhaId={selectedLinhaId}
-            selectedTrajetoIds={selectedTrajetoIds}
-            onLinhaChange={(linha) => {
-              setSelectedLinhaId(linha?._id || '');
-              success(`Linha selecionada: ${linha?.descr || 'Nenhuma'}`);
-            }}
-            onTrajetoChange={(trajetos) => {
-              setSelectedTrajetoIds(trajetos.map(t => t._id));
-              success(`${trajetos.length} trajeto(s) selecionado(s)`);
-            }}
-            linhaPlaceholder="Selecione uma linha de ônibus..."
-            trajetoPlaceholder="Selecione trajetos..."
-            linhaLabel="Linha de Ônibus"
-            trajetoLabel="Trajetos"
-            size="md"
-            className="space-y-4"
-            multiSelectTrajeto={true}
-          />
-          
-          {selectedLinhaId && selectedTrajetoIds.length > 0 && (
-            <Alert variant="success" title="Seleção Completa">
-              Linha e {selectedTrajetoIds.length} trajeto(s) selecionados com sucesso!
-            </Alert>
-          )}
-        </CardContent>
-      </Card>
       
       {/* SweetAlert Instance */}
       <SweetAlertComponent />
