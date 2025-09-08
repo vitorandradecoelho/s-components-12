@@ -128,8 +128,9 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       
       setTempDate(finalDate);
       
-      // Don't close immediately for range selection
-      if (!isRange) {
+      // Only close immediately for single mode without time
+      // For datetime modes, keep open to allow time selection
+      if (!isRange && !includeTime) {
         onChange?.(finalDate);
         setIsOpen(false);
       }
