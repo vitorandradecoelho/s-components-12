@@ -29,6 +29,7 @@ import BitBucketDocs from "./pages/BitBucketDocs";
 import BitBucketTestPage from "./pages/BitBucketTestPage";
 import ProjectArchitectureDocs from "./pages/ProjectArchitectureDocs";
 import ComponentCreationGuide from "./pages/ComponentCreationGuide";
+import { ViagemModeloPage } from "./pages/ViagemModeloPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/viagem-modelo" element={<ViagemModeloPage />} />
             <Route path="/docs" element={<Documentation />} />
             <Route path="/docs/deployment" element={<DeploymentDocs />} />
             <Route path="/docs/input" element={<InputDocs />} />
