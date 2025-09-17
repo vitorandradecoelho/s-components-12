@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 // Declarações de tipos do Google Maps
 declare global {
   interface Window {
-    google: typeof google;
+    google: any;
   }
 }
 
@@ -145,7 +145,7 @@ const OpenStreetMapComponent: React.FC<MapProps> = ({
     if (!map) return;
 
     // Remover marcadores existentes (simplificado)
-    map.eachLayer((layer) => {
+    map.eachLayer((layer: any) => {
       if (layer instanceof L.Marker) {
         map.removeLayer(layer);
       }
