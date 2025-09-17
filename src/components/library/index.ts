@@ -14,4 +14,4 @@ export { SweetAlert, useSweetAlert, type SweetAlertOptions, type SweetAlertType 
 export { DatePicker, type DatePickerProps } from './DatePicker';
 export { TimePicker, type TimePickerProps } from './TimePicker';
 export { Map, type MapProps, type MapMarker, type MapPolyline, type MapPolygon, type MapCircle } from './Map';
-export { StyleProvider, useStyles } from './StyleProvider';
+export { StyleProvider, useStyles, loadStyles } from './StyleProvider';

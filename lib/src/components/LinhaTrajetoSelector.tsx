@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ComboBox, type ComboOption } from "./ComboBox";
+import '../styles/index.css';
 
 interface Trajeto {
   _id: string;

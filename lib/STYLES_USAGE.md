@@ -2,17 +2,24 @@
 
 Este guia mostra as diferentes formas de importar e usar os estilos CSS da biblioteca `@vitorandradecoelho/sd-components`.
 
-## 🎨 Opções de Importação
+## ⚠️ PROBLEMA COMUM: CSS Não Carregando
+
+**Se os componentes aparecem sem estilização quando importados via npm**, use uma das soluções abaixo:
+
+## 🎨 Soluções de Importação
 
 ### 1. **Importação Automática (Recomendado)**
 
+Os componentes principais já importam estilos automaticamente:
+
 ```javascript
-// Os estilos são carregados automaticamente com qualquer componente
-import { Input, Alert, DataTable } from '@vitorandradecoelho/sd-components';
+// ✅ Os estilos são carregados automaticamente
+import { LinhaTrajetoSelector, Input, Alert } from '@vitorandradecoelho/sd-components';
 
 function App() {
   return (
     <div>
+      <LinhaTrajetoSelector linhas={dados} />
       <Input label="Nome" />
       <Alert>Funcionando perfeitamente!</Alert>
     </div>
@@ -20,16 +27,16 @@ function App() {
 }
 ```
 
-### 2. **StyleProvider - CSS como Componente**
+### 2. **StyleProvider - Controle Manual**
 
 ```javascript
-import { StyleProvider, Input, Alert } from '@vitorandradecoelho/sd-components';
+import { StyleProvider, LinhaTrajetoSelector } from '@vitorandradecoelho/sd-components';
 
 function App() {
   return (
     <StyleProvider>
       <div>
-        <Input label="Nome" />
+        <LinhaTrajetoSelector linhas={dados} />
         <Alert>Estilos carregados via componente!</Alert>
       </div>
     </StyleProvider>
@@ -37,36 +44,54 @@ function App() {
 }
 ```
 
-### 3. **Importação Manual do CSS**
+### 3. **Hook useStyles - Carregamento Programático**
 
 ```javascript
-// Importar CSS separadamente (apenas se necessário)
-import '@vitorandradecoelho/sd-components/dist/styles.css';
-import { Input, Alert } from '@vitorandradecoelho/sd-components';
-
-function App() {
-  return (
-    <div>
-      <Input label="Nome" />
-      <Alert>CSS importado manualmente!</Alert>
-    </div>
-  );
-}
-```
-
-### 4. **Hook useStyles para Verificação**
-
-```javascript
-import { useStyles, Input } from '@vitorandradecoelho/sd-components';
+import { useStyles, LinhaTrajetoSelector } from '@vitorandradecoelho/sd-components';
 
 function MyComponent() {
-  const stylesLoaded = useStyles();
+  const stylesLoaded = useStyles(); // Carrega estilos automaticamente
   
   if (!stylesLoaded) {
     return <div>Carregando estilos...</div>;
   }
   
-  return <Input label="Nome" />;
+  return <LinhaTrajetoSelector linhas={dados} />;
+}
+```
+
+### 4. **Função loadStyles - Controle Assíncrono**
+
+```javascript
+import { loadStyles, LinhaTrajetoSelector } from '@vitorandradecoelho/sd-components';
+
+async function MyComponent() {
+  const success = await loadStyles(); // Carrega estilos antes de renderizar
+  
+  if (!success) {
+    console.warn('Não foi possível carregar os estilos');
+  }
+  
+  return <LinhaTrajetoSelector linhas={dados} />;
+}
+```
+
+### 5. **Importação Manual do CSS (Último Recurso)**
+
+```javascript
+// No seu arquivo principal (App.tsx ou index.tsx)
+import '@vitorandradecoelho/sd-components/dist/styles.css';
+
+// Depois importe os componentes normalmente
+import { LinhaTrajetoSelector, Input } from '@vitorandradecoelho/sd-components';
+
+function App() {
+  return (
+    <div>
+      <LinhaTrajetoSelector linhas={dados} />
+      <Input label="Nome" />
+    </div>
+  );
 }
 ```
 
