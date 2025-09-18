@@ -1,6 +1,8 @@
 import React from "react";
 import { Clock, X } from "lucide-react";
 import { cn } from "../lib/utils";
+// Importa automaticamente os estilos
+import '../styles/index.css';
 
 interface TimePickerProps {
   label?: string;

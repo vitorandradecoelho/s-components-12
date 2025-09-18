@@ -3,6 +3,8 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { Calendar as CalendarIcon, Clock, X } from "lucide-react";
 import { cn } from "../lib/utils";
+// Importa automaticamente os estilos
+import '../styles/index.css';
 
 interface DatePickerProps {
   label?: string;
