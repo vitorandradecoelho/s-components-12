@@ -6,6 +6,12 @@ import { cn } from "../lib/utils";
 // Importa automaticamente os estilos
 import '../styles/index.css';
 
+// Helper function for padStart compatibility
+const padStart = (str: string, targetLength: number, padString: string = '0') => {
+  if (str.length >= targetLength) return str;
+  return padString.repeat(targetLength - str.length) + str;
+};
+
 interface DatePickerProps {
   label?: string;
   placeholder?: string;
@@ -56,9 +62,9 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
     const initTimeFromDate = (date?: Date) => {
       const now = date || new Date();
       return {
-        hours: timeFormat === "24" ? now.getHours().toString().padStart(2, '0') : 
-               now.getHours() === 0 ? "12" : now.getHours() > 12 ? (now.getHours() - 12).toString().padStart(2, '0') : now.getHours().toString().padStart(2, '0'),
-        minutes: now.getMinutes().toString().padStart(2, '0'),
+        hours: timeFormat === "24" ? padStart(now.getHours().toString(), 2) : 
+               now.getHours() === 0 ? "12" : now.getHours() > 12 ? padStart((now.getHours() - 12).toString(), 2) : padStart(now.getHours().toString(), 2),
+        minutes: padStart(now.getMinutes().toString(), 2),
         period: timeFormat === "24" ? "AM" : now.getHours() >= 12 ? "PM" : "AM"
       };
     };
@@ -309,8 +315,8 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                         {Array.from({ length: timeFormat === "12" ? 12 : 24 }, (_, i) => {
                           const hour = timeFormat === "12" ? i + 1 : i;
                           return (
-                            <option key={i} value={hour.toString().padStart(2, '0')}>
-                              {hour.toString().padStart(2, '0')}
+                            <option key={i} value={padStart(hour.toString(), 2)}>
+                              {padStart(hour.toString(), 2)}
                             </option>
                           );
                         })}
@@ -322,8 +328,8 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                         className="px-2 py-1 border rounded text-sm bg-background"
                       >
                         {Array.from({ length: 60 }, (_, i) => (
-                          <option key={i} value={i.toString().padStart(2, '0')}>
-                            {i.toString().padStart(2, '0')}
+                          <option key={i} value={padStart(i.toString(), 2)}>
+                            {padStart(i.toString(), 2)}
                           </option>
                         ))}
                       </select>
