@@ -362,6 +362,7 @@ function ConfirmacaoExample() {
 import React, { useState } from 'react';
 import { LinhaTrajetoSelector, type Linha, type Trajeto } from 'sd_components';
 
+// Exemplo 1: Com dados locais
 function RouteSelector() {
   const [selectedLinha, setSelectedLinha] = useState<string>('');
   const [selectedTrajetos, setSelectedTrajetos] = useState<string[]>([]);
@@ -399,44 +400,10 @@ function RouteSelector() {
           ativo: true,
           codigosIntegracao: [],
           raioTrajeto: 5
-        },
-        {
-          _id: 'traj2',
-          id: 'traj2',
-          nome: 'Periferia Sul → Centro',
-          sentido: 'Volta',
-          kmTrajeto: 25.5,
-          id_migracao: 2,
-          externalId: 'ext2',
-          colorIdx: 1,
-          qtdTransmisoesInicial: 0,
-          qtdTransmisoesFinal: 0,
-          percentConclusao: 100,
-          toleranciaArrasto: 5,
-          tempoMedioViagem: 45,
-          sentidoTipo: 'volta',
-          headwayCopiloto: 10,
-          orientacao: 'norte',
-          consorcioSinoticoUnificado: [],
-          garagem: [],
-          despachoSemCor: false,
-          ativo: true,
-          codigosIntegracao: [],
-          raioTrajeto: 5
         }
       ]
     }
   ];
-
-  const handleLinhaChange = (linha: Linha | null) => {
-    setSelectedLinha(linha?._id || '');
-    console.log('Linha selecionada:', linha);
-  };
-
-  const handleTrajetoChange = (trajetos: Trajeto[]) => {
-    setSelectedTrajetos(trajetos.map(t => t._id));
-    console.log('Trajetos selecionados:', trajetos);
-  };
 
   return (
     <div className="max-w-md">
@@ -444,16 +411,60 @@ function RouteSelector() {
         linhas={linhas}
         selectedLinhaId={selectedLinha}
         selectedTrajetoIds={selectedTrajetos}
-        onLinhaChange={handleLinhaChange}
-        onTrajetoChange={handleTrajetoChange}
-        linhaLabel="Linha de Ônibus"
-        trajetoLabel="Trajetos Disponíveis"
-        linhaPlaceholder="Selecione uma linha"
-        trajetoPlaceholder="Selecione os trajetos"
+        onLinhaChange={(linha) => {
+          setSelectedLinha(linha?._id || '');
+          console.log('Linha selecionada:', linha);
+        }}
+        onTrajetoChange={(trajetos) => {
+          setSelectedTrajetos(trajetos.map(t => t._id));
+          console.log('Trajetos selecionados:', trajetos);
+        }}
         multiSelectTrajeto={true}
-        size="md"
       />
     </div>
+  );
+}
+
+// Exemplo 2: Com integração de API
+function ApiRouteSelector() {
+  const [selectedLinha, setSelectedLinha] = useState<string>('');
+  const [selectedTrajetos, setSelectedTrajetos] = useState<string[]>([]);
+
+  return (
+    <LinhaTrajetoSelector
+      clienteId="1314"
+      apiBaseUrl="https://sua-api.com"
+      selectedLinhaId={selectedLinha}
+      selectedTrajetoIds={selectedTrajetos}
+      onLinhaChange={(linha) => {
+        setSelectedLinha(linha?._id || '');
+      }}
+      onTrajetoChange={(trajetos) => {
+        setSelectedTrajetos(trajetos.map(t => t._id));
+      }}
+    />
+  );
+}
+
+// Exemplo 3: Mantendo trajetos ao trocar de linha
+function KeepSelectionRouteSelector() {
+  const [selectedLinha, setSelectedLinha] = useState<string>('');
+  const [selectedTrajetos, setSelectedTrajetos] = useState<string[]>([]);
+
+  return (
+    <LinhaTrajetoSelector
+      linhas={linhas} // usar o array definido acima
+      selectedLinhaId={selectedLinha}
+      selectedTrajetoIds={selectedTrajetos}
+      keepTrajetosOnLinhaChange={true}
+      onLinhaChange={(linha) => {
+        setSelectedLinha(linha?._id || '');
+        // Trajetos não são limpos automaticamente
+      }}
+      onTrajetoChange={(trajetos) => {
+        setSelectedTrajetos(trajetos.map(t => t._id));
+      }}
+    />
   );
 }
 ```

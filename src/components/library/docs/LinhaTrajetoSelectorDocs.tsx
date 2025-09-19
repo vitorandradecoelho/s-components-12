@@ -165,6 +165,10 @@ const LinhaTrajetoSelectorDocs: React.FC = () => {
   const [selectedTrajetoIds, setSelectedTrajetoIds] = useState<string[]>([]);
   const [selectedLinhaId2, setSelectedLinhaId2] = useState<string>("");
   const [selectedTrajetoIds2, setSelectedTrajetoIds2] = useState<string[]>([]);
+  const [selectedLinhaId3, setSelectedLinhaId3] = useState<string>("");
+  const [selectedTrajetoIds3, setSelectedTrajetoIds3] = useState<string[]>([]);
+  const [selectedLinhaId4, setSelectedLinhaId4] = useState<string>("");
+  const [selectedTrajetoIds4, setSelectedTrajetoIds4] = useState<string[]>([]);
   
   return (
     <div className="space-y-8">
@@ -257,6 +261,166 @@ const LinhaTrajetoSelectorDocs: React.FC = () => {
                 : "Nenhum"}
               </div>
             </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Exemplo com API */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            Integração com API
+            <Badge variant="outline">Novo</Badge>
+          </CardTitle>
+          <CardDescription>
+            Carregamento automático de dados via API REST
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <LinhaTrajetoSelector
+            clienteId="1314"
+            apiBaseUrl="https://sua-api.com"
+            selectedLinhaId={selectedLinhaId3}
+            selectedTrajetoIds={selectedTrajetoIds3}
+            onLinhaChange={(linha) => {
+              setSelectedLinhaId3(linha?._id || '');
+              success(`Linha da API: ${linha?.descr || 'Nenhuma'}`);
+            }}
+            onTrajetoChange={(trajetos) => {
+              setSelectedTrajetoIds3(trajetos.map(t => t._id));
+              success(`${trajetos.length} trajeto(s) da API selecionado(s)`);
+            }}
+            linhaPlaceholder="Carregando linhas da API..."
+            trajetoPlaceholder="Selecione trajetos..."
+          />
+          
+          <Alert variant="default" title="Configuração da API">
+            <div className="space-y-2 text-sm">
+              <p><strong>URL:</strong> {`{apiBaseUrl}/service-api/linhasTrajetos/{clienteId}`}</p>
+              <p><strong>Método:</strong> GET</p>
+              <p><strong>Formato:</strong> JSON Array com estrutura Linha[]</p>
+            </div>
+          </Alert>
+        </CardContent>
+      </Card>
+
+      {/* Exemplo com manutenção de trajetos */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            Manutenção de Trajetos
+            <Badge variant="outline">Novo</Badge>
+          </CardTitle>
+          <CardDescription>
+            Manter trajetos selecionados ao trocar de linha
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <LinhaTrajetoSelector
+            linhas={sampleLinhas}
+            selectedLinhaId={selectedLinhaId4}
+            selectedTrajetoIds={selectedTrajetoIds4}
+            keepTrajetosOnLinhaChange={true}
+            onLinhaChange={(linha) => {
+              setSelectedLinhaId4(linha?._id || '');
+              success(`Linha alterada mantendo trajetos: ${linha?.descr || 'Nenhuma'}`);
+            }}
+            onTrajetoChange={(trajetos) => {
+              setSelectedTrajetoIds4(trajetos.map(t => t._id));
+            }}
+            linhaPlaceholder="Selecione uma linha..."
+            trajetoPlaceholder="Trajetos mantidos ao trocar linha"
+          />
+          
+          <Alert variant="default" title="Comportamento">
+            Com <code>keepTrajetosOnLinhaChange=true</code>, os trajetos selecionados não são limpos 
+            automaticamente ao trocar de linha. Útil para manter seleções durante navegação.
+          </Alert>
+          
+          <div className="text-sm space-y-2">
+            <div className="font-medium text-muted-foreground">Status:</div>
+            <div>Linha: {selectedLinhaId4 ? sampleLinhas.find(l => l._id === selectedLinhaId4)?.descr : "Nenhuma"}</div>
+            <div>Trajetos: {selectedTrajetoIds4.length} selecionados</div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Propriedades do Componente */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Propriedades do Componente</CardTitle>
+          <CardDescription>
+            Todas as props disponíveis do LinhaTrajetoSelector
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse border border-border text-sm">
+              <thead>
+                <tr className="bg-muted">
+                  <th className="border border-border p-2 text-left">Propriedade</th>
+                  <th className="border border-border p-2 text-left">Tipo</th>
+                  <th className="border border-border p-2 text-left">Padrão</th>
+                  <th className="border border-border p-2 text-left">Descrição</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-border p-2"><code>linhas</code></td>
+                  <td className="border border-border p-2">Linha[]?</td>
+                  <td className="border border-border p-2">-</td>
+                  <td className="border border-border p-2">Array de linhas (opcional se usar API)</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-2"><code>clienteId</code></td>
+                  <td className="border border-border p-2">string?</td>
+                  <td className="border border-border p-2">-</td>
+                  <td className="border border-border p-2">ID do cliente para busca via API</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-2"><code>apiBaseUrl</code></td>
+                  <td className="border border-border p-2">string?</td>
+                  <td className="border border-border p-2">""</td>
+                  <td className="border border-border p-2">URL base da API</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-2"><code>selectedLinhaId</code></td>
+                  <td className="border border-border p-2">string?</td>
+                  <td className="border border-border p-2">-</td>
+                  <td className="border border-border p-2">ID da linha selecionada</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-2"><code>selectedTrajetoIds</code></td>
+                  <td className="border border-border p-2">string[]?</td>
+                  <td className="border border-border p-2">[]</td>
+                  <td className="border border-border p-2">IDs dos trajetos selecionados</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-2"><code>keepTrajetosOnLinhaChange</code></td>
+                  <td className="border border-border p-2">boolean?</td>
+                  <td className="border border-border p-2">false</td>
+                  <td className="border border-border p-2">Manter trajetos ao trocar linha</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-2"><code>multiSelectTrajeto</code></td>
+                  <td className="border border-border p-2">boolean?</td>
+                  <td className="border border-border p-2">true</td>
+                  <td className="border border-border p-2">Permitir múltiplos trajetos</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-2"><code>size</code></td>
+                  <td className="border border-border p-2">"sm"|"md"|"lg"</td>
+                  <td className="border border-border p-2">"md"</td>
+                  <td className="border border-border p-2">Tamanho dos campos</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-2"><code>disabled</code></td>
+                  <td className="border border-border p-2">boolean?</td>
+                  <td className="border border-border p-2">false</td>
+                  <td className="border border-border p-2">Desabilitar componente</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </CardContent>
       </Card>
