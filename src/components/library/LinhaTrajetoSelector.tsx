@@ -37,7 +37,9 @@ interface Linha {
 }
 
 interface LinhaTrajetoSelectorProps {
-  linhas: Linha[];
+  linhas?: Linha[];
+  clienteId?: string;
+  apiBaseUrl?: string;
   selectedLinhaId?: string;
   selectedTrajetoIds?: string[];
   onLinhaChange?: (linha: Linha | null) => void;
@@ -50,11 +52,14 @@ interface LinhaTrajetoSelectorProps {
   size?: "sm" | "md" | "lg";
   className?: string;
   multiSelectTrajeto?: boolean;
+  keepTrajetosOnLinhaChange?: boolean;
 }
 
 const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelectorProps>(
   ({
-    linhas,
+    linhas: propLinhas,
+    clienteId,
+    apiBaseUrl = "",
     selectedLinhaId,
     selectedTrajetoIds = [],
     onLinhaChange,
@@ -67,10 +72,46 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
     size = "md",
     className,
     multiSelectTrajeto = true,
+    keepTrajetosOnLinhaChange = false,
     ...props
   }, ref) => {
     const [selectedLinha, setSelectedLinha] = useState<Linha | null>(null);
     const [trajetoOptions, setTrajetoOptions] = useState<ComboOption[]>([]);
+    const [apiLinhas, setApiLinhas] = useState<Linha[]>([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    // Determina qual fonte de dados usar (props ou API)
+    const linhas = propLinhas || apiLinhas;
+
+    // Busca dados da API quando clienteId e apiBaseUrl estão presentes
+    useEffect(() => {
+      const fetchLinhas = async () => {
+        if (!clienteId || !apiBaseUrl || propLinhas) return;
+        
+        setLoading(true);
+        setError(null);
+        
+        try {
+          const url = `${apiBaseUrl}/service-api/linhasTrajetos/${clienteId}`;
+          const response = await fetch(url);
+          
+          if (!response.ok) {
+            throw new Error(`Erro ao buscar linhas: ${response.status}`);
+          }
+          
+          const data = await response.json();
+          setApiLinhas(Array.isArray(data) ? data : []);
+        } catch (err) {
+          setError(err instanceof Error ? err.message : 'Erro desconhecido');
+          setApiLinhas([]);
+        } finally {
+          setLoading(false);
+        }
+      };
+      
+      fetchLinhas();
+    }, [clienteId, apiBaseUrl, propLinhas]);
 
     // Converte linhas para options do ComboBox
     const linhaOptions: ComboOption[] = linhas.map(linha => ({
@@ -108,8 +149,10 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
       setSelectedLinha(linha);
       onLinhaChange?.(linha);
       
-      // Limpa trajetos selecionados quando linha muda
-      onTrajetoChange?.([]);
+      // Limpa trajetos selecionados quando linha muda (apenas se keepTrajetosOnLinhaChange for false)
+      if (!keepTrajetosOnLinhaChange) {
+        onTrajetoChange?.([]);
+      }
     };
 
     const handleTrajetoChange = (trajetoIds: string[]) => {
