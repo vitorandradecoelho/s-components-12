@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ComboBox, type ComboOption } from "./ComboBox";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Trajeto {
   _id: string;
@@ -64,10 +65,10 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
     selectedTrajetoIds = [],
     onLinhaChange,
     onTrajetoChange,
-    linhaPlaceholder = "Selecione uma linha",
-    trajetoPlaceholder = "Selecione trajetos",
-    linhaLabel = "Linha",
-    trajetoLabel = "Trajeto",
+    linhaPlaceholder,
+    trajetoPlaceholder,
+    linhaLabel,
+    trajetoLabel,
     disabled = false,
     size = "md",
     className,
@@ -75,11 +76,18 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
     keepTrajetosOnLinhaChange = false,
     ...props
   }, ref) => {
+    const { t } = useLanguage();
     const [selectedLinha, setSelectedLinha] = useState<Linha | null>(null);
     const [trajetoOptions, setTrajetoOptions] = useState<ComboOption[]>([]);
     const [apiLinhas, setApiLinhas] = useState<Linha[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    // Usa traduções como valores padrão se não fornecido nas props
+    const defaultLinhaPlaceholder = linhaPlaceholder ?? t('linhatrajeto.linha.placeholder');
+    const defaultTrajetoPlaceholder = trajetoPlaceholder ?? t('linhatrajeto.trajeto.placeholder');
+    const defaultLinhaLabel = linhaLabel ?? t('linhatrajeto.linha.label');
+    const defaultTrajetoLabel = trajetoLabel ?? t('linhatrajeto.trajeto.label');
 
     // Determina qual fonte de dados usar (props ou API)
     const linhas = propLinhas || apiLinhas;
@@ -188,8 +196,8 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
                 handleLinhaClear();
               }
             }}
-            placeholder={linhaPlaceholder}
-            label={linhaLabel}
+            placeholder={defaultLinhaPlaceholder}
+            label={defaultLinhaLabel}
             disabled={disabled}
             size={size}
             clearable
@@ -206,8 +214,8 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
                 handleTrajetoClear();
               }
             }}
-            placeholder={trajetoPlaceholder}
-            label={trajetoLabel}
+            placeholder={defaultTrajetoPlaceholder}
+            label={defaultTrajetoLabel}
             disabled={disabled || !selectedLinha}
             size={size}
             multiple={multiSelectTrajeto}

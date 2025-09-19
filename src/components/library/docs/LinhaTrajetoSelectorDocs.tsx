@@ -304,6 +304,38 @@ const LinhaTrajetoSelectorDocs: React.FC = () => {
         </CardContent>
       </Card>
 
+      {/* Exemplo com internacionalização */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            Internacionalização
+            <Badge variant="outline">i18n</Badge>
+          </CardTitle>
+          <CardDescription>
+            Placeholders e labels automaticamente traduzidos usando contexto de linguagem
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <LinhaTrajetoSelector
+            linhas={sampleLinhas}
+            selectedLinhaId={selectedLinhaId4}
+            selectedTrajetoIds={selectedTrajetoIds4}
+            onLinhaChange={(linha) => {
+              setSelectedLinhaId4(linha?._id || '');
+            }}
+            onTrajetoChange={(trajetos) => {
+              setSelectedTrajetoIds4(trajetos.map(t => t._id));
+            }}
+            // Não especificar placeholders para usar os traduzidos automaticamente
+          />
+          
+          <Alert variant="default" title="Internacionalização Automática">
+            Quando não especificados, os placeholders e labels são automaticamente traduzidos baseados 
+            no contexto de linguagem da aplicação (PT, EN, ES).
+          </Alert>
+        </CardContent>
+      </Card>
+
       {/* Exemplo com manutenção de trajetos */}
       <Card>
         <CardHeader>
@@ -400,6 +432,30 @@ const LinhaTrajetoSelectorDocs: React.FC = () => {
                   <td className="border border-border p-2">boolean?</td>
                   <td className="border border-border p-2">false</td>
                   <td className="border border-border p-2">Manter trajetos ao trocar linha</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-2"><code>linhaPlaceholder</code></td>
+                  <td className="border border-border p-2">string?</td>
+                  <td className="border border-border p-2">traduzido</td>
+                  <td className="border border-border p-2">Placeholder da linha (traduzido automaticamente)</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-2"><code>trajetoPlaceholder</code></td>
+                  <td className="border border-border p-2">string?</td>
+                  <td className="border border-border p-2">traduzido</td>
+                  <td className="border border-border p-2">Placeholder dos trajetos (traduzido automaticamente)</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-2"><code>linhaLabel</code></td>
+                  <td className="border border-border p-2">string?</td>
+                  <td className="border border-border p-2">traduzido</td>
+                  <td className="border border-border p-2">Label da linha (traduzido automaticamente)</td>
+                </tr>
+                <tr>
+                  <td className="border border-border p-2"><code>trajetoLabel</code></td>
+                  <td className="border border-border p-2">string?</td>
+                  <td className="border border-border p-2">traduzido</td>
+                  <td className="border border-border p-2">Label dos trajetos (traduzido automaticamente)</td>
                 </tr>
                 <tr>
                   <td className="border border-border p-2"><code>multiSelectTrajeto</code></td>

@@ -149,8 +149,14 @@ const translations = {
     'component.datepicker.description': 'Seleção de datas e horários com suporte a intervalos',
     'component.timepicker.title': 'TimePicker',
     'component.timepicker.description': 'Seleção de horários independente com formatos 12h e 24h',
-    'component.linhatrajeto.title': 'LinhaTrajetoSelector',
-    'component.linhatrajeto.description': 'Seletor duplo para linha e trajeto com cascata de dependência',
+     'component.linhatrajeto.title': 'LinhaTrajetoSelector',
+     'component.linhatrajeto.description': 'Seletor duplo para linha e trajeto com cascata de dependência',
+     
+     // LinhaTrajetoSelector specific translations
+     'linhatrajeto.linha.placeholder': 'Selecione uma linha',
+     'linhatrajeto.trajeto.placeholder': 'Selecione trajetos',
+     'linhatrajeto.linha.label': 'Linha',
+     'linhatrajeto.trajeto.label': 'Trajeto',
     
     // SweetAlert specific translations
     'sweetalert.hero.title': 'SweetAlert',
@@ -369,8 +375,14 @@ const translations = {
     'component.timepicker.description': 'Independent time selection with 12h and 24h formats',
     'component.map.title': 'Map',
     'component.map.description': 'Flexible map component with OpenStreetMap and Google Maps',
-    'component.linhatrajeto.title': 'LinhaTrajetoSelector',
-    'component.linhatrajeto.description': 'Dual selector for line and route with dependency cascade',
+     'component.linhatrajeto.title': 'LinhaTrajetoSelector',
+     'component.linhatrajeto.description': 'Dual selector for line and route with dependency cascade',
+     
+     // LinhaTrajetoSelector specific translations
+     'linhatrajeto.linha.placeholder': 'Select a line',
+     'linhatrajeto.trajeto.placeholder': 'Select routes',
+     'linhatrajeto.linha.label': 'Line',
+     'linhatrajeto.trajeto.label': 'Route',
     
     // SweetAlert specific translations
     'sweetalert.hero.title': 'SweetAlert',
@@ -583,8 +595,14 @@ const translations = {
     'component.toast.description': 'Notificaciones temporales con diferentes tipos y estilos',
     'component.sweetalert.title': 'SweetAlert',
     'component.sweetalert.description': 'Alertas modales elegantes e interactivos con soporte async',
-    'component.linhatrajeto.title': 'LinhaTrajetoSelector',
-    'component.linhatrajeto.description': 'Selector dual para línea y trayecto con cascada de dependencia',
+     'component.linhatrajeto.title': 'LinhaTrajetoSelector',
+     'component.linhatrajeto.description': 'Selector dual para línea y trayecto con cascada de dependencia',
+     
+     // LinhaTrajetoSelector specific translations
+     'linhatrajeto.linha.placeholder': 'Seleccione una línea',
+     'linhatrajeto.trajeto.placeholder': 'Seleccione trayectos',
+     'linhatrajeto.linha.label': 'Línea',
+     'linhatrajeto.trajeto.label': 'Trayecto',
     
     // SweetAlert specific translations
     'sweetalert.hero.title': 'SweetAlert',
