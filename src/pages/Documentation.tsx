@@ -25,7 +25,8 @@ import {
   MapPin,
   Navigation,
   Cloud,
-  Shield
+  Shield,
+  Palette
 } from 'lucide-react';
 
 const components = [
@@ -196,28 +197,30 @@ const Documentation = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid md:grid-cols-2 gap-4">
-                <Button asChild variant="outline" className="h-auto p-4 justify-start">
-                  <Link to="/docs/deployment">
-                    <div className="flex items-center gap-3">
-                      <Cloud className="h-5 w-5 text-primary" />
-                      <div className="text-left">
-                        <div className="font-medium">Deployment & Repositórios</div>
-                        <div className="text-sm text-muted-foreground">AWS S3, CodeArtifact, CI/CD</div>
-                      </div>
-                    </div>
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" className="h-auto p-4 justify-start" disabled>
-                  <div className="flex items-center gap-3">
-                    <Shield className="h-5 w-5 text-muted-foreground" />
-                    <div className="text-left">
-                      <div className="font-medium text-muted-foreground">Segurança Avançada</div>
-                      <div className="text-sm text-muted-foreground">Em breve...</div>
-                    </div>
+          <div className="grid md:grid-cols-2 gap-4">
+            <Button asChild variant="outline" className="h-auto p-4 justify-start">
+              <Link to="/docs/deployment">
+                <div className="flex items-center gap-3">
+                  <Cloud className="h-5 w-5 text-primary" />
+                  <div className="text-left">
+                    <div className="font-medium">Deployment & Repositórios</div>
+                    <div className="text-sm text-muted-foreground">AWS S3, CodeArtifact, CI/CD</div>
                   </div>
-                </Button>
-              </div>
+                </div>
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="h-auto p-4 justify-start">
+              <Link to="/docs/css-customization">
+                <div className="flex items-center gap-3">
+                  <Palette className="h-5 w-5 text-accent" />
+                  <div className="text-left">
+                    <div className="font-medium">Customização CSS</div>
+                    <div className="text-sm text-muted-foreground">Criar variants personalizados</div>
+                  </div>
+                </div>
+              </Link>
+            </Button>
+          </div>
             </CardContent>
           </Card>
         </div>

@@ -30,6 +30,7 @@ import BitBucketTestPage from "./pages/BitBucketTestPage";
 import ProjectArchitectureDocs from "./pages/ProjectArchitectureDocs";
 import ComponentCreationGuide from "./pages/ComponentCreationGuide";
 import { ViagemModeloPage } from "./pages/ViagemModeloPage";
+import CssCustomizationGuide from "./pages/CssCustomizationGuide";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -60,9 +61,10 @@ const App = () => (
             <Route path="/docs/toast" element={<ToastDocs />} />
             <Route path="/docs/sweetalert" element={<SweetAlertDocs />} />
             <Route path="/docs/datepicker" element={<DatePickerDocs />} />
-          <Route path="/docs/timepicker" element={<TimePickerDocs />} />
-          <Route path="/docs/map" element={<MapDocs />} />
+            <Route path="/docs/timepicker" element={<TimePickerDocs />} />
+            <Route path="/docs/map" element={<MapDocs />} />
             <Route path="/docs/linhatrajeto" element={<LinhaTrajetoDocs />} />
+            <Route path="/docs/css-customization" element={<CssCustomizationGuide />} />
         <Route path="/teste" element={<TestePage />} />
         <Route path="/bitbucket-docs" element={<BitBucketDocs />} />
         <Route path="/bitbucket-test" element={<BitBucketTestPage />} />
