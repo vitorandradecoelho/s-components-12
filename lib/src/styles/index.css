@@ -42,6 +42,12 @@
     --accent-light: 285 90% 75%;
     --accent-foreground: 0 0% 100%;
 
+    /* Sindiobus Theme */
+    --sindiobus-green: 75 100% 45%;
+    --sindiobus-green-light: 75 90% 55%;
+    --sindiobus-background: 210 20% 98%;
+    --sindiobus-foreground: 220 15% 25%;
+
     /* Success */
     --success: 145 80% 50%;
     --success-light: 145 70% 60%;
@@ -136,6 +142,12 @@
     --accent: 285 85% 70%;
     --accent-light: 290 80% 75%;
     --accent-foreground: 220 25% 8%;
+
+    /* Sindiobus Theme */
+    --sindiobus-green: 75 85% 55%;
+    --sindiobus-green-light: 75 75% 65%;
+    --sindiobus-background: 210 15% 95%;
+    --sindiobus-foreground: 220 20% 30%;
 
     /* Success */
     --success: 145 70% 55%;

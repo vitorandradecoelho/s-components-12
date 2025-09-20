@@ -66,6 +66,43 @@ function MyComponent() {
           placeholder="Escolha um framework..."
         />
       )
+    },
+    {
+      title: 'Estilo Sindiobus',
+      code: `import { Select } from '@/components/library';
+
+const options = [
+  { label: "SINDIOMDBUS", value: "sindiomdbus" },
+  { label: "SINDICATO URBANO", value: "urbano" },
+  { label: "TRANSPORTE PÚBLICO", value: "publico" }
+];
+
+function SindiobusSelect() {
+  const [value, setValue] = useState("sindiomdbus");
+  
+  return (
+    <Select
+      variant="sindiobus"
+      options={options}
+      value={value}
+      onValueChange={setValue}
+      placeholder="Selecione..."
+    />
+  );
+}`,
+      component: (
+        <Select
+          variant="sindiobus"
+          options={[
+            { label: "SINDIOMDBUS", value: "sindiomdbus" },
+            { label: "SINDICATO URBANO", value: "urbano" },
+            { label: "TRANSPORTE PÚBLICO", value: "publico" }
+          ]}
+          value="sindiomdbus"
+          onValueChange={() => {}}
+          placeholder="Selecione..."
+        />
+      )
     }
   ];
 
@@ -79,7 +116,7 @@ function MyComponent() {
     { name: 'error', type: 'string', description: 'Mensagem de erro' },
     { name: 'success', type: 'string', description: 'Mensagem de sucesso' },
     { name: 'helper', type: 'string', description: 'Texto de ajuda' },
-    { name: 'variant', type: '"default" | "filled" | "ghost"', default: '"default"', description: 'Estilo visual' },
+    { name: 'variant', type: '"default" | "filled" | "ghost" | "sindiobus"', default: '"default"', description: 'Estilo visual' },
     { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Tamanho do componente' }
   ];
 

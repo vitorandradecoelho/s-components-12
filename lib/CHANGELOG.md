@@ -8,12 +8,23 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [Unreleased]
 
 ### Adicionado
+- 🎨 **Select**: Novo variant "sindiobus" com design personalizado
+  - Background cinza claro similar ao da imagem fornecida
+  - Ícone dropdown verde-limão característico
+  - Estilo minimalista e limpo
+- 🌈 **Design System**: Novas variáveis CSS para tema Sindiobus
+  - `--sindiobus-green`: Verde-limão para ícones
+  - `--sindiobus-background`: Background cinza claro
+  - `--sindiobus-foreground`: Cor do texto
+- 📖 **Documentação**: Exemplo prático do variant "sindiobus" no SelectDocs
 - 🌐 **LinhaTrajetoSelector**: Integração com API REST via `clienteId` e `apiBaseUrl`
 - 🔄 **LinhaTrajetoSelector**: Opção `keepTrajetosOnLinhaChange` para manter trajetos selecionados ao trocar de linha
 - 📊 Estados de loading e error para busca de dados via API
 - 📖 Documentação atualizada com exemplos de uso da API e novas funcionalidades
 
 ### Alterado
+- 🔧 **Select**: Interface `SelectProps` expandida para suportar variant "sindiobus"
+- 🎯 **Select**: Lógica condicional para aplicar cores específicas do variant sindiobus
 - 🔧 **LinhaTrajetoSelector**: Propriedade `linhas` agora é opcional quando usar API
 - 🎯 Melhor experiência do usuário com feedback visual durante carregamento
 - 📝 Documentação expandida com tabela de propriedades e exemplos práticos
@@ -21,6 +32,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Corrigido
 - 🐛 Problemas de build com `padStart` em browsers antigos
 - 🔨 Configuração do Rollup para geração correta de bundles
+- 🎨 **Exportação**: Garantia de que estilos personalizados sejam mantidos ao importar em outros projetos
 
 ## [0.1.0] - 2025-01-15
 

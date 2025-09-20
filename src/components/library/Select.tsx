@@ -19,7 +19,7 @@ interface SelectProps {
   helper?: string;
   disabled?: boolean;
   size?: "sm" | "md" | "lg";
-  variant?: "default" | "filled" | "ghost";
+  variant?: "default" | "filled" | "ghost" | "sindiobus";
   className?: string;
 }
 
@@ -51,7 +51,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     const variantClasses = {
       default: "bg-background border-border hover:border-border-strong focus:border-input-focus focus:ring-2 focus:ring-input-focus/20",
       filled: "bg-surface border-transparent hover:bg-surface-elevated focus:bg-background focus:border-input-focus focus:ring-2 focus:ring-input-focus/20",
-      ghost: "bg-transparent border-transparent hover:bg-muted/50 focus:bg-background focus:border-input-focus focus:ring-2 focus:ring-input-focus/20"
+      ghost: "bg-transparent border-transparent hover:bg-muted/50 focus:bg-background focus:border-input-focus focus:ring-2 focus:ring-input-focus/20",
+      sindiobus: "bg-[hsl(var(--sindiobus-background))] border-border/50 hover:border-border-strong focus:border-input-focus focus:ring-2 focus:ring-input-focus/20"
     };
 
     const getStatusColor = () => {
@@ -115,13 +116,14 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
             {...props}
           >
             <span className={cn(
-              selectedOption ? "text-foreground" : "text-muted-foreground"
+              selectedOption ? (variant === "sindiobus" ? "text-[hsl(var(--sindiobus-foreground))]" : "text-foreground") : "text-muted-foreground"
             )}>
               {selectedOption?.label || placeholder}
             </span>
             
             <ChevronDown className={cn(
-              "h-4 w-4 text-muted-foreground transition-transform duration-200",
+              "h-4 w-4 transition-transform duration-200",
+              variant === "sindiobus" ? "text-[hsl(var(--sindiobus-green))]" : "text-muted-foreground",
               isOpen && "rotate-180"
             )} />
           </div>
