@@ -21,6 +21,13 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - 🔄 **LinhaTrajetoSelector**: Opção `keepTrajetosOnLinhaChange` para manter trajetos selecionados ao trocar de linha
 - 📊 Estados de loading e error para busca de dados via API
 - 📖 Documentação atualizada com exemplos de uso da API e novas funcionalidades
+- 🏗️ **LinhaTrajetoSelector**: Refatoração completa com melhorias de arquitetura
+  - Hook personalizado `useLinhaTrajetoData` para gerenciar lógica de API
+  - Componentes auxiliares `LoadingSpinner` e `ErrorMessage`
+  - Estados de feedback visual (loading, erro, dados vazios)
+  - Memoização para otimização de performance
+  - Melhor acessibilidade com ARIA labels
+  - Separação de interfaces em arquivo dedicado
 
 ### Alterado
 - 🔧 **Select**: Interface `SelectProps` expandida para suportar variant "sindiobus"
