@@ -136,47 +136,53 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
     }
 
     return (
-      <div ref={ref} className={className} {...props}>
-        <div className="space-y-4">
-          <ComboBox
-            options={linhaOptions}
-            value={selectedLinhaId ? [selectedLinhaId] : []}
-            onValueChange={(values) => {
-              const linhaId = values[0];
-              if (linhaId) {
-                handleLinhaChange(linhaId);
-              } else {
-                handleLinhaClear();
-              }
-            }}
-            placeholder={linhaPlaceholder}
-            label={linhaLabel}
-            disabled={disabled}
-            size={size}
-            clearable
-            searchable
-            aria-label="Seleção de linha de transporte"
-          />
+      <div ref={ref} className={cn("linhatrajeto-container", className)} {...props}>
+        <div className="space-y-4"
+          <div className="linhatrajeto-linha-container">
+            <ComboBox
+              options={linhaOptions}
+              value={selectedLinhaId ? [selectedLinhaId] : []}
+              onValueChange={(values) => {
+                const linhaId = values[0];
+                if (linhaId) {
+                  handleLinhaChange(linhaId);
+                } else {
+                  handleLinhaClear();
+                }
+              }}
+              placeholder={linhaPlaceholder}
+              label={linhaLabel}
+              disabled={disabled}
+              size={size}
+              clearable
+              searchable
+              aria-label="Seleção de linha de transporte"
+              className="linhatrajeto-linha-select"
+            />
+          </div>
 
-          <ComboBox
-            options={trajetoOptions}
-            value={selectedTrajetoIds}
-            onValueChange={(values) => {
-              if (values.length > 0) {
-                handleTrajetoChange(values);
-              } else {
-                handleTrajetoClear();
-              }
-            }}
-            placeholder={trajetoPlaceholder}
-            label={trajetoLabel}
-            disabled={disabled || !selectedLinha}
-            size={size}
-            multiple={multiSelectTrajeto}
-            clearable
-            searchable
-            aria-label="Seleção de trajetos"
-          />
+          <div className="linhatrajeto-trajeto-container">
+            <ComboBox
+              options={trajetoOptions}
+              value={selectedTrajetoIds}
+              onValueChange={(values) => {
+                if (values.length > 0) {
+                  handleTrajetoChange(values);
+                } else {
+                  handleTrajetoClear();
+                }
+              }}
+              placeholder={trajetoPlaceholder}
+              label={trajetoLabel}
+              disabled={disabled || !selectedLinha}
+              size={size}
+              multiple={multiSelectTrajeto}
+              clearable
+              searchable
+              aria-label="Seleção de trajetos"
+              className="linhatrajeto-trajeto-select"
+            />
+          </div>
         </div>
       </div>
     );

@@ -26,7 +26,9 @@ import {
   Navigation,
   Cloud,
   Shield,
-  Palette
+  Palette,
+  Bus,
+  ChevronRight
 } from 'lucide-react';
 
 const components = [
@@ -220,6 +222,67 @@ const Documentation = () => {
                 </div>
               </Link>
             </Button>
+          </div>
+          
+          {/* LinhaTrajetoSelector Guides */}
+          <div className="mt-6 space-y-4">
+            <h4 className="font-semibold text-foreground">LinhaTrajetoSelector - Guias Específicos</h4>
+            
+            <Link 
+              to="/docs/linhatrajeto" 
+              className="block group p-6 bg-card border border-card-border rounded-xl hover:shadow-lg transition-all duration-300 hover:border-primary/50"
+            >
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 bg-accent/10 text-accent rounded-lg flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                    <Bus className="h-6 w-6" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold mb-2 text-card-foreground group-hover:text-primary transition-colors">
+                    LinhaTrajetoSelector
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Seletor avançado de linhas e trajetos de transporte público com suporte a API, 
+                    internacionalização e múltiplas opções de configuração.
+                  </p>
+                  <div className="flex items-center gap-2 text-xs">
+                    <Badge variant="secondary">React</Badge>
+                    <Badge variant="secondary">API Integration</Badge>
+                    <Badge variant="secondary">i18n</Badge>
+                  </div>
+                </div>
+                <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </div>
+            </Link>
+
+            <Link 
+              to="/docs/linhatrajeto-css" 
+              className="block group p-6 bg-card border border-card-border rounded-xl hover:shadow-lg transition-all duration-300 hover:border-success/50"
+            >
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 bg-success/10 text-success rounded-lg flex items-center justify-center group-hover:bg-success/20 transition-colors">
+                    <Palette className="h-6 w-6" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold mb-2 text-card-foreground group-hover:text-success transition-colors">
+                    CSS - LinhaTrajetoSelector
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Guia completo de implementação de estilos customizados para o LinhaTrajetoSelector, 
+                    incluindo variáveis CSS, classes personalizadas e aplicação prática.
+                  </p>
+                  <div className="flex items-center gap-2 text-xs">
+                    <Badge variant="secondary">CSS Variables</Badge>
+                    <Badge variant="secondary">Design System</Badge>
+                    <Badge variant="secondary">Styling</Badge>
+                  </div>
+                </div>
+                <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-success transition-colors" />
+              </div>
+            </Link>
           </div>
             </CardContent>
           </Card>
