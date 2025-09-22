@@ -90,10 +90,10 @@ const LinhaTrajetoCssGuide = () => {
       icon: Palette
     },
     {
-      title: "2. Criar Classes CSS Personalizadas",
-      description: "Implementar as classes CSS utilizando as variáveis do design system",
+      title: "2. Classes CSS com Animações",
+      description: "Implementar classes CSS com animações e transições suaves usando o design system",
       file: "lib/src/styles/index.css & src/index.css",
-      code: `/* LinhaTrajetoSelector Custom Styles */
+      code: `/* LinhaTrajetoSelector Custom Styles com Animações */
 .linhatrajeto-container {
   @apply p-4 rounded-xl border;
   background: linear-gradient(135deg, 
@@ -101,12 +101,16 @@ const LinhaTrajetoCssGuide = () => {
     hsl(var(--background)));
   border-color: hsl(var(--linhatrajeto-border));
   box-shadow: 0 4px 12px -2px hsl(var(--linhatrajeto-primary) / 0.1);
+  animation: fade-in 0.3s ease-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.linhatrajeto-linha-container {
-  @apply relative;
+.linhatrajeto-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px hsl(var(--linhatrajeto-primary) / 0.15);
 }
 
+/* Ícones emoji animados */
 .linhatrajeto-linha-container::before {
   content: "🚌";
   position: absolute;
@@ -115,33 +119,72 @@ const LinhaTrajetoCssGuide = () => {
   transform: translateY(-50%);
   z-index: 10;
   font-size: 1.2em;
-}
-
-.linhatrajeto-linha-select [data-radix-select-trigger] {
-  @apply pl-10;
-  background: hsl(var(--background));
-  border-color: hsl(var(--linhatrajeto-primary) / 0.3);
   transition: all 0.3s ease;
 }
 
+.linhatrajeto-linha-container:hover::before {
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Estados interativos com animações */
 .linhatrajeto-linha-select [data-radix-select-trigger]:hover {
   border-color: hsl(var(--linhatrajeto-primary) / 0.6);
   box-shadow: 0 0 0 2px hsl(var(--linhatrajeto-primary) / 0.1);
+  transform: scale(1.02);
 }
 
-.linhatrajeto-trajeto-container::before {
-  content: "🛣️";
-  /* ... resto das propriedades ... */
+.linhatrajeto-linha-select [data-radix-select-trigger]:focus-visible {
+  outline: none;
+  border-color: hsl(var(--linhatrajeto-primary));
+  box-shadow: 0 0 0 3px hsl(var(--linhatrajeto-primary) / 0.2);
+  animation: scale-in 0.2s ease-out;
 }
 
-.linhatrajeto-trajeto-select [data-radix-select-trigger] {
-  border-color: hsl(var(--linhatrajeto-accent) / 0.3);
-  /* ... resto das propriedades ... */
+/* Estados de loading e erro */
+.linhatrajeto-loading {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.linhatrajeto-error {
+  animation: fade-in 0.3s ease-out;
+  border-left: 4px solid hsl(var(--destructive));
 }`,
       icon: Code2
     },
     {
-      title: "3. Aplicar Classes no Componente",
+      title: "3. Keyframes de Animação",
+      description: "Configurar as animações no tailwind.config.ts usando as keyframes disponíveis",
+      file: "tailwind.config.ts",
+      code: `// tailwind.config.ts - Animações já configuradas no projeto
+export default {
+  theme: {
+    extend: {
+      keyframes: {
+        "fade-in": {
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" }
+        },
+        "scale-in": {
+          "0%": { transform: "scale(0.95)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" }
+        }
+      },
+      animation: {
+        "fade-in": "fade-in 0.3s ease-out",
+        "scale-in": "scale-in 0.2s ease-out"
+      }
+    }
+  }
+}
+
+// Uso das animações:
+// - fade-in: Para entradas suaves
+// - scale-in: Para efeitos de foco
+// - pulse: Para loading states (já incluído no Tailwind)`,
+      icon: Zap
+    },
+    {
+      title: "4. Aplicar Classes no Componente",
       description: "Modificar o componente LinhaTrajetoSelector para usar as classes CSS personalizadas",
       file: "lib/src/components/LinhaTrajetoSelector.tsx",
       code: `return (
@@ -198,7 +241,7 @@ const LinhaTrajetoCssGuide = () => {
       icon: Settings
     },
     {
-      title: "4. Importar Utilitário cn",
+      title: "5. Importar Utilitário cn",
       description: "Garantir que a função cn (className merge) esteja disponível para combinar classes",
       file: "lib/src/components/LinhaTrajetoSelector.tsx",
       code: `import React, { useState, useEffect, useMemo } from "react";
@@ -216,7 +259,7 @@ import '../styles/index.css';`,
       icon: Package
     },
     {
-      title: "5. Sincronização de Estilos",
+      title: "6. Sincronização de Estilos",
       description: "Garantir que os estilos sejam aplicados tanto na biblioteca quanto na aplicação de demonstração",
       file: "Múltiplos arquivos",
       code: `// 1. Copiar variáveis CSS para ambos os arquivos:
@@ -237,7 +280,7 @@ import '../styles/index.css';`,
       icon: Zap
     },
     {
-      title: "6. Testar Responsividade",
+      title: "7. Testar Responsividade",
       description: "Verificar se o componente funciona corretamente em diferentes tamanhos de tela",
       file: "CSS Media Queries",
       code: `/* Adicionar responsividade se necessário */
@@ -321,11 +364,11 @@ function App() {
         <div className="space-y-6 mb-12">
           <div className="space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              Customização CSS
+              Customização CSS com Animações
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl">
               Guia completo de implementação de estilos customizados para o componente LinhaTrajetoSelector, 
-              incluindo variáveis CSS, classes personalizadas e aplicação prática.
+              incluindo variáveis CSS, classes personalizadas, animações e aplicação prática.
             </p>
           </div>
           
@@ -340,13 +383,90 @@ function App() {
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-success/10 text-success rounded-full">
               <Route className="h-4 w-4" />
-              Estilização Avançada
+              Animações
             </div>
           </div>
         </div>
 
         <div className="space-y-12">
-          {/* Demonstração Final */}
+          {/* Demonstração com Animações */}
+          <Card className="gradient-card border-card-border shadow-medium">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3">
+                <Zap className="h-5 w-5 text-primary" />
+                LinhaTrajetoSelector com Animações
+              </CardTitle>
+              <CardDescription>
+                Veja o componente com todas as animações e transições aplicadas
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {/* Demo interativo */}
+              <div className="p-6 bg-background border border-border rounded-lg">
+                <div className="max-w-md mx-auto">
+                  <LinhaTrajetoSelector
+                    linhas={sampleLinhas}
+                    selectedLinhaId=""
+                    selectedTrajetoIds={[]}
+                    onLinhaChange={() => {}}
+                    onTrajetoChange={() => {}}
+                    linhaLabel="🚌 Linha de Transporte"
+                    trajetoLabel="🛣️ Trajetos da Viagem"
+                    linhaPlaceholder="Passe o mouse e clique para testar..."
+                    trajetoPlaceholder="Selecione trajetos..."
+                  />
+                </div>
+                
+                <div className="mt-4 text-center">
+                  <p className="text-sm text-muted-foreground">
+                    💡 <strong>Teste as animações:</strong> Passe o mouse sobre o container, 
+                    foque nos campos e observe as transições suaves!
+                  </p>
+                </div>
+              </div>
+              
+              {/* Lista de animações */}
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="p-4 bg-primary/10 rounded-lg space-y-3">
+                  <h4 className="font-semibold text-primary mb-2">🎭 Animações de Container</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                      <span><strong>Fade-in:</strong> Entrada suave (0.3s)</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                      <span><strong>Hover lift:</strong> TranslateY(-2px)</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                      <span><strong>Sombra:</strong> Box-shadow animada</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="p-4 bg-accent/10 rounded-lg space-y-3">
+                  <h4 className="font-semibold text-accent mb-2">⚡ Animações de Interação</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                      <span><strong>Hover scale:</strong> Scale(1.02) nos selects</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                      <span><strong>Focus ring:</strong> Scale-in animation</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                      <span><strong>Emoji bounce:</strong> Ícones animados</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Resultado Final */}
           <Card className="gradient-card border-card-border shadow-medium">
             <CardHeader>
               <CardTitle className="flex items-center gap-3">
@@ -354,7 +474,7 @@ function App() {
                 Resultado Final com CSS Aplicado
               </CardTitle>
               <CardDescription>
-                Veja o LinhaTrajetoSelector com todos os estilos personalizados aplicados
+                Componente completo com design system integrado
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -388,12 +508,14 @@ function App() {
                 </div>
                 
                 <div className="p-4 bg-accent/10 rounded-lg">
-                  <h4 className="font-semibold text-accent mb-2">⚡ Interação</h4>
+                  <h4 className="font-semibold text-accent mb-2">⚡ Animações</h4>
                   <ul className="text-sm space-y-1">
-                    <li>• Hover effects suaves</li>
-                    <li>• Focus com ring colorido</li>
-                    <li>• Transições animadas</li>
-                    <li>• Feedback visual claro</li>
+                    <li>• Fade-in na entrada (0.3s)</li>
+                    <li>• Scale effects no hover</li>
+                    <li>• Transform no container</li>
+                    <li>• Ícones emoji animados</li>
+                    <li>• Pulse no loading</li>
+                    <li>• Focus com scale-in</li>
                   </ul>
                 </div>
                 
@@ -489,10 +611,9 @@ function App() {
                       </Button>
                     </div>
                     
-                    {/* Código */}
-                    <div className="ml-14">
+                    <div className="ml-14 space-y-2">
                       <div className="relative">
-                        <pre className="bg-muted/50 border border-border rounded-lg p-4 overflow-x-auto">
+                        <pre className="bg-muted/50 border border-border rounded-lg p-4 overflow-x-auto text-sm">
                           <code className="text-sm whitespace-pre-wrap">{step.code}</code>
                         </pre>
                       </div>
@@ -513,35 +634,35 @@ function App() {
                 Vantagens desta Implementação
               </CardTitle>
               <CardDescription>
-                Por que esta abordagem CSS é eficiente e mantível
+                Por que esta abordagem é a melhor para customizar o LinhaTrajetoSelector
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <div className="p-4 bg-success/10 border border-success/20 rounded-lg">
-                    <h4 className="font-semibold text-success mb-2">✅ Design System</h4>
-                    <p className="text-sm text-success-foreground">
-                      Usa variáveis CSS HSL do design system, garantindo consistência 
-                      e facilidade de manutenção em toda a aplicação.
+                  <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg">
+                    <h4 className="font-semibold text-primary mb-2">🎨 Design System</h4>
+                    <p className="text-sm text-primary-foreground">
+                      Utiliza variáveis CSS semânticas que se adaptam automaticamente 
+                      aos temas claro e escuro, garantindo consistência visual.
                     </p>
                   </div>
                   
-                  <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg">
-                    <h4 className="font-semibold text-primary mb-2">🎨 Tema Automático</h4>
-                    <p className="text-sm">
-                      Suporte nativo para dark/light mode através das variáveis CSS, 
-                      sem necessidade de lógica adicional no JavaScript.
+                  <div className="p-4 bg-accent/10 border border-accent/20 rounded-lg">
+                    <h4 className="font-semibold text-accent mb-2">⚡ Performance</h4>
+                    <p className="text-sm text-accent-foreground">
+                      CSS puro com animações nativas garantem performance máxima 
+                      sem dependências JavaScript extras.
                     </p>
                   </div>
                 </div>
                 
                 <div className="space-y-4">
-                  <div className="p-4 bg-accent/10 border border-accent/20 rounded-lg">
-                    <h4 className="font-semibold text-accent mb-2">🚀 Performance</h4>
-                    <p className="text-sm text-accent-foreground">
-                      Classes CSS são aplicadas diretamente no HTML, evitando 
-                      recalculações de estilo durante o runtime.
+                  <div className="p-4 bg-success/10 border border-success/20 rounded-lg">
+                    <h4 className="font-semibold text-success mb-2">🔄 Manutenível</h4>
+                    <p className="text-sm text-success-foreground">
+                      Separação clara entre lógica e apresentação facilita 
+                      manutenção e atualizações futuras do componente.
                     </p>
                   </div>
                   

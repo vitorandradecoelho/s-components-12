@@ -3,6 +3,7 @@ import { ComboBox, type ComboOption } from "./ComboBox";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { ErrorMessage } from "./ErrorMessage";
 import { useLinhaTrajetoData } from "../hooks/useLinhaTrajetoData";
+import { cn } from "../lib/utils";
 import type { 
   Linha, 
   Trajeto, 
@@ -102,7 +103,7 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
     // Estado de loading
     if (loading) {
       return (
-        <div ref={ref} className={className} {...props}>
+        <div ref={ref} className={cn("linhatrajeto-container linhatrajeto-loading", className)} {...props}>
           <div className="flex items-center justify-center p-4" role="status">
             <LoadingSpinner size={size} />
             <span className="ml-2 text-muted-foreground">Carregando linhas...</span>
@@ -114,7 +115,7 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
     // Estado de erro
     if (error) {
       return (
-        <div ref={ref} className={className} {...props}>
+        <div ref={ref} className={cn("linhatrajeto-container linhatrajeto-error", className)} {...props}>
           <ErrorMessage 
             message={error} 
             size={size}

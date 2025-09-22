@@ -283,6 +283,13 @@
     background: linear-gradient(135deg, hsl(var(--linhatrajeto-background)), hsl(var(--background)));
     border-color: hsl(var(--linhatrajeto-border));
     box-shadow: 0 4px 12px -2px hsl(var(--linhatrajeto-primary) / 0.1);
+    animation: fade-in 0.3s ease-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .linhatrajeto-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -4px hsl(var(--linhatrajeto-primary) / 0.15);
   }
 
   .linhatrajeto-linha-container {
@@ -306,10 +313,20 @@
     transition: all 0.3s ease;
   }
 
-  .linhatrajeto-linha-select [data-radix-select-trigger]:hover {
-    border-color: hsl(var(--linhatrajeto-primary) / 0.6);
-    box-shadow: 0 0 0 2px hsl(var(--linhatrajeto-primary) / 0.1);
-  }
+.linhatrajeto-linha-select [data-radix-select-trigger]:hover {
+  border-color: hsl(var(--linhatrajeto-primary) / 0.6);
+  box-shadow: 0 0 0 2px hsl(var(--linhatrajeto-primary) / 0.1);
+  transform: scale(1.02);
+}
+
+.linhatrajeto-linha-select [data-radix-select-trigger]:focus-visible {
+  outline: none;
+  border-color: hsl(var(--linhatrajeto-primary));
+  box-shadow: 0 0 0 3px hsl(var(--linhatrajeto-primary) / 0.2);
+  animation: scale-in 0.2s ease-out;
+}
+  animation: scale-in 0.2s ease-out;
+}
 
   .linhatrajeto-linha-select [data-radix-select-trigger]:focus {
     border-color: hsl(var(--linhatrajeto-primary));
@@ -337,10 +354,54 @@
     transition: all 0.3s ease;
   }
 
-  .linhatrajeto-trajeto-select [data-radix-select-trigger]:hover {
-    border-color: hsl(var(--linhatrajeto-accent) / 0.6);
-    box-shadow: 0 0 0 2px hsl(var(--linhatrajeto-accent) / 0.1);
-  }
+.linhatrajeto-trajeto-select [data-radix-select-trigger]:hover {
+  border-color: hsl(var(--linhatrajeto-accent) / 0.6);
+  box-shadow: 0 0 0 2px hsl(var(--linhatrajeto-accent) / 0.1);
+  transform: scale(1.02);
+}
+
+.linhatrajeto-trajeto-select [data-radix-select-trigger]:focus-visible {
+  outline: none;
+  border-color: hsl(var(--linhatrajeto-accent));
+  box-shadow: 0 0 0 3px hsl(var(--linhatrajeto-accent) / 0.2);
+  animation: scale-in 0.2s ease-out;
+}
+  animation: scale-in 0.2s ease-out;
+}
+
+/* Estados de loading e erro com animações */
+.linhatrajeto-loading {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.linhatrajeto-error {
+  animation: fade-in 0.3s ease-out;
+  border-left: 4px solid hsl(var(--destructive));
+}
+
+/* Animações dos ícones emoji */
+.linhatrajeto-linha-container::before,
+.linhatrajeto-trajeto-container::before {
+  transition: all 0.3s ease;
+}
+
+.linhatrajeto-linha-container:hover::before {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.linhatrajeto-trajeto-container:hover::before {
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Estados de loading e erro com animações */
+.linhatrajeto-loading {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.linhatrajeto-error {
+  animation: fade-in 0.3s ease-out;
+  border-left: 4px solid hsl(var(--destructive));
+}
 
   .linhatrajeto-trajeto-select [data-radix-select-trigger]:focus {
     border-color: hsl(var(--linhatrajeto-accent));
