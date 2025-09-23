@@ -257,7 +257,7 @@ const Documentation = () => {
             </Link>
 
             <Link 
-              to="/docs/linhatrajeto-css" 
+              to="/docs/css-guide/linha-trajeto" 
               className="block group p-6 bg-card border border-card-border rounded-xl hover:shadow-lg transition-all duration-300 hover:border-success/50"
             >
               <div className="flex items-start gap-4">

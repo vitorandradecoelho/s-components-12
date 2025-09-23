@@ -66,7 +66,7 @@ const App = () => (
             <Route path="/docs/map" element={<MapDocs />} />
             <Route path="/docs/linhatrajeto" element={<LinhaTrajetoDocs />} />
             <Route path="/docs/css-customization" element={<CssCustomizationGuide />} />
-            <Route path="/docs/linhatrajeto-css" element={<LinhaTrajetoCssGuide />} />
+            <Route path="/docs/css-guide/linha-trajeto" element={<LinhaTrajetoCssGuide />} />
         <Route path="/teste" element={<TestePage />} />
         <Route path="/bitbucket-docs" element={<BitBucketDocs />} />
         <Route path="/bitbucket-test" element={<BitBucketTestPage />} />
