@@ -3,9 +3,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
-import { Alert } from '@/components/ui/alert';
+import { Alert } from '@/components/library/Alert';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowLeft, Code2, Package, FileText, Settings, CheckCircle, Users, Database, Zap, GitBranch } from 'lucide-react';
+import { ArrowLeft, Code2, Package, FileText, Settings, CheckCircle, Users, Database, Zap, GitBranch, AlertTriangle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function ComponentCreationGuide() {
@@ -1231,12 +1231,261 @@ export default UserRoleDocs;`}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold mb-3">📦 Adicionando aos Exports</h3>
+                <Alert className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950/30 dark:to-blue-950/30">
+                  <Zap className="h-4 w-4" />
+                  <div>
+                    <h4 className="font-semibold mb-2">🚀 Script Automatizado Disponível!</h4>
+                    <p className="text-sm">
+                      Não precisa mais editar manualmente os arquivos index! Use o script <code>add-component</code> para automatizar todo o processo.
+                    </p>
+                  </div>
+                </Alert>
+
+                <Tabs defaultValue="auto" className="w-full">
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="auto">🤖 Automático (Recomendado)</TabsTrigger>
+                    <TabsTrigger value="manual">✋ Manual</TabsTrigger>
+                  </TabsList>
                   
-                  <div className="bg-secondary/30 p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">lib/src/index.ts</h4>
-                    <pre className="text-sm bg-white dark:bg-gray-900 p-4 rounded border overflow-x-auto">
+                  <TabsContent value="auto" className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3">🤖 Método Automatizado</h3>
+                      
+                      <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 p-6 rounded-lg mb-4">
+                        <h4 className="font-semibold mb-4 text-lg">Use o Script add-component</h4>
+                        
+                        <div className="space-y-4">
+                          <div>
+                            <h5 className="font-semibold mb-2">📋 Opção 1: Adicionar Componente Existente</h5>
+                            <p className="text-sm text-muted-foreground mb-2">
+                              Se você já criou o componente em <code>lib/src/components/UserRoleSelector.tsx</code>:
+                            </p>
+                            <div className="bg-white dark:bg-gray-900 p-3 rounded font-mono text-sm">
+                              <div>cd lib</div>
+                              <div>npm run add-component UserRoleSelector</div>
+                            </div>
+                          </div>
+                          
+                          <Separator />
+                          
+                          <div>
+                            <h5 className="font-semibold mb-2">✨ Opção 2: Criar e Adicionar (Recomendado)</h5>
+                            <p className="text-sm text-muted-foreground mb-2">
+                              Cria o componente com template básico E adiciona aos index automaticamente:
+                            </p>
+                            <div className="bg-white dark:bg-gray-900 p-3 rounded font-mono text-sm mb-3">
+                              <div>cd lib</div>
+                              <div>npm run add-component UserRoleSelector --create</div>
+                            </div>
+                            <div className="bg-purple-50 dark:bg-purple-950/30 p-3 rounded-lg border border-purple-200 dark:border-purple-800">
+                              <h6 className="font-semibold text-purple-700 dark:text-purple-300 mb-2 text-sm">🎯 Perguntas Interativas</h6>
+                              <p className="text-xs text-muted-foreground mb-2">O script fará as seguintes perguntas para customizar o componente:</p>
+                              <ul className="text-xs space-y-1">
+                                <li>• <strong>O componente usa API/URL?</strong> → Gera código com fetch e estados</li>
+                                <li>• <strong>Qual a URL base da API?</strong> → Define URL padrão no código</li>
+                                <li>• <strong>O componente usa interface de dados específica?</strong> → Cria interface customizada</li>
+                                <li>• <strong>Nome da interface:</strong> → Define nome da interface dos dados</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="font-semibold mb-3">🔍 O que o Script Faz Automaticamente:</h4>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                          <div className="bg-green-50 dark:bg-green-950/30 p-4 rounded-lg">
+                            <h5 className="font-semibold text-green-700 dark:text-green-300 mb-2">✅ Detecção Inteligente</h5>
+                            <ul className="text-sm space-y-1">
+                              <li>• Identifica o componente principal</li>
+                              <li>• Encontra tipos e interfaces exportados</li>
+                              <li>• Detecta hooks personalizados (useAlgo)</li>
+                              <li>• Extrai todos os exports automaticamente</li>
+                            </ul>
+                          </div>
+
+                          <div className="bg-blue-50 dark:bg-blue-950/30 p-4 rounded-lg">
+                            <h5 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">🎯 Atualizações Automáticas</h5>
+                            <ul className="text-sm space-y-1">
+                              <li>• Atualiza <code>lib/src/index.ts</code></li>
+                              <li>• Atualiza <code>src/components/library/index.ts</code></li>
+                              <li>• Mantém formatação existente</li>
+                              <li>• Evita duplicações</li>
+                            </ul>
+                          </div>
+                        </div>
+
+                        <div className="bg-gradient-to-r from-indigo-50 to-cyan-50 dark:from-indigo-950/30 dark:to-cyan-950/30 p-4 rounded-lg border-2 border-indigo-200 dark:border-indigo-800">
+                          <h5 className="font-semibold text-indigo-700 dark:text-indigo-300 mb-2">🚀 Geração Inteligente de Código</h5>
+                          <ul className="text-sm space-y-1">
+                            <li>• <strong>Com API:</strong> Gera código com useState, useEffect, fetch e tratamento de erros</li>
+                            <li>• <strong>Com Interface:</strong> Cria interface de dados customizada com tipagem TypeScript</li>
+                            <li>• <strong>Props Customizadas:</strong> Adiciona props específicas (apiBaseUrl, items, etc)</li>
+                            <li>• <strong>Estados de Loading:</strong> Implementa loading e error states automaticamente</li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div className="space-y-4 mt-4">
+                        <div className="bg-secondary/30 p-4 rounded-lg">
+                          <h4 className="font-semibold mb-2">📝 Template Básico (sem API/Interface)</h4>
+                          <pre className="text-sm bg-white dark:bg-gray-900 p-4 rounded border overflow-x-auto">
+{`import React from 'react';
+import { cn } from '@/lib/utils';
+
+export interface UserRoleSelectorProps {
+  /** Additional CSS classes */
+  className?: string;
+  /** Component children */
+  children?: React.ReactNode;
+}
+
+export const UserRoleSelector: React.FC<UserRoleSelectorProps> = ({
+  className,
+  children,
+}) => {
+  return (
+    <div className={cn("", className)}>
+      {children}
+    </div>
+  );
+};`}
+                          </pre>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 p-4 rounded-lg border-2 border-blue-300 dark:border-blue-700">
+                          <h4 className="font-semibold mb-2 text-blue-700 dark:text-blue-300">✨ Template Avançado (com API + Interface)</h4>
+                          <p className="text-sm text-muted-foreground mb-3">
+                            Exemplo quando você responde <strong>"s"</strong> para API e Interface:
+                          </p>
+                          <pre className="text-xs bg-white dark:bg-gray-900 p-4 rounded border overflow-x-auto">
+{`import React from 'react';
+import { cn } from '@/lib/utils';
+import { useState, useEffect } from 'react';
+
+export interface UserData {
+  id: string;
+  // Adicione os campos necessários aqui
+}
+
+export interface UserRoleSelectorProps {
+  /** Additional CSS classes */
+  className?: string;
+  /** API base URL */
+  apiBaseUrl?: string;
+  /** Data items */
+  items?: UserData[];
+  /** Component children */
+  children?: React.ReactNode;
+}
+
+export const UserRoleSelector: React.FC<UserRoleSelectorProps> = ({
+  className,
+  apiBaseUrl,
+  items,
+  children,
+}) => {
+  const [data, setData] = useState<UserData[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(apiBaseUrl || 'https://api.example.com');
+        if (!response.ok) throw new Error('Failed to fetch data');
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred');
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, [apiBaseUrl]);
+  
+  if (loading) return <div className={cn("", className)}>Carregando...</div>;
+  if (error) return <div className={cn("text-destructive", className)}>Erro: {error}</div>;
+  
+  return (
+    <div className={cn("", className)}>
+      {children}
+    </div>
+  );
+};`}
+                          </pre>
+                          <div className="mt-3 grid grid-cols-2 gap-2">
+                            <Badge variant="outline" className="justify-center">🔄 Estados de Loading</Badge>
+                            <Badge variant="outline" className="justify-center">⚠️ Error Handling</Badge>
+                            <Badge variant="outline" className="justify-center">🌐 Fetch Automático</Badge>
+                            <Badge variant="outline" className="justify-center">📊 Tipagem Completa</Badge>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="bg-yellow-50 dark:bg-yellow-950/30 p-4 rounded-lg border border-yellow-200 dark:border-yellow-800 mt-4">
+                        <h4 className="font-semibold text-yellow-700 dark:text-yellow-300 mb-2">💡 Exemplo Prático</h4>
+                        <div className="text-sm space-y-2">
+                          <p>Se seu componente exporta:</p>
+                          <pre className="bg-white dark:bg-gray-900 p-3 rounded text-xs overflow-x-auto">
+{`export const UserRoleSelector: React.FC<...> = ...
+export interface UserRoleSelectorProps { ... }
+export type User = { ... }
+export type Role = { ... }
+export const useUserRole = () => { ... }`}
+                          </pre>
+                          <p className="mt-2">O script gera automaticamente:</p>
+                          <pre className="bg-white dark:bg-gray-900 p-3 rounded text-xs overflow-x-auto">
+{`export { 
+  UserRoleSelector, 
+  type UserRoleSelectorProps, 
+  type User, 
+  type Role, 
+  useUserRole 
+} from './components/UserRoleSelector';`}
+                          </pre>
+                        </div>
+                      </div>
+
+                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 p-6 rounded-lg mt-4">
+                        <h4 className="font-semibold mb-3">🎯 Vantagens do Método Automatizado</h4>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                          <li>✅ <strong>Economia de Tempo:</strong> Não edita múltiplos arquivos</li>
+                          <li>✅ <strong>Sem Erros:</strong> Elimina erros de digitação</li>
+                          <li>✅ <strong>Consistência:</strong> Mantém padrão uniforme</li>
+                          <li>✅ <strong>Inteligente:</strong> Detecta exports automaticamente</li>
+                          <li>✅ <strong>Template:</strong> Estrutura básica pronta</li>
+                          <li>✅ <strong>Seguro:</strong> Não sobrescreve arquivos existentes</li>
+                          <li>✅ <strong>Interativo:</strong> Customiza código com base em suas respostas</li>
+                          <li>✅ <strong>API-Ready:</strong> Gera código com fetch e estados</li>
+                          <li>✅ <strong>Type-Safe:</strong> Cria interfaces customizadas</li>
+                          <li>✅ <strong>Production-Ready:</strong> Inclui error handling e loading</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </TabsContent>
+                  
+                  <TabsContent value="manual" className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3">✋ Método Manual</h3>
+                      
+                      <Alert variant="warning">
+                        <AlertTriangle className="h-4 w-4" />
+                        <div>
+                          <h4 className="font-semibold">Atenção</h4>
+                          <p className="text-sm">
+                            O método automatizado é mais rápido e evita erros. Use o método manual apenas se necessário.
+                          </p>
+                        </div>
+                      </Alert>
+                      
+                      <div className="bg-secondary/30 p-4 rounded-lg mt-4">
+                        <h4 className="font-semibold mb-2">1. lib/src/index.ts</h4>
+                        <pre className="text-sm bg-white dark:bg-gray-900 p-4 rounded border overflow-x-auto">
 {`// Componentes existentes
 export { Alert, type AlertProps } from './components/Alert';
 export { Input, type InputProps } from './components/Input';
@@ -1253,29 +1502,12 @@ export {
 
 // Utilitários
 export { cn } from './lib/utils';`}
-                    </pre>
-                  </div>
-                </div>
+                        </pre>
+                      </div>
 
-                <div>
-                  <h3 className="text-lg font-semibold mb-3">🔄 Cópia para Documentação</h3>
-                  
-                  <div className="bg-secondary/30 p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">src/components/library/UserRoleSelector.tsx</h4>
-                    <pre className="text-sm bg-white dark:bg-gray-900 p-4 rounded border overflow-x-auto">
-{`// Re-export do componente da biblioteca publicada
-export {
-  UserRoleSelector,
-  type User,
-  type Role,
-  type UserRoleSelectorProps
-} from '@vitorandradecoelho/sd-components';`}
-                    </pre>
-                  </div>
-
-                  <div className="bg-secondary/30 p-4 rounded-lg mt-4">
-                    <h4 className="font-semibold mb-2">src/components/library/index.ts</h4>
-                    <pre className="text-sm bg-white dark:bg-gray-900 p-4 rounded border overflow-x-auto">
+                      <div className="bg-secondary/30 p-4 rounded-lg mt-4">
+                        <h4 className="font-semibold mb-2">2. src/components/library/index.ts</h4>
+                        <pre className="text-sm bg-white dark:bg-gray-900 p-4 rounded border overflow-x-auto">
 {`// Componentes existentes
 export * from './Alert';
 export * from './Input';
@@ -1284,9 +1516,11 @@ export * from './Select';
 
 // NOVO: Adicionar UserRoleSelector
 export * from './UserRoleSelector';`}
-                    </pre>
-                  </div>
-                </div>
+                        </pre>
+                      </div>
+                    </div>
+                  </TabsContent>
+                </Tabs>
 
                 <div>
                   <h3 className="text-lg font-semibold mb-3">🚀 Adicionando à Navegação</h3>
@@ -1355,6 +1589,37 @@ import { UserRoleSelector, type User, type Role } from "@/components/library";
   </CardContent>
 </Card>`}
                     </pre>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-950/30 dark:to-indigo-950/30 p-6 rounded-lg border-2 border-purple-200 dark:border-purple-800">
+                  <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                    📖 Documentação Completa do Script
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Para detalhes completos sobre o script add-component, incluindo troubleshooting, exemplos avançados e todas as funcionalidades:
+                  </p>
+                  <div className="bg-white dark:bg-gray-900 p-4 rounded-lg space-y-2">
+                    <div className="font-mono text-sm">
+                      <span className="text-muted-foreground">📁 Localização:</span> <code className="text-primary">lib/ADD_COMPONENT_GUIDE.md</code>
+                    </div>
+                    <div className="font-mono text-sm">
+                      <span className="text-muted-foreground">📋 Também em:</span> <code className="text-primary">lib/SCRIPTS_UPDATE.md</code>
+                    </div>
+                  </div>
+                  <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+                    <div className="flex items-start gap-2">
+                      <Badge className="shrink-0">💡</Badge>
+                      <span>Detecção inteligente de exports</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <Badge className="shrink-0">🔧</Badge>
+                      <span>Troubleshooting completo</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <Badge className="shrink-0">📚</Badge>
+                      <span>Exemplos práticos</span>
+                    </div>
                   </div>
                 </div>
 

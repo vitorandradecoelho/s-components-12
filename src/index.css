@@ -42,6 +42,19 @@
     --accent-light: 285 90% 75%;
     --accent-foreground: 0 0% 100%;
 
+    /* Sindiobus Theme */
+    --sindiobus-green: 75 100% 45%;
+    --sindiobus-green-light: 75 90% 55%;
+    --sindiobus-background: 210 20% 98%;
+    --sindiobus-foreground: 220 15% 25%;
+
+    /* LinhaTrajetoSelector Custom Theme */
+    --linhatrajeto-primary: 160 100% 35%;
+    --linhatrajeto-primary-light: 160 85% 45%;
+    --linhatrajeto-background: 160 25% 98%;
+    --linhatrajeto-border: 160 30% 85%;
+    --linhatrajeto-accent: 200 100% 50%;
+
     /* Success */
     --success: 145 80% 50%;
     --success-light: 145 70% 60%;
@@ -136,6 +149,19 @@
     --accent: 285 85% 70%;
     --accent-light: 290 80% 75%;
     --accent-foreground: 220 25% 8%;
+
+    /* Sindiobus Theme */
+    --sindiobus-green: 75 85% 55%;
+    --sindiobus-green-light: 75 75% 65%;
+    --sindiobus-background: 210 15% 95%;
+    --sindiobus-foreground: 220 20% 30%;
+
+    /* LinhaTrajetoSelector Custom Theme */
+    --linhatrajeto-primary: 160 85% 45%;
+    --linhatrajeto-primary-light: 160 75% 55%;
+    --linhatrajeto-background: 160 15% 92%;
+    --linhatrajeto-border: 160 20% 75%;
+    --linhatrajeto-accent: 200 85% 60%;
 
     /* Success */
     --success: 145 70% 55%;
@@ -250,7 +276,139 @@
     background: hsl(var(--card) / 0.8);
     border: 1px solid hsl(var(--border) / 0.5);
   }
+
+  /* LinhaTrajetoSelector Custom Styles */
+  .linhatrajeto-container {
+    @apply p-4 rounded-xl border;
+    background: linear-gradient(135deg, hsl(var(--linhatrajeto-background)), hsl(var(--background)));
+    border-color: hsl(var(--linhatrajeto-border));
+    box-shadow: 0 4px 12px -2px hsl(var(--linhatrajeto-primary) / 0.1);
+    animation: fade-in 0.3s ease-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .linhatrajeto-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -4px hsl(var(--linhatrajeto-primary) / 0.15);
+  }
+
+  .linhatrajeto-linha-container {
+    @apply relative;
+  }
+
+  .linhatrajeto-linha-container::before {
+    content: "🚌";
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    font-size: 1.2em;
+  }
+
+  .linhatrajeto-linha-select [data-radix-select-trigger] {
+    @apply pl-10;
+    background: hsl(var(--background));
+    border-color: hsl(var(--linhatrajeto-primary) / 0.3);
+    transition: all 0.3s ease;
+  }
+
+.linhatrajeto-linha-select [data-radix-select-trigger]:hover {
+  border-color: hsl(var(--linhatrajeto-primary) / 0.6);
+  box-shadow: 0 0 0 2px hsl(var(--linhatrajeto-primary) / 0.1);
+  transform: scale(1.02);
 }
+
+.linhatrajeto-linha-select [data-radix-select-trigger]:focus-visible {
+  outline: none;
+  border-color: hsl(var(--linhatrajeto-primary));
+  box-shadow: 0 0 0 3px hsl(var(--linhatrajeto-primary) / 0.2);
+  animation: scale-in 0.2s ease-out;
+}
+  animation: scale-in 0.2s ease-out;
+}
+
+  .linhatrajeto-linha-select [data-radix-select-trigger]:focus {
+    border-color: hsl(var(--linhatrajeto-primary));
+    box-shadow: 0 0 0 2px hsl(var(--linhatrajeto-primary) / 0.2);
+  }
+
+  .linhatrajeto-trajeto-container {
+    @apply relative;
+  }
+
+  .linhatrajeto-trajeto-container::before {
+    content: "🛣️";
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    font-size: 1.2em;
+  }
+
+  .linhatrajeto-trajeto-select [data-radix-select-trigger] {
+    @apply pl-10;
+    background: hsl(var(--background));
+    border-color: hsl(var(--linhatrajeto-accent) / 0.3);
+    transition: all 0.3s ease;
+  }
+
+.linhatrajeto-trajeto-select [data-radix-select-trigger]:hover {
+  border-color: hsl(var(--linhatrajeto-accent) / 0.6);
+  box-shadow: 0 0 0 2px hsl(var(--linhatrajeto-accent) / 0.1);
+  transform: scale(1.02);
+}
+
+.linhatrajeto-trajeto-select [data-radix-select-trigger]:focus-visible {
+  outline: none;
+  border-color: hsl(var(--linhatrajeto-accent));
+  box-shadow: 0 0 0 3px hsl(var(--linhatrajeto-accent) / 0.2);
+  animation: scale-in 0.2s ease-out;
+}
+
+/* Estados de loading e erro com animações */
+.linhatrajeto-loading {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.linhatrajeto-error {
+  animation: fade-in 0.3s ease-out;
+  border-left: 4px solid hsl(var(--destructive));
+}
+
+/* Animações dos ícones emoji */
+.linhatrajeto-linha-container::before,
+.linhatrajeto-trajeto-container::before {
+  transition: all 0.3s ease;
+}
+
+.linhatrajeto-linha-container:hover::before {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.linhatrajeto-trajeto-container:hover::before {
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Estados de loading e erro com animações */
+.linhatrajeto-loading {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.linhatrajeto-error {
+  animation: fade-in 0.3s ease-out;
+  border-left: 4px solid hsl(var(--destructive));
+}
+
+  .linhatrajeto-trajeto-select [data-radix-select-trigger]:focus {
+    border-color: hsl(var(--linhatrajeto-accent));
+    box-shadow: 0 0 0 2px hsl(var(--linhatrajeto-accent) / 0.2);
+  }
+
+  .linhatrajeto-container .linhatrajeto-linha-container + .linhatrajeto-trajeto-container {
+    margin-top: 1.5rem;
+  }
 
 @keyframes fadeIn {
   from {

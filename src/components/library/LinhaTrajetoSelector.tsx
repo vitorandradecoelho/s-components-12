@@ -1,7 +1,77 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { ComboBox, type ComboOption } from "./ComboBox";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+// Estados e componentes auxiliares
+const LoadingSpinner: React.FC<{ size?: 'sm' | 'md' | 'lg' }> = ({ size = 'md' }) => {
+  const sizeClasses = { sm: 'w-4 h-4', md: 'w-6 h-6', lg: 'w-8 h-8' };
+  return (
+    <div 
+      className={`animate-spin rounded-full border-2 border-gray-300 border-t-primary ${sizeClasses[size]}`}
+      role="status"
+      aria-label="Carregando"
+    />
+  );
+};
+
+const ErrorMessage: React.FC<{ message: string; size?: 'sm' | 'md' | 'lg' }> = ({ 
+  message, 
+  size = 'md' 
+}) => {
+  const sizeClasses = { sm: 'text-sm', md: 'text-base', lg: 'text-lg' };
+  return (
+    <div 
+      className={`text-destructive ${sizeClasses[size]}`}
+      role="alert"
+      aria-live="polite"
+    >
+      {message}
+    </div>
+  );
+};
+
+// Hook para gerenciar dados da API
+const useLinhaTrajetoData = (clienteId?: string, apiBaseUrl = "", propLinhas?: Linha[]) => {
+  const [apiLinhas, setApiLinhas] = useState<Linha[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchLinhas = async () => {
+      if (!clienteId || !apiBaseUrl || propLinhas) return;
+      
+      setLoading(true);
+      setError(null);
+      
+      try {
+        const url = `${apiBaseUrl}/service-api/linhasTrajetos/${clienteId}`;
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+          throw new Error(`Erro ao buscar linhas: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        setApiLinhas(Array.isArray(data) ? data : []);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Erro desconhecido');
+        setApiLinhas([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchLinhas();
+  }, [clienteId, apiBaseUrl, propLinhas]);
+
+  return { 
+    linhas: propLinhas || apiLinhas, 
+    loading, 
+    error 
+  };
+};
+
+// Interfaces
 interface Trajeto {
   _id: string;
   id_migracao: number;
@@ -78,10 +148,9 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
   }, ref) => {
     const { t } = useLanguage();
     const [selectedLinha, setSelectedLinha] = useState<Linha | null>(null);
-    const [trajetoOptions, setTrajetoOptions] = useState<ComboOption[]>([]);
-    const [apiLinhas, setApiLinhas] = useState<Linha[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+
+    // Hook personalizado para gerenciar dados
+    const { linhas, loading, error } = useLinhaTrajetoData(clienteId, apiBaseUrl, propLinhas);
 
     // Usa traduções como valores padrão se não fornecido nas props
     const defaultLinhaPlaceholder = linhaPlaceholder ?? t('linhatrajeto.linha.placeholder');
@@ -89,44 +158,25 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
     const defaultLinhaLabel = linhaLabel ?? t('linhatrajeto.linha.label');
     const defaultTrajetoLabel = trajetoLabel ?? t('linhatrajeto.trajeto.label');
 
-    // Determina qual fonte de dados usar (props ou API)
-    const linhas = propLinhas || apiLinhas;
+    // Memoização das opções de linha para otimização
+    const linhaOptions = useMemo((): ComboOption[] => 
+      linhas.map(linha => ({
+        label: linha.descr,
+        value: linha._id,
+        description: `Número: ${linha.numero}`
+      })), [linhas]
+    );
 
-    // Busca dados da API quando clienteId e apiBaseUrl estão presentes
-    useEffect(() => {
-      const fetchLinhas = async () => {
-        if (!clienteId || !apiBaseUrl || propLinhas) return;
-        
-        setLoading(true);
-        setError(null);
-        
-        try {
-          const url = `${apiBaseUrl}/service-api/linhasTrajetos/${clienteId}`;
-          const response = await fetch(url);
-          
-          if (!response.ok) {
-            throw new Error(`Erro ao buscar linhas: ${response.status}`);
-          }
-          
-          const data = await response.json();
-          setApiLinhas(Array.isArray(data) ? data : []);
-        } catch (err) {
-          setError(err instanceof Error ? err.message : 'Erro desconhecido');
-          setApiLinhas([]);
-        } finally {
-          setLoading(false);
-        }
-      };
+    // Memoização das opções de trajeto
+    const trajetoOptions = useMemo((): ComboOption[] => {
+      if (!selectedLinha) return [];
       
-      fetchLinhas();
-    }, [clienteId, apiBaseUrl, propLinhas]);
-
-    // Converte linhas para options do ComboBox
-    const linhaOptions: ComboOption[] = linhas.map(linha => ({
-      label: linha.descr,
-      value: linha._id,
-      description: `Número: ${linha.numero}`
-    }));
+      return selectedLinha.trajetos.map(trajeto => ({
+        label: trajeto.nome,
+        value: trajeto._id,
+        description: `${trajeto.sentido} - ${trajeto.kmTrajeto}km`
+      }));
+    }, [selectedLinha]);
 
     // Atualiza linha selecionada quando selectedLinhaId muda
     useEffect(() => {
@@ -138,26 +188,11 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
       }
     }, [selectedLinhaId, linhas]);
 
-    // Atualiza trajetos quando linha selecionada muda
-    useEffect(() => {
-      if (selectedLinha) {
-        const options: ComboOption[] = selectedLinha.trajetos.map(trajeto => ({
-          label: trajeto.nome,
-          value: trajeto._id,
-          description: `${trajeto.sentido} - ${trajeto.kmTrajeto}km`
-        }));
-        setTrajetoOptions(options);
-      } else {
-        setTrajetoOptions([]);
-      }
-    }, [selectedLinha]);
-
     const handleLinhaChange = (linhaId: string) => {
       const linha = linhas.find(l => l._id === linhaId) || null;
       setSelectedLinha(linha);
       onLinhaChange?.(linha);
       
-      // Limpa trajetos selecionados quando linha muda (apenas se keepTrajetosOnLinhaChange for false)
       if (!keepTrajetosOnLinhaChange) {
         onTrajetoChange?.([]);
       }
@@ -182,6 +217,41 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
       onTrajetoChange?.([]);
     };
 
+    // Estado de loading
+    if (loading) {
+      return (
+        <div ref={ref} className={className} {...props}>
+          <div className="flex items-center justify-center p-4" role="status">
+            <LoadingSpinner size={size} />
+            <span className="ml-2 text-muted-foreground">Carregando linhas...</span>
+          </div>
+        </div>
+      );
+    }
+
+    // Estado de erro
+    if (error) {
+      return (
+        <div ref={ref} className={className} {...props}>
+          <ErrorMessage 
+            message={error} 
+            size={size}
+          />
+        </div>
+      );
+    }
+
+    // Estado vazio
+    if (linhas.length === 0) {
+      return (
+        <div ref={ref} className={className} {...props}>
+          <div className="text-center p-4 text-muted-foreground">
+            Nenhuma linha disponível
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div ref={ref} className={className} {...props}>
         <div className="space-y-4">
@@ -202,6 +272,7 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
             size={size}
             clearable
             searchable
+            aria-label="Seleção de linha de transporte"
           />
 
           <ComboBox
@@ -221,6 +292,7 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
             multiple={multiSelectTrajeto}
             clearable
             searchable
+            aria-label="Seleção de trajetos"
           />
         </div>
       </div>
