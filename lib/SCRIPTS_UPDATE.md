@@ -35,8 +35,20 @@ npm run setup:bitbucket
 cd lib
 npm run add-component NomeDoComponente
 
-# Ou criar com template:
+# Ou criar com template (recomendado):
 npm run add-component NomeDoComponente --create
+
+# Com --create, o script perguntará:
+# - O componente usa API/URL? (s/n)
+# - Qual a URL base da API? (se usar API)
+# - O componente usa interface de dados específica? (s/n)
+# - Nome da interface (se usar interface)
+#
+# O código será gerado automaticamente com:
+# ✅ Fetch e estados (se usar API)
+# ✅ Loading e error handling
+# ✅ Interfaces customizadas (se especificado)
+# ✅ TypeScript completamente tipado
 ```
 
 ### Export com opções:

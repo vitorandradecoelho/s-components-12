@@ -25,7 +25,7 @@ cd lib
 npm run add-component NomeDoComponente
 ```
 
-### Opção 2: Criar Componente e Adicionar aos Index
+### Opção 2: Criar Componente e Adicionar aos Index (Recomendado)
 
 Para criar o componente automaticamente com um template básico E adicionar aos index:
 
@@ -33,6 +33,26 @@ Para criar o componente automaticamente com um template básico E adicionar aos 
 cd lib
 npm run add-component NomeDoComponente --create
 ```
+
+#### 🎯 Perguntas Interativas (com --create)
+
+Ao usar a flag `--create`, o script fará perguntas para customizar o componente:
+
+1. **O componente usa API/URL?** (s/n)
+   - Se sim: Gera código com `useState`, `useEffect`, `fetch` e tratamento de erros
+   - Se não: Gera template básico
+
+2. **Qual a URL base da API?** (se respondeu "s" na pergunta anterior)
+   - Exemplo: `https://api.example.com/users`
+   - Define a URL padrão no código gerado
+
+3. **O componente usa interface de dados específica?** (s/n)
+   - Se sim: Cria uma interface customizada para os dados
+   - Se não: Usa props genéricas
+
+4. **Nome da interface:** (se respondeu "s" na pergunta anterior)
+   - Exemplo: `UserData`, `ProductItem`, etc.
+   - Define o nome da interface no código gerado
 
 ## 📁 O que o Script Faz Automaticamente
 
@@ -54,8 +74,16 @@ npm run add-component NomeDoComponente --create
    - Gera arquivo `.tsx` com estrutura básica
    - Inclui props interface
    - Adiciona suporte a className e children
+   - **NOVO:** Customiza código com base nas respostas das perguntas interativas
+   - **NOVO:** Gera código com API/fetch se necessário
+   - **NOVO:** Cria interfaces de dados específicas
+   - **NOVO:** Adiciona estados de loading e error handling
 
-## 🎨 Template Gerado (com --create)
+## 🎨 Templates Gerados (com --create)
+
+### Template Básico (sem API/Interface)
+
+Gerado quando você responde **"n"** para ambas as perguntas:
 
 ```typescript
 import React from 'react';
@@ -79,6 +107,78 @@ export const NomeDoComponente: React.FC<NomeDoComponenteProps> = ({
   );
 };
 ```
+
+### Template Avançado (com API + Interface)
+
+Gerado quando você responde **"s"** para as perguntas de API e Interface:
+
+```typescript
+import React from 'react';
+import { cn } from '@/lib/utils';
+import { useState, useEffect } from 'react';
+
+export interface UserData {
+  id: string;
+  // Adicione os campos necessários aqui
+}
+
+export interface UserListProps {
+  /** Additional CSS classes */
+  className?: string;
+  /** API base URL */
+  apiBaseUrl?: string;
+  /** Data items */
+  items?: UserData[];
+  /** Component children */
+  children?: React.ReactNode;
+}
+
+export const UserList: React.FC<UserListProps> = ({
+  className,
+  apiBaseUrl,
+  items,
+  children,
+}) => {
+  const [data, setData] = useState<UserData[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(apiBaseUrl || 'https://api.example.com/users');
+        if (!response.ok) throw new Error('Failed to fetch data');
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred');
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, [apiBaseUrl]);
+  
+  if (loading) return <div className={cn("", className)}>Carregando...</div>;
+  if (error) return <div className={cn("text-destructive", className)}>Erro: {error}</div>;
+  
+  return (
+    <div className={cn("", className)}>
+      {children}
+    </div>
+  );
+};
+```
+
+**Recursos incluídos no template avançado:**
+- ✅ Estados de loading e error
+- ✅ Fetch automático de dados
+- ✅ Tratamento de erros
+- ✅ Tipagem TypeScript completa
+- ✅ Interface de dados customizada
+- ✅ Props para URL da API
 
 ## 📊 Exemplos Práticos
 
@@ -122,6 +222,47 @@ O script automaticamente gera:
 ```typescript
 export { Modal, type ModalProps, type ModalSize, useModal } from './components/Modal';
 ```
+
+### Exemplo 4: Componente com API (Interativo)
+
+```bash
+cd lib
+npm run add-component UserList --create
+```
+
+**Perguntas e Respostas:**
+```
+O componente usa API/URL? (s/n): s
+Qual a URL base da API?: https://api.example.com/users
+O componente usa interface de dados específica? (s/n): s
+Nome da interface: UserData
+```
+
+**Resultado:**
+- ✓ Cria componente com fetch automático
+- ✓ Inclui estados de loading e error
+- ✓ Define interface `UserData`
+- ✓ Adiciona prop `apiBaseUrl`
+- ✓ Implementa tratamento de erros
+- ✓ TypeScript totalmente tipado
+
+### Exemplo 5: Componente Simples (Interativo)
+
+```bash
+cd lib
+npm run add-component Badge --create
+```
+
+**Perguntas e Respostas:**
+```
+O componente usa API/URL? (s/n): n
+O componente usa interface de dados específica? (s/n): n
+```
+
+**Resultado:**
+- ✓ Cria template básico
+- ✓ Props simples (className, children)
+- ✓ Estrutura minimalista
 
 ## ⚙️ Detecção Inteligente de Exports
 
@@ -189,7 +330,11 @@ export function useSomeHook() { ... }
 ✅ **Sem Erros**: Elimina erros de digitação nos exports  
 ✅ **Consistência**: Mantém padrão uniforme em todos os componentes  
 ✅ **Automação**: Detecta automaticamente tipos, interfaces e hooks  
-✅ **Template**: Cria estrutura básica consistente para novos componentes
+✅ **Template**: Cria estrutura básica consistente para novos componentes  
+✅ **Interativo**: Customiza código com base nas suas necessidades  
+✅ **API-Ready**: Gera código com fetch, loading e error handling automaticamente  
+✅ **Type-Safe**: Cria interfaces TypeScript customizadas  
+✅ **Production-Ready**: Inclui boas práticas e tratamento de erros desde o início
 
 ## 🐛 Troubleshooting
 
@@ -212,8 +357,12 @@ export function useSomeHook() { ... }
 
 1. **Sempre use PascalCase** para nomes de componentes (ex: `MyButton`, não `myButton`)
 2. **Use --create** para garantir estrutura consistente
-3. **Execute `npm run build`** após adicionar para verificar se tudo está correto
-4. **Commit os arquivos index** junto com o componente novo
+3. **Responda às perguntas interativas** com atenção para gerar código adequado
+4. **URL da API**: Forneça URLs completas (ex: `https://api.example.com/users`)
+5. **Nome de Interface**: Use nomes descritivos no singular (ex: `UserData`, `ProductItem`)
+6. **Execute `npm run build`** após adicionar para verificar se tudo está correto
+7. **Commit os arquivos index** junto com o componente novo
+8. **Edite o template gerado** para adicionar lógica específica do seu componente
 
 ## 📚 Scripts Relacionados
 

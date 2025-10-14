@@ -1273,9 +1273,19 @@ export default UserRoleDocs;`}
                             <p className="text-sm text-muted-foreground mb-2">
                               Cria o componente com template básico E adiciona aos index automaticamente:
                             </p>
-                            <div className="bg-white dark:bg-gray-900 p-3 rounded font-mono text-sm">
+                            <div className="bg-white dark:bg-gray-900 p-3 rounded font-mono text-sm mb-3">
                               <div>cd lib</div>
                               <div>npm run add-component UserRoleSelector --create</div>
+                            </div>
+                            <div className="bg-purple-50 dark:bg-purple-950/30 p-3 rounded-lg border border-purple-200 dark:border-purple-800">
+                              <h6 className="font-semibold text-purple-700 dark:text-purple-300 mb-2 text-sm">🎯 Perguntas Interativas</h6>
+                              <p className="text-xs text-muted-foreground mb-2">O script fará as seguintes perguntas para customizar o componente:</p>
+                              <ul className="text-xs space-y-1">
+                                <li>• <strong>O componente usa API/URL?</strong> → Gera código com fetch e estados</li>
+                                <li>• <strong>Qual a URL base da API?</strong> → Define URL padrão no código</li>
+                                <li>• <strong>O componente usa interface de dados específica?</strong> → Cria interface customizada</li>
+                                <li>• <strong>Nome da interface:</strong> → Define nome da interface dos dados</li>
+                              </ul>
                             </div>
                           </div>
                         </div>
@@ -1284,7 +1294,7 @@ export default UserRoleDocs;`}
                       <div>
                         <h4 className="font-semibold mb-3">🔍 O que o Script Faz Automaticamente:</h4>
                         
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                           <div className="bg-green-50 dark:bg-green-950/30 p-4 rounded-lg">
                             <h5 className="font-semibold text-green-700 dark:text-green-300 mb-2">✅ Detecção Inteligente</h5>
                             <ul className="text-sm space-y-1">
@@ -1305,11 +1315,22 @@ export default UserRoleDocs;`}
                             </ul>
                           </div>
                         </div>
+
+                        <div className="bg-gradient-to-r from-indigo-50 to-cyan-50 dark:from-indigo-950/30 dark:to-cyan-950/30 p-4 rounded-lg border-2 border-indigo-200 dark:border-indigo-800">
+                          <h5 className="font-semibold text-indigo-700 dark:text-indigo-300 mb-2">🚀 Geração Inteligente de Código</h5>
+                          <ul className="text-sm space-y-1">
+                            <li>• <strong>Com API:</strong> Gera código com useState, useEffect, fetch e tratamento de erros</li>
+                            <li>• <strong>Com Interface:</strong> Cria interface de dados customizada com tipagem TypeScript</li>
+                            <li>• <strong>Props Customizadas:</strong> Adiciona props específicas (apiBaseUrl, items, etc)</li>
+                            <li>• <strong>Estados de Loading:</strong> Implementa loading e error states automaticamente</li>
+                          </ul>
+                        </div>
                       </div>
 
-                      <div className="bg-secondary/30 p-4 rounded-lg mt-4">
-                        <h4 className="font-semibold mb-2">📝 Template Gerado (com --create)</h4>
-                        <pre className="text-sm bg-white dark:bg-gray-900 p-4 rounded border overflow-x-auto">
+                      <div className="space-y-4 mt-4">
+                        <div className="bg-secondary/30 p-4 rounded-lg">
+                          <h4 className="font-semibold mb-2">📝 Template Básico (sem API/Interface)</h4>
+                          <pre className="text-sm bg-white dark:bg-gray-900 p-4 rounded border overflow-x-auto">
 {`import React from 'react';
 import { cn } from '@/lib/utils';
 
@@ -1330,7 +1351,80 @@ export const UserRoleSelector: React.FC<UserRoleSelectorProps> = ({
     </div>
   );
 };`}
-                        </pre>
+                          </pre>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 p-4 rounded-lg border-2 border-blue-300 dark:border-blue-700">
+                          <h4 className="font-semibold mb-2 text-blue-700 dark:text-blue-300">✨ Template Avançado (com API + Interface)</h4>
+                          <p className="text-sm text-muted-foreground mb-3">
+                            Exemplo quando você responde <strong>"s"</strong> para API e Interface:
+                          </p>
+                          <pre className="text-xs bg-white dark:bg-gray-900 p-4 rounded border overflow-x-auto">
+{`import React from 'react';
+import { cn } from '@/lib/utils';
+import { useState, useEffect } from 'react';
+
+export interface UserData {
+  id: string;
+  // Adicione os campos necessários aqui
+}
+
+export interface UserRoleSelectorProps {
+  /** Additional CSS classes */
+  className?: string;
+  /** API base URL */
+  apiBaseUrl?: string;
+  /** Data items */
+  items?: UserData[];
+  /** Component children */
+  children?: React.ReactNode;
+}
+
+export const UserRoleSelector: React.FC<UserRoleSelectorProps> = ({
+  className,
+  apiBaseUrl,
+  items,
+  children,
+}) => {
+  const [data, setData] = useState<UserData[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(apiBaseUrl || 'https://api.example.com');
+        if (!response.ok) throw new Error('Failed to fetch data');
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred');
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, [apiBaseUrl]);
+  
+  if (loading) return <div className={cn("", className)}>Carregando...</div>;
+  if (error) return <div className={cn("text-destructive", className)}>Erro: {error}</div>;
+  
+  return (
+    <div className={cn("", className)}>
+      {children}
+    </div>
+  );
+};`}
+                          </pre>
+                          <div className="mt-3 grid grid-cols-2 gap-2">
+                            <Badge variant="outline" className="justify-center">🔄 Estados de Loading</Badge>
+                            <Badge variant="outline" className="justify-center">⚠️ Error Handling</Badge>
+                            <Badge variant="outline" className="justify-center">🌐 Fetch Automático</Badge>
+                            <Badge variant="outline" className="justify-center">📊 Tipagem Completa</Badge>
+                          </div>
+                        </div>
                       </div>
 
                       <div className="bg-yellow-50 dark:bg-yellow-950/30 p-4 rounded-lg border border-yellow-200 dark:border-yellow-800 mt-4">
@@ -1366,6 +1460,10 @@ export const useUserRole = () => { ... }`}
                           <li>✅ <strong>Inteligente:</strong> Detecta exports automaticamente</li>
                           <li>✅ <strong>Template:</strong> Estrutura básica pronta</li>
                           <li>✅ <strong>Seguro:</strong> Não sobrescreve arquivos existentes</li>
+                          <li>✅ <strong>Interativo:</strong> Customiza código com base em suas respostas</li>
+                          <li>✅ <strong>API-Ready:</strong> Gera código com fetch e estados</li>
+                          <li>✅ <strong>Type-Safe:</strong> Cria interfaces customizadas</li>
+                          <li>✅ <strong>Production-Ready:</strong> Inclui error handling e loading</li>
                         </ul>
                       </div>
                     </div>
