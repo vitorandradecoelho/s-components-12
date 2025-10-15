@@ -19,6 +19,7 @@
     "export:auto": "node scripts/export.js",
     "watch": "node scripts/watch.js",
     "add-component": "node scripts/add-component.js",
+    "remove-component": "node scripts/remove-component.js",
     "prepublishOnly": "npm run build",
     "version:patch": "node scripts/version.js patch",
     "version:minor": "node scripts/version.js minor", 

@@ -138,7 +138,7 @@ const LinhaTrajetoSelector = React.forwardRef<HTMLDivElement, LinhaTrajetoSelect
 
     return (
       <div ref={ref} className={cn("linhatrajeto-container", className)} {...props}>
-        <div className="space-y-4"
+        <div className="space-y-4">
           <div className="linhatrajeto-linha-container">
             <ComboBox
               options={linhaOptions}

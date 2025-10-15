@@ -325,8 +325,6 @@
   box-shadow: 0 0 0 3px hsl(var(--linhatrajeto-primary) / 0.2);
   animation: scale-in 0.2s ease-out;
 }
-  animation: scale-in 0.2s ease-out;
-}
 
   .linhatrajeto-linha-select [data-radix-select-trigger]:focus {
     border-color: hsl(var(--linhatrajeto-primary));
@@ -364,8 +362,6 @@
   outline: none;
   border-color: hsl(var(--linhatrajeto-accent));
   box-shadow: 0 0 0 3px hsl(var(--linhatrajeto-accent) / 0.2);
-  animation: scale-in 0.2s ease-out;
-}
   animation: scale-in 0.2s ease-out;
 }
 
