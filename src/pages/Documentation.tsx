@@ -28,7 +28,7 @@ import {
   Shield,
   Palette,
   Bus,
-  ChevronRight
+  ChevronRight,
 } from 'lucide-react';
 
 const components = [
@@ -145,13 +145,23 @@ const complexityColors = {
 const Documentation = () => {
   const { t } = useLanguage();
 
-  const groupedComponents = components.reduce((acc, component) => {
+  const groupedComponents = component.reduce((acc, component) => {
     if (!acc[component.category]) {
       acc[component.category] = [];
     }
     acc[component.category].push(component);
     return acc;
   }, {} as Record<string, typeof components>);
+
+  const components = [
+  // Componentes existentes...
+  {
+    name: "Accordion",
+    description: "Seleção de usuário e funções",
+    href: "/user-role-docs",
+    badge: "Novo"
+  }
+];
 
   return (
     <div className="min-h-screen bg-gradient-surface">

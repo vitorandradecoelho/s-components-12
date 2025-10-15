@@ -16,3 +16,4 @@ export { TimePicker, type TimePickerProps } from './TimePicker';
 export { Map, type MapProps, type MapMarker, type MapPolyline, type MapPolygon, type MapCircle } from './Map';
 export { StyleProvider, useStyles, loadStyles } from './StyleProvider';
 export { LinhaTrajetoSelector, type Linha, type Trajeto, type LinhaTrajetoSelectorProps } from './LinhaTrajetoSelector';
+export { Accordion } from './Accordion';
