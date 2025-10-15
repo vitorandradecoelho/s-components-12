@@ -22,5 +22,6 @@ export { LoadingSpinner } from './components/LoadingSpinner';
 export { ErrorMessage } from './components/ErrorMessage';
 export { DatePicker, type DatePickerProps } from './components/DatePicker';
 export { TimePicker, type TimePickerProps } from './components/TimePicker';
+export { Accordion } from './components/Accordion';
 export { Map, type MapProps, type MapMarker, type MapPolyline, type MapPolygon, type MapCircle } from './components/Map';
 export { StyleProvider, useStyles, loadStyles, type StyleProviderProps } from './components/StyleProvider';

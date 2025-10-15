@@ -7,6 +7,8 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [1.0.0] - 2025-10-15
+
 ### Adicionado
 - 🎨 **Select**: Novo variant "sindiobus" com design personalizado
   - Background cinza claro similar ao da imagem fornecida
