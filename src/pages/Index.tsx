@@ -1223,39 +1223,7 @@ const Index = () => {
       
       {/* SweetAlert Instance */}
       <SweetAlertComponent />
-
-
-
-
-
-      // Adicionar demonstração na homepage
-import { UserRoleSelector, type User, type Role } from "@/components/library";
-
-// Na grid de componentes, adicionar:
-<Card className="gradient-card border-card-border shadow-medium">
-  <CardHeader>
-    <CardTitle className="flex items-center gap-2">
-      UserRoleSelector
-      <Badge variant="secondary">Novo</Badge>
-    </CardTitle>
-    <CardDescription>
-      Seleção de usuário e suas funções com validações
-    </CardDescription>
-  </CardHeader>
-    <CardContent className="space-y-4">
-      <UserRoleSelector
-        users={sampleUsers}
-        availableRoles={sampleRoles}
-        selectedUserId={selectedUserId}
-        selectedRoleIds={selectedRoleIds}
-        onUserChange={handleUserChange}
-        onRoleChange={handleRoleChange}
-        userLabel="Accordion"
-        roleLabel="Accordion"
-      />
-    </CardContent>
-  </Card>
-    </div>
+      </div>
   );
 };
 

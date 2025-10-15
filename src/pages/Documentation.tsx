@@ -145,7 +145,7 @@ const complexityColors = {
 const Documentation = () => {
   const { t } = useLanguage();
 
-  const groupedComponents = component.reduce((acc, component) => {
+  const groupedComponents = components.reduce((acc, component) => {
     if (!acc[component.category]) {
       acc[component.category] = [];
     }
@@ -153,15 +153,6 @@ const Documentation = () => {
     return acc;
   }, {} as Record<string, typeof components>);
 
-  const components = [
-  // Componentes existentes...
-  {
-    name: "Accordion",
-    description: "Seleção de usuário e funções",
-    href: "/user-role-docs",
-    badge: "Novo"
-  }
-];
 
   return (
     <div className="min-h-screen bg-gradient-surface">
