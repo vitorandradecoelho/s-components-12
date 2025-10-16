@@ -293,12 +293,13 @@ const translations = {
     'demo.alert.error.title': 'Erro',
     'demo.alert.error.message': 'Ocorreu um erro ao processar sua solicitação. Tente novamente.',
     
-    // Demo Components - LinhaTrajetoSelector
     'demo.linhatrajeto.basic': 'Exemplo Básico',
     'demo.linhatrajeto.single': 'Seleção Única de Trajeto',
     'demo.linhatrajeto.selectSingleTrajeto': 'Selecione um trajeto',
     'demo.linhatrajeto.selected': 'Linha selecionada',
     'demo.linhatrajeto.trajetos': 'Trajetos selecionados',
+    'demo.linhatrajeto.i18n.title': 'Uso com i18n',
+    'demo.linhatrajeto.i18n.desc': 'Use o hook useLanguage() para internacionalização',
     
     // Common Labels
     'common.examples': 'Exemplos',
@@ -607,6 +608,8 @@ const translations = {
     'demo.linhatrajeto.selectSingleTrajeto': 'Select a route',
     'demo.linhatrajeto.selected': 'Selected line',
     'demo.linhatrajeto.trajetos': 'Selected routes',
+    'demo.linhatrajeto.i18n.title': 'Usage with i18n',
+    'demo.linhatrajeto.i18n.desc': 'Use the useLanguage() hook for internationalization',
     
     // Common Labels
     'common.examples': 'Examples',
@@ -909,6 +912,8 @@ const translations = {
     'demo.linhatrajeto.selectSingleTrajeto': 'Seleccione una ruta',
     'demo.linhatrajeto.selected': 'Línea seleccionada',
     'demo.linhatrajeto.trajetos': 'Rutas seleccionadas',
+    'demo.linhatrajeto.i18n.title': 'Uso con i18n',
+    'demo.linhatrajeto.i18n.desc': 'Use el hook useLanguage() para internacionalización',
     
     // Common Labels
     'common.examples': 'Ejemplos',

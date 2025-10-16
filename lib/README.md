@@ -317,6 +317,71 @@ function TransporteForm() {
 }
 ```
 
+## 🌍 Internacionalização (i18n)
+
+A biblioteca possui suporte completo para internacionalização em **Português**, **Inglês** e **Espanhol**.
+
+### Configuração Básica
+
+Envolva sua aplicação com o `LanguageProvider`:
+
+```tsx
+import { LanguageProvider } from '@vitorandradecoelho/sd-components';
+
+function App() {
+  return (
+    <LanguageProvider defaultLanguage="pt">
+      {/* Seu app */}
+    </LanguageProvider>
+  );
+}
+```
+
+### Uso com Componentes
+
+Use o hook `useLanguage()` para acessar traduções:
+
+```tsx
+import { useLanguage, LinhaTrajetoSelector } from '@vitorandradecoelho/sd-components';
+
+function MyComponent() {
+  const { t, language, setLanguage } = useLanguage();
+  
+  return (
+    <div>
+      {/* Seletor de idioma */}
+      <select value={language} onChange={(e) => setLanguage(e.target.value)}>
+        <option value="pt">🇧🇷 Português</option>
+        <option value="en">🇺🇸 English</option>
+        <option value="es">🇪🇸 Español</option>
+      </select>
+      
+      {/* Componente com i18n */}
+      <LinhaTrajetoSelector
+        linhas={linhas}
+        linhaLabel={t('component.linhatrajeto.linha')}
+        trajetoLabel={t('component.linhatrajeto.trajeto')}
+        linhaPlaceholder={t('component.linhatrajeto.selectLinha')}
+        trajetoPlaceholder={t('component.linhatrajeto.selectTrajeto')}
+      />
+    </div>
+  );
+}
+```
+
+### Chaves de Tradução Disponíveis
+
+| Chave | PT | EN | ES |
+|-------|----|----|-----|
+| `component.linhatrajeto.linha` | Linha | Line | Línea |
+| `component.linhatrajeto.trajeto` | Trajeto | Route | Ruta |
+| `component.linhatrajeto.selectLinha` | Selecione uma linha | Select a line | Seleccione una línea |
+| `component.linhatrajeto.selectTrajeto` | Selecione trajetos | Select routes | Seleccione rutas |
+| `component.linhatrajeto.loading` | Carregando linhas... | Loading lines... | Cargando líneas... |
+| `component.linhatrajeto.noData` | Nenhuma linha disponível | No lines available | No hay líneas disponibles |
+
+Para mais informações, consulte o [Guia Completo de i18n](./LINHATRAJETO_I18N_GUIDE.md).
+
 ## 🧩 Componentes Disponíveis
 
 - **Input** - Campo de entrada com suporte a ícones e validação
@@ -332,6 +397,13 @@ function TransporteForm() {
 - **Alert** - Alertas com diferentes variantes
 - **Toast** - Notificações temporárias
 - **SweetAlert** - Alertas interativos com confirmação
+- **LinhaTrajetoSelector** - Seletor em cascata para linhas e trajetos (com i18n)
+- **DatePicker** - Seletor de data com calendário
+- **TimePicker** - Seletor de horário
+- **Map** - Componente de mapa interativo
+- **Accordion** - Componente de acordeão expansível
+- **LoadingSpinner** - Indicador de carregamento
+- **ErrorMessage** - Mensagens de erro formatadas
 
 ## 🎨 Versionamento
 

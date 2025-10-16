@@ -213,17 +213,49 @@ export const LinhaTrajetoDemo = () => {
         </div>
 
         {selectedLinhaId && (
-          <div className="p-4 bg-muted rounded-lg">
-            <p className="text-sm text-muted-foreground">
+          <div className="p-4 bg-muted rounded-lg space-y-2">
+            <p className="text-sm font-medium">
               {t('demo.linhatrajeto.selected')}: {mockLinhas.find(l => l._id === selectedLinhaId)?.descr}
             </p>
             {selectedTrajetoIds.length > 0 && (
-              <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-sm text-muted-foreground">
                 {t('demo.linhatrajeto.trajetos')}: {selectedTrajetoIds.length}
               </p>
             )}
           </div>
         )}
+
+        <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <h3 className="text-sm font-semibold mb-2 text-blue-900 dark:text-blue-100">
+            💡 {t('common.usage')} com i18n
+          </h3>
+          <p className="text-xs text-blue-800 dark:text-blue-200 mb-3">
+            Use o hook <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900 rounded">useLanguage()</code> para internacionalização:
+          </p>
+          <div className="bg-white dark:bg-gray-900 p-3 rounded border border-blue-200 dark:border-blue-800">
+            <pre className="text-xs overflow-x-auto">
+              <code>{`const { t } = useLanguage();
+
+<LinhaTrajetoSelector
+  linhaLabel={t('component.linhatrajeto.linha')}
+  trajetoLabel={t('component.linhatrajeto.trajeto')}
+  linhaPlaceholder={t('component.linhatrajeto.selectLinha')}
+  trajetoPlaceholder={t('component.linhatrajeto.selectTrajeto')}
+/>`}</code>
+            </pre>
+          </div>
+          <div className="mt-3 text-xs text-blue-700 dark:text-blue-300">
+            <p className="font-medium mb-1">Chaves disponíveis:</p>
+            <ul className="list-disc list-inside space-y-0.5 ml-2">
+              <li><code>component.linhatrajeto.linha</code></li>
+              <li><code>component.linhatrajeto.trajeto</code></li>
+              <li><code>component.linhatrajeto.selectLinha</code></li>
+              <li><code>component.linhatrajeto.selectTrajeto</code></li>
+              <li><code>component.linhatrajeto.loading</code></li>
+              <li><code>component.linhatrajeto.noData</code></li>
+            </ul>
+          </div>
+        </div>
       </CardContent>
     </Card>
   );

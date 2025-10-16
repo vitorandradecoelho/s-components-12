@@ -413,21 +413,22 @@ Toast.show({
   },
   
   linhatrajeto: {
-    importStatement: "import { LinhaTrajetoSelector, type Linha, type Trajeto } from '@/components/library/LinhaTrajetoSelector';",
-    description: 'Seletor duplo para linha e trajeto com cascata de dependência',
+    importStatement: "import { LinhaTrajetoSelector, type Linha, type Trajeto, LanguageProvider, useLanguage } from '@vitorandradecoelho/sd-components';",
+    description: 'Seletor duplo para linha e trajeto com cascata de dependência. Suporta internacionalização (i18n) completa através do LanguageProvider para labels, placeholders e mensagens em português, inglês e espanhol.',
     props: [
-      { name: 'linhas', type: 'Linha[]', required: true, description: 'Array de linhas disponíveis' },
-      { name: 'selectedLinhaId', type: 'string', description: 'ID da linha selecionada' },
+      { name: 'linhas', type: 'Linha[]', required: true, description: 'Array de linhas disponíveis com trajetos' },
+      { name: 'selectedLinhaId', type: 'string', description: 'ID da linha atualmente selecionada' },
       { name: 'selectedTrajetoIds', type: 'string[]', description: 'Array de IDs dos trajetos selecionados' },
-      { name: 'onLinhaChange', type: '(linha: Linha | null) => void', description: 'Callback para mudança de linha' },
-      { name: 'onTrajetoChange', type: '(trajetos: Trajeto[]) => void', description: 'Callback para mudança de trajetos' },
-      { name: 'linhaPlaceholder', type: 'string', default: '"Selecione uma linha"', description: 'Placeholder da linha' },
-      { name: 'trajetoPlaceholder', type: 'string', default: '"Selecione trajetos"', description: 'Placeholder do trajeto' },
-      { name: 'linhaLabel', type: 'string', default: '"Linha"', description: 'Label da linha' },
-      { name: 'trajetoLabel', type: 'string', default: '"Trajeto"', description: 'Label do trajeto' },
-      { name: 'disabled', type: 'boolean', default: 'false', description: 'Se os seletores estão desabilitados' },
+      { name: 'onLinhaChange', type: '(linha: Linha | null) => void', description: 'Callback executado quando linha é alterada' },
+      { name: 'onTrajetoChange', type: '(trajetos: Trajeto[]) => void', description: 'Callback executado quando trajetos são alterados' },
+      { name: 'linhaPlaceholder', type: 'string', default: '"Selecione uma linha"', description: 'Placeholder do campo linha (usar com i18n)' },
+      { name: 'trajetoPlaceholder', type: 'string', default: '"Selecione trajetos"', description: 'Placeholder do campo trajeto (usar com i18n)' },
+      { name: 'linhaLabel', type: 'string', default: '"Linha"', description: 'Label do campo linha (usar com i18n)' },
+      { name: 'trajetoLabel', type: 'string', default: '"Trajeto"', description: 'Label do campo trajeto (usar com i18n)' },
+      { name: 'disabled', type: 'boolean', default: 'false', description: 'Desabilita ambos os seletores' },
       { name: 'size', type: '"sm" | "md" | "lg"', default: '"md"', description: 'Tamanho dos componentes' },
       { name: 'multiSelectTrajeto', type: 'boolean', default: 'true', description: 'Permite seleção múltipla de trajetos' },
+      { name: 'keepTrajetosOnLinhaChange', type: 'boolean', default: 'false', description: 'Mantém trajetos ao trocar de linha' },
       { name: 'className', type: 'string', description: 'Classes CSS adicionais' }
     ],
     examples: [
@@ -450,25 +451,73 @@ const [selectedTrajetoIds, setSelectedTrajetoIds] = useState<string[]>([]);
         component: <LinhaTrajetoDemo />
       },
       {
-        title: 'Personalizado',
-        code: `<LinhaTrajetoSelector
+        title: 'Com Internacionalização (i18n)',
+        code: `import { LanguageProvider, useLanguage } from '@vitorandradecoelho/sd-components';
+
+// No componente raiz
+<LanguageProvider defaultLanguage="pt">
+  <App />
+</LanguageProvider>
+
+// No componente que usa LinhaTrajetoSelector
+const MyComponent = () => {
+  const { t } = useLanguage();
+  
+  return (
+    <LinhaTrajetoSelector
+      linhas={linhas}
+      selectedLinhaId={selectedLinhaId}
+      selectedTrajetoIds={selectedTrajetoIds}
+      onLinhaChange={handleLinhaChange}
+      onTrajetoChange={handleTrajetoChange}
+      linhaLabel={t('component.linhatrajeto.linha')}
+      trajetoLabel={t('component.linhatrajeto.trajeto')}
+      linhaPlaceholder={t('component.linhatrajeto.selectLinha')}
+      trajetoPlaceholder={t('component.linhatrajeto.selectTrajeto')}
+    />
+  );
+};`,
+        component: React.createElement('div', { className: 'text-center py-4 text-sm text-muted-foreground' }, 'Exemplo com i18n - Veja a documentação completa')
+      },
+      {
+        title: 'Tamanhos e Variantes',
+        code: `// Tamanho pequeno
+<LinhaTrajetoSelector
   linhas={linhas}
-  selectedLinhaId={selectedLinhaId}
-  selectedTrajetoIds={selectedTrajetoIds}
-  onLinhaChange={handleLinhaChange}
-  onTrajetoChange={handleTrajetoChange}
-  linhaPlaceholder="Escolha uma linha de ônibus..."
-  trajetoPlaceholder="Escolha trajetos..."
-  linhaLabel="Linha de Ônibus"
-  trajetoLabel="Trajetos da Linha"
-  size="lg"
-  multiSelectTrajeto={true}
-  className="space-y-6"
+  size="sm"
+  linhaLabel="Linha"
+  trajetoLabel="Trajeto"
+/>
+
+// Seleção única de trajeto
+<LinhaTrajetoSelector
+  linhas={linhas}
+  multiSelectTrajeto={false}
+  linhaLabel="Linha"
+  trajetoLabel="Trajeto (único)"
+/>
+
+// Mantém trajetos ao trocar linha
+<LinhaTrajetoSelector
+  linhas={linhas}
+  keepTrajetosOnLinhaChange={true}
+  linhaLabel="Linha"
+  trajetoLabel="Trajeto"
 />`,
-        component: React.createElement('div', { className: 'text-center py-4 text-sm text-muted-foreground' }, 'Exemplo personalizado em desenvolvimento')
+        component: React.createElement('div', { className: 'text-center py-4 text-sm text-muted-foreground' }, 'Exemplo de variantes - Veja código')
       }
     ],
-    features: ['Seleção em cascata', 'Multi-seleção de trajetos', 'Busca e filtragem', 'Clear automático', 'Múltiplos tamanhos', 'Totalmente customizável']
+    features: [
+      'Seleção em cascata',
+      'Multi-seleção de trajetos',
+      'Busca e filtragem integrada',
+      'Clear automático',
+      'Internacionalização (PT, EN, ES)',
+      'Hook useLanguage para i18n',
+      'Múltiplos tamanhos (sm, md, lg)',
+      'Totalmente customizável',
+      'TypeScript completo'
+    ]
   }
 } as const;
 
