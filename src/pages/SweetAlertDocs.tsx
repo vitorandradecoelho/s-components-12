@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { SweetAlert, useSweetAlert, type SweetAlertType } from '@/components/library/SweetAlert';
+import { SweetAlert, useSweetAlert, type SweetAlertType } from '@vitorandradecoelho/sd-components';
 import { 
   ArrowLeft, 
   Copy, 

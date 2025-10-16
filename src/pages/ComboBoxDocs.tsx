@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComboBox, type ComboOption } from "@/components/library";
+import { ComboBox, type ComboOption } from "@vitorandradecoelho/sd-components";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -402,7 +402,6 @@ npm link @your-org/combobox-library`,
                 multiple
                 placeholder={t('label.select.countries')}
                 label={t('label.countries')}
-                maxItems={3}
               />
               
               <div className="bg-muted/30 p-3 rounded-lg">
@@ -433,31 +432,25 @@ npm link @your-org/combobox-library`,
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <ComboBox
-                fetchUrl="https://jsonplaceholder.typicode.com/users"
-                labelKey="name"
-                valueKey="id"
-                descriptionKey="email"
-                value={selectedUsers}
-                onValueChange={setSelectedUsers}
-                placeholder={t('label.select.users')}
-                label={t('label.users')}
-                helper={t('helper.api.data')}
-              />
-              
-              <div className="bg-muted/30 p-3 rounded-lg">
-                <Button 
-                  size="sm" 
-                  variant="ghost" 
-                  className="float-right mb-2"
-                  onClick={() => copyToClipboard(codeExamples.withUrl)}
-                >
-                  <Copy className="h-4 w-4" />
-                </Button>
-                <pre className="text-xs overflow-x-auto">
-                  <code>{codeExamples.withUrl}</code>
-                </pre>
-              </div>
+              <p className="text-sm text-muted-foreground">
+                {t('examples.api.note')} A versão npm não suporta fetchUrl. Use uma abordagem manual:
+              </p>
+              <pre className="text-xs bg-muted p-4 rounded">
+                <code>{`const [options, setOptions] = useState([]);
+useEffect(() => {
+  fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res => res.json())
+    .then(data => setOptions(
+      data.map(user => ({
+        label: user.name,
+        value: user.id.toString(),
+        description: user.email
+      }))
+    ));
+}, []);
+
+<ComboBox options={options} ... />`}</code>
+              </pre>
             </CardContent>
           </Card>
 
@@ -472,16 +465,16 @@ npm link @your-org/combobox-library`,
             <CardContent className="space-y-4">
               <div className="space-y-3">
                 <div>
-                  <label className="text-sm font-medium">Default</label>
-                  <ComboBox options={frameworks.slice(0, 2)} variant="default" size="sm" />
+                  <label className="text-sm font-medium">Tamanho Pequeno</label>
+                  <ComboBox options={frameworks.slice(0, 2)} size="sm" />
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Filled</label>
-                  <ComboBox options={frameworks.slice(0, 2)} variant="filled" size="md" />
+                  <label className="text-sm font-medium">Tamanho Médio</label>
+                  <ComboBox options={frameworks.slice(0, 2)} size="md" />
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Ghost</label>
-                  <ComboBox options={frameworks.slice(0, 2)} variant="ghost" size="lg" />
+                  <label className="text-sm font-medium">Tamanho Grande</label>
+                  <ComboBox options={frameworks.slice(0, 2)} size="lg" />
                 </div>
               </div>
               

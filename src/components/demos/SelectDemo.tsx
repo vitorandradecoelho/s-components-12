@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Select, type SelectOption } from "@/components/library";
+import { Select, type SelectOption } from "@vitorandradecoelho/sd-components";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const selectOptions: SelectOption[] = [

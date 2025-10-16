@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { SweetAlert, useSweetAlert } from "@/components/library";
+import { SweetAlert, useSweetAlert } from "@vitorandradecoelho/sd-components";
 import { Code, Palette, Zap, BookOpen, GitBranch, Package, Settings, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 

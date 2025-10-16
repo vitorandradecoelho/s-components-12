@@ -8,7 +8,7 @@ import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowLeft, Copy, Check, Palette, Code2, Zap, FileText, Settings, Eye, Package, Bus, Route } from 'lucide-react';
 import { toast } from 'sonner';
-import { LinhaTrajetoSelector, type Linha } from '@/components/library';
+import { LinhaTrajetoSelector, type Linha } from '@vitorandradecoelho/sd-components';
 
 const LinhaTrajetoCssGuide = () => {
   const { t } = useLanguage();

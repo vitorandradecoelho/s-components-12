@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
-import { Alert } from '@/components/library/Alert';
+import { Alert } from '@vitorandradecoelho/sd-components';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ArrowLeft, Code2, Package, FileText, Settings, CheckCircle, Users, Database, Zap, GitBranch, AlertTriangle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';

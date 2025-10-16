@@ -8,7 +8,7 @@ import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowLeft, Copy, Check, Palette, Code2, Zap, FileText, Settings, Eye, Package } from 'lucide-react';
 import { toast } from 'sonner';
-import { Select } from '@/components/library';
+import { Select } from '@vitorandradecoelho/sd-components';
 
 const CssCustomizationGuide = () => {
   const { t } = useLanguage();
@@ -269,7 +269,7 @@ function App() {
               <div className="p-6 bg-background border border-border rounded-lg">
                 <div className="max-w-md mx-auto">
                   <Select
-                    variant="sindiobus"
+              variant="default"
                     options={sindiobusOptions}
                     value="sindiomdbus"
                     onValueChange={() => {}}

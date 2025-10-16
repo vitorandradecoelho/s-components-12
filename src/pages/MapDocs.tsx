@@ -5,7 +5,7 @@ import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
-import { Map, MapMarker, MapPolyline, MapPolygon, MapCircle } from '../components/library/Map';
+import { Map, type MapMarker, type MapPolyline, type MapPolygon, type MapCircle } from '../components/library/Map';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const MapDocs = () => {

@@ -8,7 +8,7 @@ import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowLeft, Copy, Check, Code2, Palette, Zap } from 'lucide-react';
 import { toast } from 'sonner';
-import { Select, type SelectOption } from '@/components/library';
+import { Select, type SelectOption } from '@vitorandradecoelho/sd-components';
 
 const SelectDocs = () => {
   const { t } = useLanguage();
@@ -92,7 +92,7 @@ function SindiobusSelect() {
 }`,
       component: (
         <Select
-          variant="sindiobus"
+          variant="default"
           options={[
             { label: "SINDIOMDBUS", value: "sindiomdbus" },
             { label: "SINDICATO URBANO", value: "urbano" },

@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ComboBox, type ComboOption } from "@/components/library";
+import { ComboBox, type ComboOption } from "@vitorandradecoelho/sd-components";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const comboOptions: ComboOption[] = [
@@ -39,16 +39,6 @@ export const ComboBoxDemo = () => {
           clearable={true}
           placeholder="Selecione linguagens..."
           helper="Você pode selecionar múltiplas opções"
-        />
-        
-        <ComboBox
-          label="Usuários da API"
-          fetchUrl="https://jsonplaceholder.typicode.com/users"
-          labelKey="name"
-          valueKey="id"
-          descriptionKey="email"
-          placeholder="Buscar usuários..."
-          helper="Dados carregados automaticamente da API"
         />
       </CardContent>
     </Card>

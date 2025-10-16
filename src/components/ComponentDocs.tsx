@@ -8,7 +8,6 @@ import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowLeft, Copy, Check, Code2, Palette, Zap } from 'lucide-react';
 import { toast } from 'sonner';
-import LinhaTrajetoSelectorDocs from './library/docs/LinhaTrajetoSelectorDocs';
 
 interface ComponentDocsProps {
   componentName: keyof typeof componentConfigs;
@@ -630,11 +629,7 @@ const ComponentDocs: React.FC<ComponentDocsProps> = ({ componentName }) => {
                     
                     {/* Live Example */}
                     <div className="p-6 bg-background border border-border rounded-lg">
-                      {componentName === 'linhatrajeto' && index === 0 ? (
-                        <LinhaTrajetoSelectorDocs />
-                      ) : (
-                        example.component
-                      )}
+                      {example.component}
                     </div>
                     
                     {/* Code */}

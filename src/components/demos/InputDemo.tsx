@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/library";
+import { Input } from "@vitorandradecoelho/sd-components";
 import { Search } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
