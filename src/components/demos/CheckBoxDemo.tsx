@@ -21,22 +21,22 @@ export const CheckBoxDemo = () => {
       </CardHeader>
       <CardContent className="space-y-4">
         <CheckBox
-          label="Aceito os termos e condições"
-          description="Leia os termos completos antes de aceitar"
+          label={t('demo.checkbox.label.terms')}
+          description={t('demo.checkbox.desc.terms')}
           checked={checkboxValue}
           onChange={(e) => setCheckboxValue(e.target.checked)}
         />
         
         <CheckBox
-          label="Receber notificações"
+          label={t('demo.checkbox.label.notifications')}
           variant="card"
-          description="Receba updates sobre novos recursos"
+          description={t('demo.checkbox.desc.notifications')}
         />
         
         <CheckBox
-          label="Estado indeterminado"
+          label={t('demo.checkbox.label.indeterminate')}
           indeterminate={true}
-          description="Exemplo de estado indeterminado"
+          description={t('demo.checkbox.desc.indeterminate')}
         />
       </CardContent>
     </Card>

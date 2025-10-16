@@ -4,15 +4,15 @@ import { Badge } from "@/components/ui/badge";
 import { RadioButton, type RadioOption } from "@vitorandradecoelho/sd-components";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const radioOptions: RadioOption[] = [
-  { label: "Opção 1", value: "option1", description: "Primeira opção disponível" },
-  { label: "Opção 2", value: "option2", description: "Segunda opção disponível" },
-  { label: "Opção 3", value: "option3", description: "Terceira opção disponível" }
-];
-
 export const RadioButtonDemo = () => {
   const { t } = useLanguage();
   const [radioValue, setRadioValue] = React.useState("");
+
+  const radioOptions: RadioOption[] = [
+    { label: t('demo.radio.option1.label'), value: "option1", description: t('demo.radio.option1.desc') },
+    { label: t('demo.radio.option2.label'), value: "option2", description: t('demo.radio.option2.desc') },
+    { label: t('demo.radio.option3.label'), value: "option3", description: t('demo.radio.option3.desc') }
+  ];
 
   return (
     <Card className="gradient-card border-card-border shadow-medium">
@@ -27,16 +27,16 @@ export const RadioButtonDemo = () => {
       </CardHeader>
       <CardContent className="space-y-4">
         <RadioButton
-          label="Escolha uma opção"
+          label={t('demo.radio.label.choose')}
           name="demo-radio"
           options={radioOptions}
           value={radioValue}
           onValueChange={setRadioValue}
-          helper="Selecione apenas uma opção"
+          helper={t('demo.radio.helper.choose')}
         />
         
         <RadioButton
-          label="Variante Card"
+          label={t('demo.radio.label.card')}
           name="demo-radio-card"
           options={radioOptions.slice(0, 2)}
           variant="card"

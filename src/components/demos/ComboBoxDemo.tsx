@@ -4,18 +4,18 @@ import { Badge } from "@/components/ui/badge";
 import { ComboBox, type ComboOption } from "@vitorandradecoelho/sd-components";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const comboOptions: ComboOption[] = [
-  { label: "JavaScript", value: "js", description: "Linguagem de programação web" },
-  { label: "TypeScript", value: "ts", description: "JavaScript com tipagem estática" },
-  { label: "Python", value: "py", description: "Linguagem versátil e poderosa" },
-  { label: "Java", value: "java", description: "Linguagem orientada a objetos" },
-  { label: "C#", value: "csharp", description: "Linguagem da Microsoft" },
-  { label: "Go", value: "go", description: "Linguagem moderna do Google" }
-];
-
 export const ComboBoxDemo = () => {
   const { t } = useLanguage();
   const [comboValue, setComboValue] = React.useState<string[]>([]);
+
+  const comboOptions: ComboOption[] = [
+    { label: t('demo.combo.option.js.label'), value: "js", description: t('demo.combo.option.js.desc') },
+    { label: t('demo.combo.option.ts.label'), value: "ts", description: t('demo.combo.option.ts.desc') },
+    { label: t('demo.combo.option.py.label'), value: "py", description: t('demo.combo.option.py.desc') },
+    { label: t('demo.combo.option.java.label'), value: "java", description: t('demo.combo.option.java.desc') },
+    { label: t('demo.combo.option.csharp.label'), value: "csharp", description: t('demo.combo.option.csharp.desc') },
+    { label: t('demo.combo.option.go.label'), value: "go", description: t('demo.combo.option.go.desc') }
+  ];
 
   return (
     <Card className="gradient-card border-card-border shadow-medium">
@@ -30,15 +30,15 @@ export const ComboBoxDemo = () => {
       </CardHeader>
       <CardContent className="space-y-4">
         <ComboBox
-          label="Linguagens de Programação"
+          label={t('demo.combo.label.languages')}
           options={comboOptions}
           value={comboValue}
           onValueChange={setComboValue}
           multiple={true}
           searchable={true}
           clearable={true}
-          placeholder="Selecione linguagens..."
-          helper="Você pode selecionar múltiplas opções"
+          placeholder={t('demo.combo.placeholder.languages')}
+          helper={t('demo.combo.helper.languages')}
         />
       </CardContent>
     </Card>

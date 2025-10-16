@@ -4,16 +4,16 @@ import { Badge } from "@/components/ui/badge";
 import { Select, type SelectOption } from "@vitorandradecoelho/sd-components";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const selectOptions: SelectOption[] = [
-  { label: "React", value: "react" },
-  { label: "Vue.js", value: "vue" },
-  { label: "Angular", value: "angular" },
-  { label: "Svelte", value: "svelte" }
-];
-
 export const SelectDemo = () => {
   const { t } = useLanguage();
   const [selectValue, setSelectValue] = React.useState("");
+
+  const selectOptions: SelectOption[] = [
+    { label: t('demo.select.option.react'), value: "react" },
+    { label: t('demo.select.option.vue'), value: "vue" },
+    { label: t('demo.select.option.angular'), value: "angular" },
+    { label: t('demo.select.option.svelte'), value: "svelte" }
+  ];
 
   return (
     <Card className="gradient-card border-card-border shadow-medium">
@@ -28,19 +28,19 @@ export const SelectDemo = () => {
       </CardHeader>
       <CardContent className="space-y-4">
         <Select
-          label="Framework Favorito"
+          label={t('demo.select.label.framework')}
           options={selectOptions}
           value={selectValue}
           onValueChange={setSelectValue}
-          placeholder="Escolha um framework"
-          helper="Selecione sua opção preferida"
+          placeholder={t('demo.select.placeholder.framework')}
+          helper={t('demo.select.helper.framework')}
         />
         
         <Select
-          label="Desabilitado"
+          label={t('demo.select.label.disabled')}
           options={selectOptions}
           disabled
-          placeholder="Seleção desabilitada"
+          placeholder={t('demo.select.placeholder.disabled')}
         />
       </CardContent>
     </Card>

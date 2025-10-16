@@ -18,20 +18,20 @@ export const AlertDemo = () => {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <Alert variant="default" title="Informação">
-          Este é um alerta informativo padrão para comunicar informações importantes.
+        <Alert variant="default" title={t('demo.alert.info.title')}>
+          {t('demo.alert.info.message')}
         </Alert>
         
-        <Alert variant="success" title="Sucesso">
-          Operação realizada com sucesso! Seus dados foram salvos.
+        <Alert variant="success" title={t('demo.alert.success.title')}>
+          {t('demo.alert.success.message')}
         </Alert>
         
-        <Alert variant="warning" title="Atenção">
-          Verifique as informações antes de continuar com o processo.
+        <Alert variant="warning" title={t('demo.alert.warning.title')}>
+          {t('demo.alert.warning.message')}
         </Alert>
         
-        <Alert variant="destructive" title="Erro">
-          Ocorreu um erro ao processar sua solicitação. Tente novamente.
+        <Alert variant="destructive" title={t('demo.alert.error.title')}>
+          {t('demo.alert.error.message')}
         </Alert>
       </CardContent>
     </Card>

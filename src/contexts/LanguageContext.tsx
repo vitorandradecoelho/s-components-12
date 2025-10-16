@@ -218,6 +218,81 @@ const translations = {
     'sweetalert.prop.onConfirm': 'Função chamada ao confirmar',
     'sweetalert.prop.onCancel': 'Função chamada ao cancelar',
     
+     // Demo Components - Input
+    'demo.input.label.standard': 'Input Padrão',
+    'demo.input.placeholder.standard': 'Digite algo...',
+    'demo.input.helper.standard': 'Texto de ajuda opcional',
+    'demo.input.label.icon': 'Com Ícone',
+    'demo.input.placeholder.icon': 'Buscar...',
+    'demo.input.label.error': 'Com Erro',
+    'demo.input.placeholder.error': 'Campo obrigatório',
+    'demo.input.error.required': 'Este campo é obrigatório',
+    
+    // Demo Components - Select
+    'demo.select.label.framework': 'Framework Favorito',
+    'demo.select.placeholder.framework': 'Escolha um framework',
+    'demo.select.helper.framework': 'Selecione sua opção preferida',
+    'demo.select.label.disabled': 'Desabilitado',
+    'demo.select.placeholder.disabled': 'Seleção desabilitada',
+    'demo.select.option.react': 'React',
+    'demo.select.option.vue': 'Vue.js',
+    'demo.select.option.angular': 'Angular',
+    'demo.select.option.svelte': 'Svelte',
+    
+    // Demo Components - TextField
+    'demo.textfield.label.description': 'Descrição',
+    'demo.textfield.placeholder.description': 'Escreva uma descrição detalhada...',
+    'demo.textfield.helper.description': 'Mínimo de 50 caracteres',
+    'demo.textfield.label.comment': 'Comentário',
+    'demo.textfield.placeholder.comment': 'Seu comentário...',
+    'demo.textfield.success.valid': 'Formato válido',
+    
+    // Demo Components - RadioButton
+    'demo.radio.label.choose': 'Escolha uma opção',
+    'demo.radio.helper.choose': 'Selecione apenas uma opção',
+    'demo.radio.label.card': 'Variante Card',
+    'demo.radio.option1.label': 'Opção 1',
+    'demo.radio.option1.desc': 'Primeira opção disponível',
+    'demo.radio.option2.label': 'Opção 2',
+    'demo.radio.option2.desc': 'Segunda opção disponível',
+    'demo.radio.option3.label': 'Opção 3',
+    'demo.radio.option3.desc': 'Terceira opção disponível',
+    
+    // Demo Components - CheckBox
+    'demo.checkbox.label.terms': 'Aceito os termos e condições',
+    'demo.checkbox.desc.terms': 'Leia os termos completos antes de aceitar',
+    'demo.checkbox.label.notifications': 'Receber notificações',
+    'demo.checkbox.desc.notifications': 'Receba updates sobre novos recursos',
+    'demo.checkbox.label.indeterminate': 'Estado indeterminado',
+    'demo.checkbox.desc.indeterminate': 'Exemplo de estado indeterminado',
+    
+    // Demo Components - ComboBox
+    'demo.combo.label.languages': 'Linguagens de Programação',
+    'demo.combo.placeholder.languages': 'Selecione linguagens...',
+    'demo.combo.helper.languages': 'Você pode selecionar múltiplas opções',
+    'demo.combo.option.js.label': 'JavaScript',
+    'demo.combo.option.js.desc': 'Linguagem de programação web',
+    'demo.combo.option.ts.label': 'TypeScript',
+    'demo.combo.option.ts.desc': 'JavaScript com tipagem estática',
+    'demo.combo.option.py.label': 'Python',
+    'demo.combo.option.py.desc': 'Linguagem versátil e poderosa',
+    'demo.combo.option.java.label': 'Java',
+    'demo.combo.option.java.desc': 'Linguagem orientada a objetos',
+    'demo.combo.option.csharp.label': 'C#',
+    'demo.combo.option.csharp.desc': 'Linguagem da Microsoft',
+    'demo.combo.option.go.label': 'Go',
+    'demo.combo.option.go.desc': 'Linguagem moderna do Google',
+    
+    // Demo Components - Alert
+    'demo.alert.info.title': 'Informação',
+    'demo.alert.info.message': 'Este é um alerta informativo padrão para comunicar informações importantes.',
+    'demo.alert.success.title': 'Sucesso',
+    'demo.alert.success.message': 'Operação realizada com sucesso! Seus dados foram salvos.',
+    'demo.alert.warning.title': 'Atenção',
+    'demo.alert.warning.message': 'Verifique as informações antes de continuar com o processo.',
+    'demo.alert.error.title': 'Erro',
+    'demo.alert.error.message': 'Ocorreu um erro ao processar sua solicitação. Tente novamente.',
+    
     // Common Labels
     'common.examples': 'Exemplos',
     'common.props': 'Propriedades',
@@ -444,6 +519,81 @@ const translations = {
     'sweetalert.prop.onConfirm': 'Function called on confirm',
     'sweetalert.prop.onCancel': 'Function called on cancel',
     
+     // Demo Components - Input
+    'demo.input.label.standard': 'Standard Input',
+    'demo.input.placeholder.standard': 'Type something...',
+    'demo.input.helper.standard': 'Optional help text',
+    'demo.input.label.icon': 'With Icon',
+    'demo.input.placeholder.icon': 'Search...',
+    'demo.input.label.error': 'With Error',
+    'demo.input.placeholder.error': 'Required field',
+    'demo.input.error.required': 'This field is required',
+    
+    // Demo Components - Select
+    'demo.select.label.framework': 'Favorite Framework',
+    'demo.select.placeholder.framework': 'Choose a framework',
+    'demo.select.helper.framework': 'Select your preferred option',
+    'demo.select.label.disabled': 'Disabled',
+    'demo.select.placeholder.disabled': 'Disabled selection',
+    'demo.select.option.react': 'React',
+    'demo.select.option.vue': 'Vue.js',
+    'demo.select.option.angular': 'Angular',
+    'demo.select.option.svelte': 'Svelte',
+    
+    // Demo Components - TextField
+    'demo.textfield.label.description': 'Description',
+    'demo.textfield.placeholder.description': 'Write a detailed description...',
+    'demo.textfield.helper.description': 'Minimum 50 characters',
+    'demo.textfield.label.comment': 'Comment',
+    'demo.textfield.placeholder.comment': 'Your comment...',
+    'demo.textfield.success.valid': 'Valid format',
+    
+    // Demo Components - RadioButton
+    'demo.radio.label.choose': 'Choose an option',
+    'demo.radio.helper.choose': 'Select only one option',
+    'demo.radio.label.card': 'Card Variant',
+    'demo.radio.option1.label': 'Option 1',
+    'demo.radio.option1.desc': 'First available option',
+    'demo.radio.option2.label': 'Option 2',
+    'demo.radio.option2.desc': 'Second available option',
+    'demo.radio.option3.label': 'Option 3',
+    'demo.radio.option3.desc': 'Third available option',
+    
+    // Demo Components - CheckBox
+    'demo.checkbox.label.terms': 'I accept the terms and conditions',
+    'demo.checkbox.desc.terms': 'Read the full terms before accepting',
+    'demo.checkbox.label.notifications': 'Receive notifications',
+    'demo.checkbox.desc.notifications': 'Get updates about new features',
+    'demo.checkbox.label.indeterminate': 'Indeterminate state',
+    'demo.checkbox.desc.indeterminate': 'Example of indeterminate state',
+    
+    // Demo Components - ComboBox
+    'demo.combo.label.languages': 'Programming Languages',
+    'demo.combo.placeholder.languages': 'Select languages...',
+    'demo.combo.helper.languages': 'You can select multiple options',
+    'demo.combo.option.js.label': 'JavaScript',
+    'demo.combo.option.js.desc': 'Web programming language',
+    'demo.combo.option.ts.label': 'TypeScript',
+    'demo.combo.option.ts.desc': 'JavaScript with static typing',
+    'demo.combo.option.py.label': 'Python',
+    'demo.combo.option.py.desc': 'Versatile and powerful language',
+    'demo.combo.option.java.label': 'Java',
+    'demo.combo.option.java.desc': 'Object-oriented language',
+    'demo.combo.option.csharp.label': 'C#',
+    'demo.combo.option.csharp.desc': 'Microsoft language',
+    'demo.combo.option.go.label': 'Go',
+    'demo.combo.option.go.desc': 'Modern Google language',
+    
+    // Demo Components - Alert
+    'demo.alert.info.title': 'Information',
+    'demo.alert.info.message': 'This is a default informative alert to communicate important information.',
+    'demo.alert.success.title': 'Success',
+    'demo.alert.success.message': 'Operation completed successfully! Your data has been saved.',
+    'demo.alert.warning.title': 'Warning',
+    'demo.alert.warning.message': 'Check the information before continuing with the process.',
+    'demo.alert.error.title': 'Error',
+    'demo.alert.error.message': 'An error occurred while processing your request. Please try again.',
+    
     // Common Labels
     'common.examples': 'Examples',
     'common.props': 'Properties',
@@ -663,6 +813,81 @@ const translations = {
     'sweetalert.prop.inputPlaceholder': 'Placeholder del campo de entrada',
     'sweetalert.prop.onConfirm': 'Función llamada al confirmar',
     'sweetalert.prop.onCancel': 'Función llamada al cancelar',
+    
+     // Demo Components - Input
+    'demo.input.label.standard': 'Input Estándar',
+    'demo.input.placeholder.standard': 'Escribe algo...',
+    'demo.input.helper.standard': 'Texto de ayuda opcional',
+    'demo.input.label.icon': 'Con Ícono',
+    'demo.input.placeholder.icon': 'Buscar...',
+    'demo.input.label.error': 'Con Error',
+    'demo.input.placeholder.error': 'Campo obligatorio',
+    'demo.input.error.required': 'Este campo es obligatorio',
+    
+    // Demo Components - Select
+    'demo.select.label.framework': 'Framework Favorito',
+    'demo.select.placeholder.framework': 'Elige un framework',
+    'demo.select.helper.framework': 'Selecciona tu opción preferida',
+    'demo.select.label.disabled': 'Deshabilitado',
+    'demo.select.placeholder.disabled': 'Selección deshabilitada',
+    'demo.select.option.react': 'React',
+    'demo.select.option.vue': 'Vue.js',
+    'demo.select.option.angular': 'Angular',
+    'demo.select.option.svelte': 'Svelte',
+    
+    // Demo Components - TextField
+    'demo.textfield.label.description': 'Descripción',
+    'demo.textfield.placeholder.description': 'Escribe una descripción detallada...',
+    'demo.textfield.helper.description': 'Mínimo 50 caracteres',
+    'demo.textfield.label.comment': 'Comentario',
+    'demo.textfield.placeholder.comment': 'Tu comentario...',
+    'demo.textfield.success.valid': 'Formato válido',
+    
+    // Demo Components - RadioButton
+    'demo.radio.label.choose': 'Elige una opción',
+    'demo.radio.helper.choose': 'Selecciona solo una opción',
+    'demo.radio.label.card': 'Variante Card',
+    'demo.radio.option1.label': 'Opción 1',
+    'demo.radio.option1.desc': 'Primera opción disponible',
+    'demo.radio.option2.label': 'Opción 2',
+    'demo.radio.option2.desc': 'Segunda opción disponible',
+    'demo.radio.option3.label': 'Opción 3',
+    'demo.radio.option3.desc': 'Tercera opción disponible',
+    
+    // Demo Components - CheckBox
+    'demo.checkbox.label.terms': 'Acepto los términos y condiciones',
+    'demo.checkbox.desc.terms': 'Lee los términos completos antes de aceptar',
+    'demo.checkbox.label.notifications': 'Recibir notificaciones',
+    'demo.checkbox.desc.notifications': 'Recibe actualizaciones sobre nuevas funciones',
+    'demo.checkbox.label.indeterminate': 'Estado indeterminado',
+    'demo.checkbox.desc.indeterminate': 'Ejemplo de estado indeterminado',
+    
+    // Demo Components - ComboBox
+    'demo.combo.label.languages': 'Lenguajes de Programación',
+    'demo.combo.placeholder.languages': 'Selecciona lenguajes...',
+    'demo.combo.helper.languages': 'Puedes seleccionar múltiples opciones',
+    'demo.combo.option.js.label': 'JavaScript',
+    'demo.combo.option.js.desc': 'Lenguaje de programación web',
+    'demo.combo.option.ts.label': 'TypeScript',
+    'demo.combo.option.ts.desc': 'JavaScript con tipado estático',
+    'demo.combo.option.py.label': 'Python',
+    'demo.combo.option.py.desc': 'Lenguaje versátil y poderoso',
+    'demo.combo.option.java.label': 'Java',
+    'demo.combo.option.java.desc': 'Lenguaje orientado a objetos',
+    'demo.combo.option.csharp.label': 'C#',
+    'demo.combo.option.csharp.desc': 'Lenguaje de Microsoft',
+    'demo.combo.option.go.label': 'Go',
+    'demo.combo.option.go.desc': 'Lenguaje moderno de Google',
+    
+    // Demo Components - Alert
+    'demo.alert.info.title': 'Información',
+    'demo.alert.info.message': 'Esta es una alerta informativa predeterminada para comunicar información importante.',
+    'demo.alert.success.title': 'Éxito',
+    'demo.alert.success.message': '¡Operación completada con éxito! Tus datos han sido guardados.',
+    'demo.alert.warning.title': 'Advertencia',
+    'demo.alert.warning.message': 'Verifica la información antes de continuar con el proceso.',
+    'demo.alert.error.title': 'Error',
+    'demo.alert.error.message': 'Ocurrió un error al procesar tu solicitud. Por favor intenta de nuevo.',
     
     // Common Labels
     'common.examples': 'Ejemplos',

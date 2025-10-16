@@ -22,24 +22,24 @@ export const InputDemo = () => {
       </CardHeader>
       <CardContent className="space-y-4">
         <Input
-          label="Input Padrão"
-          placeholder="Digite algo..."
+          label={t('demo.input.label.standard')}
+          placeholder={t('demo.input.placeholder.standard')}
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          helper="Texto de ajuda opcional"
+          helper={t('demo.input.helper.standard')}
         />
         
         <Input
-          label="Com Ícone"
-          placeholder="Buscar..."
+          label={t('demo.input.label.icon')}
+          placeholder={t('demo.input.placeholder.icon')}
           leftIcon={<Search className="h-4 w-4" />}
           variant="filled"
         />
         
         <Input
-          label="Com Erro"
-          placeholder="Campo obrigatório"
-          error="Este campo é obrigatório"
+          label={t('demo.input.label.error')}
+          placeholder={t('demo.input.placeholder.error')}
+          error={t('demo.input.error.required')}
         />
       </CardContent>
     </Card>

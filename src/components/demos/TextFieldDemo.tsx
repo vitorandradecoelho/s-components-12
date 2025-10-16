@@ -21,19 +21,19 @@ export const TextFieldDemo = () => {
       </CardHeader>
       <CardContent className="space-y-4">
         <TextField
-          label="Descrição"
-          placeholder="Escreva uma descrição detalhada..."
+          label={t('demo.textfield.label.description')}
+          placeholder={t('demo.textfield.placeholder.description')}
           value={textValue}
           onChange={(e) => setTextValue(e.target.value)}
-          helper="Mínimo de 50 caracteres"
+          helper={t('demo.textfield.helper.description')}
           rows={4}
         />
         
         <TextField
-          label="Comentário"
-          placeholder="Seu comentário..."
+          label={t('demo.textfield.label.comment')}
+          placeholder={t('demo.textfield.placeholder.comment')}
           variant="filled"
-          success="Formato válido"
+          success={t('demo.textfield.success.valid')}
           rows={3}
         />
       </CardContent>
