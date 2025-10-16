@@ -7,3 +7,4 @@ export { ComboBoxDemo } from './ComboBoxDemo';
 export { AlertDemo } from './AlertDemo';
 export { ToastDemo } from './ToastDemo';
 export { SweetAlertDemo } from './SweetAlertDemo';
+export { LinhaTrajetoDemo } from './LinhaTrajetoDemo';

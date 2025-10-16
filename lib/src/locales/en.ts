@@ -59,6 +59,17 @@ export const en = {
     sweetalert: {
       title: 'SweetAlert',
       description: 'Elegant confirmation dialogs'
+    },
+    linhatrajeto: {
+      title: 'LinhaTrajetoSelector',
+      description: 'Transport line and route selector',
+      linha: 'Line',
+      trajeto: 'Route',
+      selectLinha: 'Select a line',
+      selectTrajeto: 'Select routes',
+      loading: 'Loading lines...',
+      noData: 'No lines available',
+      number: 'Number'
     }
   },
   common: {

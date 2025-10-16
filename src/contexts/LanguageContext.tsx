@@ -293,6 +293,13 @@ const translations = {
     'demo.alert.error.title': 'Erro',
     'demo.alert.error.message': 'Ocorreu um erro ao processar sua solicitação. Tente novamente.',
     
+    // Demo Components - LinhaTrajetoSelector
+    'demo.linhatrajeto.basic': 'Exemplo Básico',
+    'demo.linhatrajeto.single': 'Seleção Única de Trajeto',
+    'demo.linhatrajeto.selectSingleTrajeto': 'Selecione um trajeto',
+    'demo.linhatrajeto.selected': 'Linha selecionada',
+    'demo.linhatrajeto.trajetos': 'Trajetos selecionados',
+    
     // Common Labels
     'common.examples': 'Exemplos',
     'common.props': 'Propriedades',
@@ -594,6 +601,13 @@ const translations = {
     'demo.alert.error.title': 'Error',
     'demo.alert.error.message': 'An error occurred while processing your request. Please try again.',
     
+    // Demo Components - LinhaTrajetoSelector
+    'demo.linhatrajeto.basic': 'Basic Example',
+    'demo.linhatrajeto.single': 'Single Route Selection',
+    'demo.linhatrajeto.selectSingleTrajeto': 'Select a route',
+    'demo.linhatrajeto.selected': 'Selected line',
+    'demo.linhatrajeto.trajetos': 'Selected routes',
+    
     // Common Labels
     'common.examples': 'Examples',
     'common.props': 'Properties',
@@ -888,6 +902,13 @@ const translations = {
     'demo.alert.warning.message': 'Verifica la información antes de continuar con el proceso.',
     'demo.alert.error.title': 'Error',
     'demo.alert.error.message': 'Ocurrió un error al procesar tu solicitud. Por favor intenta de nuevo.',
+    
+    // Demo Components - LinhaTrajetoSelector
+    'demo.linhatrajeto.basic': 'Ejemplo Básico',
+    'demo.linhatrajeto.single': 'Selección Única de Ruta',
+    'demo.linhatrajeto.selectSingleTrajeto': 'Seleccione una ruta',
+    'demo.linhatrajeto.selected': 'Línea seleccionada',
+    'demo.linhatrajeto.trajetos': 'Rutas seleccionadas',
     
     // Common Labels
     'common.examples': 'Ejemplos',

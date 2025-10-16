@@ -8,6 +8,18 @@ import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowLeft, Copy, Check, Code2, Palette, Zap } from 'lucide-react';
 import { toast } from 'sonner';
+import { 
+  InputDemo, 
+  SelectDemo, 
+  TextFieldDemo, 
+  RadioButtonDemo, 
+  CheckBoxDemo, 
+  ComboBoxDemo, 
+  AlertDemo, 
+  ToastDemo, 
+  SweetAlertDemo,
+  LinhaTrajetoDemo 
+} from '@/components/demos';
 
 interface ComponentDocsProps {
   componentName: keyof typeof componentConfigs;
@@ -435,7 +447,7 @@ const [selectedTrajetoIds, setSelectedTrajetoIds] = useState<string[]>([]);
     setSelectedTrajetoIds(trajetos.map(t => t._id));
   }}
 />`,
-        component: React.createElement('div', { className: 'text-center py-4 text-sm text-muted-foreground' }, 'Exemplo de LinhaTrajetoSelector em desenvolvimento')
+        component: <LinhaTrajetoDemo />
       },
       {
         title: 'Personalizado',
