@@ -1,6 +1,10 @@
 // Utilitários
 export { cn } from './lib/utils';
 
+// Internacionalização
+export { LanguageProvider, useLanguage, type Language, type LanguageContextType, type LanguageProviderProps } from './contexts/LanguageContext';
+export { translations } from './locales';
+
 // Componentes da biblioteca
 export { Input } from './components/Input';
 export { Select, type SelectOption } from './components/Select';
