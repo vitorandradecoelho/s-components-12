@@ -151,8 +151,15 @@ const translations = {
     'component.timepicker.description': 'Seleção de horários independente com formatos 12h e 24h',
      'component.linhatrajeto.title': 'LinhaTrajetoSelector',
      'component.linhatrajeto.description': 'Seletor duplo para linha e trajeto com cascata de dependência',
+     'component.linhatrajeto.linha': 'Linha',
+     'component.linhatrajeto.trajeto': 'Trajeto',
+     'component.linhatrajeto.selectLinha': 'Selecione uma linha',
+     'component.linhatrajeto.selectTrajeto': 'Selecione trajetos',
+     'component.linhatrajeto.loading': 'Carregando linhas...',
+     'component.linhatrajeto.noData': 'Nenhuma linha disponível',
+     'component.linhatrajeto.number': 'Número',
      
-     // LinhaTrajetoSelector specific translations
+     // LinhaTrajetoSelector specific translations (backward compatibility)
      'linhatrajeto.linha.placeholder': 'Selecione uma linha',
      'linhatrajeto.trajeto.placeholder': 'Selecione trajetos',
      'linhatrajeto.linha.label': 'Linha',
@@ -460,8 +467,15 @@ const translations = {
     'component.map.description': 'Flexible map component with OpenStreetMap and Google Maps',
      'component.linhatrajeto.title': 'LinhaTrajetoSelector',
      'component.linhatrajeto.description': 'Dual selector for line and route with dependency cascade',
+     'component.linhatrajeto.linha': 'Line',
+     'component.linhatrajeto.trajeto': 'Route',
+     'component.linhatrajeto.selectLinha': 'Select a line',
+     'component.linhatrajeto.selectTrajeto': 'Select routes',
+     'component.linhatrajeto.loading': 'Loading lines...',
+     'component.linhatrajeto.noData': 'No lines available',
+     'component.linhatrajeto.number': 'Number',
      
-     // LinhaTrajetoSelector specific translations
+     // LinhaTrajetoSelector specific translations (backward compatibility)
      'linhatrajeto.linha.placeholder': 'Select a line',
      'linhatrajeto.trajeto.placeholder': 'Select routes',
      'linhatrajeto.linha.label': 'Line',
@@ -764,8 +778,15 @@ const translations = {
     'component.sweetalert.description': 'Alertas modales elegantes e interactivos con soporte async',
      'component.linhatrajeto.title': 'LinhaTrajetoSelector',
      'component.linhatrajeto.description': 'Selector dual para línea y trayecto con cascada de dependencia',
+     'component.linhatrajeto.linha': 'Línea',
+     'component.linhatrajeto.trajeto': 'Trayecto',
+     'component.linhatrajeto.selectLinha': 'Seleccione una línea',
+     'component.linhatrajeto.selectTrajeto': 'Seleccione trayectos',
+     'component.linhatrajeto.loading': 'Cargando líneas...',
+     'component.linhatrajeto.noData': 'No hay líneas disponibles',
+     'component.linhatrajeto.number': 'Número',
      
-     // LinhaTrajetoSelector specific translations
+     // LinhaTrajetoSelector specific translations (backward compatibility)
      'linhatrajeto.linha.placeholder': 'Seleccione una línea',
      'linhatrajeto.trajeto.placeholder': 'Seleccione trayectos',
      'linhatrajeto.linha.label': 'Línea',
