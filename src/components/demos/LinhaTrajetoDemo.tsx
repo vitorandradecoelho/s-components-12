@@ -1,7 +1,8 @@
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { LinhaTrajetoSelector, type Linha, type Trajeto } from "@vitorandradecoelho/sd-components";
+import { LinhaTrajetoSelector } from "@/components/library/LinhaTrajetoSelector";
+import type { Linha, Trajeto } from "@vitorandradecoelho/sd-components";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export const LinhaTrajetoDemo = () => {
