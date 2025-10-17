@@ -11,7 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export const CheckBoxDemo = () => {
+export const AccordionDemo = () => {
   const { t } = useLanguage();
   const [checkboxValue, setCheckboxValue] = React.useState(false);
 
