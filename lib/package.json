@@ -1,5 +1,5 @@
 {
-  "name": "@vitorandradecoelho/sd-components",
+  "name": "@vitorandradecoelho/sd-component-design-system",
   "version": "1.0.0",
   "type": "module",
   "description": "Uma biblioteca de componentes React reutilizáveis com design system integrado",
