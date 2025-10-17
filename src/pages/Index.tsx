@@ -8,6 +8,7 @@ import { SweetAlert, useSweetAlert } from "@vitorandradecoelho/sd-components";
 import { Code, Palette, Zap, BookOpen, GitBranch, Package, Settings, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 
+
 // Import demo components
 import {
   InputDemo,
@@ -15,11 +16,13 @@ import {
   TextFieldDemo,
   RadioButtonDemo,
   CheckBoxDemo,
+  AccordionDemo,
   ComboBoxDemo,
   AlertDemo,
   ToastDemo,
-  SweetAlertDemo
+  SweetAlertDemo,
 } from "@/components/demos";
+
 
 const Index = () => {
   const { t } = useLanguage();
@@ -105,8 +108,9 @@ const Index = () => {
           <SelectDemo />
           <TextFieldDemo />
           <RadioButtonDemo />
-          <CheckBoxDemo />
+          <CheckBoxDemo />          
           <ComboBoxDemo />
+          <AccordionDemo />
           <AlertDemo />
           <ToastDemo />
           <SweetAlertDemo />
